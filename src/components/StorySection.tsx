@@ -34,6 +34,7 @@ const StorySection = () => {
           {/* Content */}
           <div className="space-y-8">
             <div className="space-y-6">
+              {/* Headline (leave untouched as requested) */}
               <ScrollReveal delay={200} direction="left">
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-pearl-white leading-tight">
                   When capital flows,{' '}
@@ -51,44 +52,33 @@ const StorySection = () => {
               />
               
               <div className="space-y-6 text-lg text-gray-300 leading-relaxed pt-4">
+                {/* New Copy Block */}
                 <ScrollReveal delay={600} direction="up">
-                  <StoryBeat 
-                    trigger="hover" 
-                    intensity="subtle"
-                    revealText="📈 $12 trillion in cross-border payments flow annually"
-                  >
+                  <div>
                     <p>
-                      For decades, the Global South has received billions in trade, investment, and infrastructure. 
-                      But its arteries are blocked. Broken money rails. Colonized finance. Delays that kill deals, 
-                      kill trust, kill growth.
+                      For decades, the Global South has received billions in trade, investment, and infrastructure.
+                      <br />
+                      But it’s arteries are blocked.
+                      <br />
+                      Broken money rails. Colonized finance. Delays that kill deals, kill trust, kill growth.
                     </p>
-                  </StoryBeat>
-                </ScrollReveal>
-                
-                <ScrollReveal delay={800} direction="up">
-                  <p className="text-jade-flow-300 font-semibold">
-                    WEAVE rips out the old plumbing — and installs something sovereign, stable, unstoppable.
-                  </p>
-                </ScrollReveal>
-                
-                <ScrollReveal delay={1000} direction="up">
-                  <StoryBeat 
-                    trigger="scroll" 
-                    intensity="medium"
-                    revealText="🌍 Operating in 12+ corridors across 4 continents"
-                  >
-                    <p>
-                      This is more than payments, this is economic revitalization. We're building the circulatory 
-                      system of the next world economy. From China to Lagos, São Paulo to Jakarta — we enable 
-                      trusted, high-volume capital movement for a new generation of builders, traders, and empires.
+                    <p className="mt-6">
+                      <span className="font-semibold text-pearl-white">WEAVE</span> rips out the old plumbing — and installs something sovereign, stable, unstoppable.
+                      <br />
+                      This is more than payments., this is economic revitalization.
                     </p>
-                  </StoryBeat>
+                    <p className="mt-6">
+                      We’re building the circulatory system of the next world economy.
+                      <br />
+                      From China to Lagos, São Paulo to Jakarta — we enable trusted, high-volume capital movement for a new generation of builders, traders, and empires.
+                    </p>
+                  </div>
                 </ScrollReveal>
               </div>
             </div>
           </div>
 
-          {/* Video Panel */}
+          {/* Video Panel: (leave untouched as requested) */}
           <ScrollReveal delay={400} direction="right">
             <div className="relative">
               <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl">
@@ -137,3 +127,4 @@ const StorySection = () => {
 };
 
 export default StorySection;
+
