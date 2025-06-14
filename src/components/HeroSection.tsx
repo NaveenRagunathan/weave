@@ -3,12 +3,35 @@ import { Button } from '@/components/ui/button';
 import { Play, ArrowRight } from 'lucide-react';
 
 const HeroSection = () => {
-  const [liveCounter, setLiveCounter] = useState(1289000000);
+  const [liveCounter, setLiveCounter] = useState(1200000000); // Updated initial value
+  const [currency, setCurrency] = useState("USD"); // New state
+  const [userLocale, setUserLocale] = useState("en-US"); // New state
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
-  // Animate counter on mount
+  // New useEffect to fetch currency and locale
   useEffect(() => {
-    const startValue = 1200000000;
+    fetch("https://ipapi.co/json/")
+      .then((res) => res.json())
+      .then((data) => {
+        setCurrency(data.currency || "USD");
+        // Ensure languages exist and is a string before splitting
+        const languages = data.languages;
+        if (typeof languages === 'string' && languages.length > 0) {
+          setUserLocale(languages.split(",")[0] || "en-US");
+        } else {
+          setUserLocale("en-US"); // Fallback if languages is not as expected
+        }
+      })
+      .catch(() => {
+        // Fallback in case of fetch error
+        setCurrency("USD");
+        setUserLocale("en-US");
+      });
+  }, []);
+
+  // Animate counter on mount - existing useEffect
+  useEffect(() => {
+    const startValue = 1200000000; // Ensure this matches the initial state if needed for animation logic
     const endValue = 1289000000;
     const duration = 2000;
     const increment = (endValue - startValue) / (duration / 16);
@@ -33,12 +56,13 @@ const HeroSection = () => {
       clearInterval(timer);
       clearInterval(liveTimer);
     };
-  }, []);
+  }, []); // This useEffect runs once on mount
 
+  // Updated formatCurrency function
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat(userLocale, {
       style: 'currency',
-      currency: 'USD',
+      currency: currency, // Use state variable
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(amount);
