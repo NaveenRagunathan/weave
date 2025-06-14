@@ -1,7 +1,6 @@
+
 import React, { useState, useRef, useEffect } from 'react';
-import { Clock, DollarSign, TrendingDown, AlertTriangle, CheckCircle } from 'lucide-react';
 import ScrollReveal from '@/components/interactions/ScrollReveal';
-import StoryBeat from '@/components/interactions/StoryBeat';
 
 const ProblemSection = () => {
   const [isInView, setIsInView] = useState(false);
@@ -31,7 +30,7 @@ const ProblemSection = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* LEFT: Headline & Copy */}
+          {/* LEFT: Headline & Problem Copy */}
           <div>
             <ScrollReveal delay={200} direction="up">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-pearl-white leading-tight mb-6">
@@ -61,10 +60,10 @@ const ProblemSection = () => {
                   </li>
                 </ul>
                 <p>
-                  A <span className="text-silk-crimson-300">$2M real estate project in Brazil collapsed</span> — not from risk, but from FX clearance delays.
+                  A $2M real estate project in Brazil collapsed — not from risk, but from FX clearance delays.
                 </p>
                 <p>
-                  A <span className="text-silk-crimson-300">Nigerian factory lost a major buyer</span> — not from fraud, but from a broken yuan-to-naira conversion.
+                  A Nigerian factory lost a major buyer — not from fraud, but from a broken yuan-to-naira conversion.
                 </p>
                 <p className="font-semibold text-silk-crimson-200">
                   These aren’t bugs. They’re systemic sabotage.<br />
@@ -77,25 +76,17 @@ const ProblemSection = () => {
               </div>
             </ScrollReveal>
           </div>
-          {/* RIGHT: Video Panel only, no timeline */}
+          {/* RIGHT: Place for Timeline Visual or (currently) same docu-style video as placeholder */}
           <ScrollReveal delay={800} direction="right">
             <div className="relative">
-              <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl">
-                <video
-                  className="w-full h-full object-cover"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  poster="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=800&q=80"
-                >
-                  <source
-                    src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1c9a87a9a&profile_id=164&oauth2_token_id=57447761"
-                    type="video/mp4"
-                  />
-                </video>
-                <div className="absolute inset-0 bg-gradient-to-t from-ink-black/40 to-transparent" />
-                {/* Play Button Overlay removed for static layout */}
+              {/* Timeline/animation placeholder */}
+              <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center bg-ink-black/70">
+                {/* Placeholder for “timeline animation” (to be built/plugged later) */}
+                <span className="text-pearl-white text-lg opacity-70 px-8 text-center">
+                  Timeline animation goes here:<br />
+                  <span className="font-semibold">Failed deal pain vs. WEAVE success (8s close)</span><br />
+                  [Animation or visual]
+                </span>
               </div>
             </div>
           </ScrollReveal>
