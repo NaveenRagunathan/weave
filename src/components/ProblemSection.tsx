@@ -33,7 +33,7 @@ const ProblemSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="py-24 lg:py-32 bg-silk-crimson-400 to-ink-black"
+      className="py-24 lg:py-32 bg-silk-crimson-400"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -43,9 +43,8 @@ const ProblemSection = () => {
               The Global South is rising.
               <br />
               But its <span className="text-imperial-gold-500">money pipes</span> are still{' '}
-              <span className="text-silk-crimson-500">colonial</span>.
+              <span className="text-silk-crimson-200">colonial</span>.
             </h2>
-            {/* Animated Underline */}
             <div
               className={`h-1 mt-1 mx-auto bg-gradient-to-r from-silk-crimson-500 via-imperial-gold-500 to-silk-crimson-400 rounded-full origin-center
                           ${isInView ? 'animate-underline-reveal' : 'scale-x-0'}`}
@@ -53,8 +52,6 @@ const ProblemSection = () => {
             />
           </div>
         </ScrollReveal>
-
-        {/* Problem Description */}
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <ScrollReveal delay={400} direction="left">
@@ -65,7 +62,6 @@ const ProblemSection = () => {
                 </p>
               </div>
             </ScrollReveal>
-
             <div className="space-y-4">
               {problemPoints.map((point, index) => {
                 const Icon = point.icon;
@@ -81,7 +77,6 @@ const ProblemSection = () => {
                 );
               })}
             </div>
-
             <ScrollReveal delay={1200} direction="up">
               <div className="space-y-4 text-pearl-white leading-relaxed">
                 <p>
@@ -97,17 +92,15 @@ const ProblemSection = () => {
                 </p>
               </div>
             </ScrollReveal>
-
             <ScrollReveal delay={1600} direction="up">
-              <p className="text-2xl text-silk-crimson-400 font-bold mt-6">
+              <p className="text-2xl text-silk-crimson-300 font-bold mt-6">
                 WEAVE turns that loss into lifeblood. <br /> <span className="text-imperial-gold-500">Friction becomes flow.</span> <span className="text-imperial-gold-500">Delay becomes power.</span>
               </p>
             </ScrollReveal>
           </div>
-          
           {/* Visuals: Timeline animation placeholder */}
           <ScrollReveal delay={800} direction="right">
-            <div className="bg-ink-black/70 p-8 rounded-xl aspect-video flex items-center justify-center border border-silk-crimson-400/60">
+            <div className="bg-ink-black/80 p-8 rounded-xl aspect-video flex items-center justify-center border border-silk-crimson-200">
               <p className="text-pearl-white text-center">Visual Placeholder: <br /> Timeline animation of a failed deal vs. a WEAVE success story.</p>
             </div>
           </ScrollReveal>

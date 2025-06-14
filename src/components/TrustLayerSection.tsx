@@ -20,8 +20,6 @@ const trustPillars = [
 ];
 
 const TrustLayerSection = () => {
-  // TODO: Implement animated "Trust Triangle" visual
-  // For now, display pillars and a placeholder for the visual.
   return (
     <section className="py-24 lg:py-32 bg-ink-black text-pearl-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,7 +32,7 @@ const TrustLayerSection = () => {
           {trustPillars.map((pillar, index) => {
             const Icon = pillar.icon;
             return (
-              <div key={index} className="bg-silk-crimson-400/10 p-8 rounded-xl border border-imperial-gold-500/20 text-center md:text-left">
+              <div key={index} className="bg-silk-crimson-400/20 p-8 rounded-xl border border-imperial-gold-500/40 text-center md:text-left">
                 <div className="flex justify-center md:justify-start mb-4">
                    <div className="w-12 h-12 bg-imperial-gold-500/10 rounded-lg flex items-center justify-center">
                      <Icon className="w-6 h-6 text-imperial-gold-500" />
@@ -46,7 +44,7 @@ const TrustLayerSection = () => {
             );
           })}
         </div>
-        <div className="mt-16 bg-silk-crimson-400/15 p-8 rounded-xl aspect-video flex items-center justify-center border border-imperial-gold-500/20">
+        <div className="mt-16 bg-silk-crimson-400/10 p-8 rounded-xl aspect-video flex items-center justify-center border border-imperial-gold-500/30">
             <p className="text-imperial-gold-400 text-center">Animated "Trust Triangle" Placeholder: <br />Linking Compliance ↔ Security ↔ Relationships.</p>
         </div>
       </div>
