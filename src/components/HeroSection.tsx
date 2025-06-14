@@ -115,9 +115,8 @@ const HeroSection = () => {
           </Button>
           
           <Button 
-            variant="outline" 
             size="lg"
-            className="border-2 border-pearl-white/20 text-pearl-white hover:bg-pearl-white hover:text-ink-black px-8 py-4 text-lg font-semibold rounded-full backdrop-blur-sm transition-all duration-300 group"
+            className="bg-pearl-white text-jade-flow-600 border-2 border-jade-flow-500 hover:bg-jade-flow-100 hover:text-jade-flow-700 hover:border-jade-flow-600 px-8 py-4 text-lg font-semibold rounded-full backdrop-blur-sm transition-all duration-300 group"
             onClick={() => console.log('Secondary CTA clicked')}
           >
             <Play className="mr-2 h-5 w-5" />
