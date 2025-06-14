@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Clock, DollarSign, Globe, Shield, Users } from 'lucide-react';
@@ -112,14 +111,15 @@ const AdvantageSection = () => {
             {/* Globe Effect */}
             <div 
               className={`absolute inset-0 transition-all duration-2000 ${
-                isEndingInView ? 'opacity-100 animate-pulse-glow' : 'opacity-0'
+                isEndingInView ? 'opacity-100' : 'opacity-0'
               }`}
               style={{
                 background: `
                   radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.2) 0%, transparent 60%),
                   radial-gradient(circle at 30% 70%, rgba(245, 158, 11, 0.15) 0%, transparent 40%),
                   radial-gradient(circle at 70% 30%, rgba(16, 185, 129, 0.1) 0%, transparent 40%)
-                `
+                `,
+                boxShadow: isEndingInView ? '0 0 20px rgba(16, 185, 129, 0.1)' : 'none'
               }}
             />
             
@@ -165,10 +165,11 @@ const AdvantageSection = () => {
               {/* Globe Visualization Placeholder */}
               <div 
                 className={`mx-auto w-32 h-32 rounded-full flex items-center justify-center border-2 border-jade-flow-400/30 transition-all duration-1500 ${
-                  isEndingInView ? 'animate-pulse-glow scale-110' : 'scale-100'
+                  isEndingInView ? 'scale-110' : 'scale-100'
                 }`}
                 style={{
-                  background: 'radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%)'
+                  background: 'radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%)',
+                  boxShadow: isEndingInView ? '0 0 15px rgba(16, 185, 129, 0.2)' : 'none'
                 }}
               >
                 <Globe className="w-16 h-16 text-jade-flow-400 animate-pulse" />
@@ -185,8 +186,11 @@ const AdvantageSection = () => {
                   variant="outline"
                   size="lg"
                   className={`border-jade-flow-500 text-jade-flow-400 hover:bg-jade-flow-500 hover:text-white px-8 py-4 text-lg font-semibold rounded-full transition-all duration-500 group relative overflow-hidden ${
-                    isEndingInView ? 'animate-pulse-glow' : ''
+                    isEndingInView ? 'animate-pulse' : ''
                   }`}
+                  style={{
+                    boxShadow: isEndingInView ? '0 0 10px rgba(16, 185, 129, 0.2)' : 'none'
+                  }}
                 >
                   {/* Shimmer Effect */}
                   <div 

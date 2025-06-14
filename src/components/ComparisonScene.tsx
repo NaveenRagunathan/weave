@@ -84,7 +84,7 @@ const ComparisonScene: React.FC<ComparisonSceneProps> = ({
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 p-8 items-center">
         {/* Feature Title */}
         <div className="md:col-span-1 flex items-center space-x-4">
-          <div className={`transition-all duration-700 ${isAnimating ? 'animate-pulse-glow' : ''}`}>
+          <div className={`transition-all duration-700 ${isAnimating ? 'animate-pulse' : ''}`}>
             <Icon 
               className={`w-8 h-8 transition-all duration-500 ${
                 isAnimating ? 'text-jade-flow-400 scale-110' : 'text-gray-400'
@@ -125,11 +125,12 @@ const ComparisonScene: React.FC<ComparisonSceneProps> = ({
         <div className="md:col-span-1 text-center">
           <div 
             className={`relative overflow-hidden rounded-lg p-4 transition-all duration-700 delay-500 ${
-              isAnimating ? 'opacity-100 scale-105 animate-pulse-glow' : 'opacity-70 scale-100'
+              isAnimating ? 'opacity-100 scale-105' : 'opacity-70 scale-100'
             }`}
             style={{
               background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(245, 158, 11, 0.1) 100%)',
-              border: '1px solid rgba(16, 185, 129, 0.3)'
+              border: '1px solid rgba(16, 185, 129, 0.3)',
+              boxShadow: isAnimating ? '0 0 15px rgba(16, 185, 129, 0.2)' : 'none'
             }}
           >
             {/* Shimmer effect */}
