@@ -1,6 +1,5 @@
 
 import React from 'react';
-import HeroSection from '@/components/HeroSection';
 import PainPointSection from '@/components/PainPointSection';
 import VisionSection from '@/components/VisionSection';
 import WeaponSection from '@/components/WeaponSection';
@@ -22,7 +21,7 @@ const Index = () => {
   const prefersReducedMotion = useReducedMotion();
   
   const sections = [
-    'Hero', 'Pain Points', 'Vision', 'WEAVE Weapon', 'USDC Power',
+    'Pain Points', 'Vision', 'WEAVE Weapon', 'USDC Power',
     'Who It\'s For', 'Trust Layer', 'Social Proof', 'Final Call'
   ];
 
@@ -32,8 +31,6 @@ const Index = () => {
       {!prefersReducedMotion && (
         <ProgressIndicator sections={sections} />
       )}
-      
-      <HeroSection />
       
       <TensionBuilder type="stress" intensity="high">
         <PainPointSection />
