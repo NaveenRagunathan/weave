@@ -20,11 +20,11 @@ const logos = [ // Placeholder logos
 
 const SocialProofSection = () => {
   return (
-    <section className="py-24 lg:py-32 bg-silk-crimson-400 text-pearl-white">
+    <section className="py-24 lg:py-32 bg-gradient-to-b from-ink-black to-ink-black/95 text-pearl-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-4">
-            Every new account makes the network <span className="weave-gradient-text">smarter, faster, safer</span>.
+            Every new account makes the network <span className="bg-gradient-to-r from-silk-crimson-400 via-imperial-gold-500 to-silk-crimson-600 bg-clip-text text-transparent">smarter, faster, safer</span>.
           </h2>
           <p className="text-2xl text-pearl-white/80">
             Every dollar accelerates the flow.
@@ -37,8 +37,8 @@ const SocialProofSection = () => {
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <div key={index} className="bg-ink-black/80 p-6 rounded-xl border border-imperial-gold-500/20">
-                <Icon className="w-10 h-10 text-imperial-gold-500 mx-auto mb-3" />
+              <div key={index} className="bg-gradient-to-br from-ink-black to-silk-crimson-900/30 p-6 rounded-xl border border-silk-crimson-400/30 hover:border-silk-crimson-400/50 transition-all duration-300">
+                <Icon className="w-10 h-10 text-silk-crimson-400 mx-auto mb-3" />
                 <div className="text-3xl font-bold text-pearl-white">{stat.value}</div>
                 <div className="text-pearl-white/80">{stat.label}</div>
               </div>
@@ -46,18 +46,18 @@ const SocialProofSection = () => {
           })}
         </div>
         <div className="mb-16">
-          <h3 className="text-center text-lg font-semibold text-imperial-gold-400 uppercase tracking-wider mb-6">Partnered With 60+ Trade, Banking & Regulatory Bodies</h3>
-          <div className="bg-ink-black/60 p-8 rounded-xl border border-imperial-gold-500/20">
-            <p className="text-imperial-gold-400 text-center">Logos Wall Placeholder:</p>
+          <h3 className="text-center text-lg font-semibold text-silk-crimson-400 uppercase tracking-wider mb-6">Partnered With 60+ Trade, Banking & Regulatory Bodies</h3>
+          <div className="bg-gradient-to-r from-ink-black via-silk-crimson-900/20 to-ink-black p-8 rounded-xl border border-silk-crimson-400/20">
+            <p className="text-silk-crimson-400 text-center">Logos Wall Placeholder:</p>
             <div className="flex flex-wrap justify-center items-center gap-4 mt-4">
-              {logos.map(logo => <span key={logo} className="text-pearl-white/80 text-sm p-2 bg-silk-crimson-400/50 rounded">{logo}</span>)}
+              {logos.map(logo => <span key={logo} className="text-pearl-white/80 text-sm p-2 bg-silk-crimson-900/30 border border-silk-crimson-400/20 rounded">{logo}</span>)}
             </div>
           </div>
         </div>
         <div className="text-center">
           <Button
             size="lg"
-            className="bg-silk-crimson-600 hover:bg-silk-crimson-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-silk-crimson-500/30 transition-all duration-300 group"
+            className="bg-silk-crimson-600 hover:bg-silk-crimson-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-silk-crimson-500/30 transition-all duration-300 group border border-silk-crimson-400/30"
           >
             Join the Winning Network
             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 text-imperial-gold-500" />

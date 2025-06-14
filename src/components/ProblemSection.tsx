@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Clock, DollarSign, AlertTriangle } from 'lucide-react';
 import ScrollReveal from '@/components/interactions/ScrollReveal';
@@ -25,15 +26,15 @@ const ProblemSection = () => {
   }, []);
 
   const problemPoints = [
-    { icon: Clock, text: 'Transfers take 3–5 days', color: 'text-imperial-gold-500' },
-    { icon: DollarSign, text: 'Remittance fees average 6.5%', color: 'text-imperial-gold-500' },
-    { icon: AlertTriangle, text: 'FX swings wreck deals in minutes', color: 'text-imperial-gold-500' },
+    { icon: Clock, text: 'Transfers take 3–5 days', color: 'text-silk-crimson-400' },
+    { icon: DollarSign, text: 'Remittance fees average 6.5%', color: 'text-silk-crimson-400' },
+    { icon: AlertTriangle, text: 'FX swings wreck deals in minutes', color: 'text-silk-crimson-400' },
   ];
 
   return (
     <section 
       ref={sectionRef}
-      className="py-24 lg:py-32 bg-silk-crimson-400"
+      className="py-24 lg:py-32 bg-ink-black"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -42,8 +43,8 @@ const ProblemSection = () => {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-pearl-white leading-tight mb-6">
               The Global South is rising.
               <br />
-              But its <span className="text-imperial-gold-500">money pipes</span> are still{' '}
-              <span className="text-silk-crimson-200">colonial</span>.
+              But its <span className="text-silk-crimson-400">money pipes</span> are still{' '}
+              <span className="text-silk-crimson-300">colonial</span>.
             </h2>
             <div
               className={`h-1 mt-1 mx-auto bg-gradient-to-r from-silk-crimson-500 via-imperial-gold-500 to-silk-crimson-400 rounded-full origin-center
@@ -57,8 +58,8 @@ const ProblemSection = () => {
             <ScrollReveal delay={400} direction="left">
               <div className="text-xl text-pearl-white leading-relaxed space-y-3">
                 <p>
-                  This isn’t just a payment problem.<br />
-                  It’s a <span className="font-semibold text-imperial-gold-500">development emergency:</span>
+                  This isn't just a payment problem.<br />
+                  It's a <span className="font-semibold text-silk-crimson-400">development emergency:</span>
                 </p>
               </div>
             </ScrollReveal>
@@ -69,7 +70,7 @@ const ProblemSection = () => {
                   <ScrollReveal key={index} delay={600 + index * 200} direction="left">
                     <StoryBeat trigger="hover" intensity="subtle">
                       <li className="flex items-center text-lg">
-                        <Icon className={`w-6 h-6 mr-3 shrink-0 text-imperial-gold-500`} />
+                        <Icon className={`w-6 h-6 mr-3 shrink-0 text-silk-crimson-400`} />
                         <span className="text-pearl-white">{point.text}</span>
                       </li>
                     </StoryBeat>
@@ -80,27 +81,27 @@ const ProblemSection = () => {
             <ScrollReveal delay={1200} direction="up">
               <div className="space-y-4 text-pearl-white leading-relaxed">
                 <p>
-                  A <span className="text-imperial-gold-500">$2M real estate project in Brazil collapsed</span> — not from risk, but from FX clearance delays.
+                  A <span className="text-silk-crimson-400">$2M real estate project in Brazil collapsed</span> — not from risk, but from FX clearance delays.
                 </p>
                 <p>
-                  A <span className="text-imperial-gold-500">Nigerian factory lost a major buyer</span> — not from fraud, but from a broken yuan-to-naira conversion.
+                  A <span className="text-silk-crimson-400">Nigerian factory lost a major buyer</span> — not from fraud, but from a broken yuan-to-naira conversion.
                 </p>
                 <p>
-                  These aren’t bugs. They’re systemic sabotage.
+                  These aren't bugs. They're systemic sabotage.
                   <br />
-                  And they drain over <span className="text-imperial-gold-500">15% of revenue</span> from Global South businesses every year.
+                  And they drain over <span className="text-silk-crimson-400">15% of revenue</span> from Global South businesses every year.
                 </p>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={1600} direction="up">
               <p className="text-2xl text-silk-crimson-300 font-bold mt-6">
-                WEAVE turns that loss into lifeblood. <br /> <span className="text-imperial-gold-500">Friction becomes flow.</span> <span className="text-imperial-gold-500">Delay becomes power.</span>
+                WEAVE turns that loss into lifeblood. <br /> <span className="text-silk-crimson-400">Friction becomes flow.</span> <span className="text-silk-crimson-400">Delay becomes power.</span>
               </p>
             </ScrollReveal>
           </div>
           {/* Visuals: Timeline animation placeholder */}
           <ScrollReveal delay={800} direction="right">
-            <div className="bg-ink-black/80 p-8 rounded-xl aspect-video flex items-center justify-center border border-silk-crimson-200">
+            <div className="bg-gradient-to-br from-ink-black to-silk-crimson-900/20 p-8 rounded-xl aspect-video flex items-center justify-center border border-silk-crimson-400/30">
               <p className="text-pearl-white text-center">Visual Placeholder: <br /> Timeline animation of a failed deal vs. a WEAVE success story.</p>
             </div>
           </ScrollReveal>
