@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Zap, Shield, Bridge, Brain } from 'lucide-react';
+import { Zap, Shield, Link, Brain } from 'lucide-react';
 
 const FeaturesSection = () => {
   const [isInView, setIsInView] = useState(false);
@@ -43,7 +43,7 @@ const FeaturesSection = () => {
       position: { x: 80, y: 20 }
     },
     {
-      icon: Bridge,
+      icon: Link,
       name: 'WEAVE Bridge™',
       title: 'Seamless Onboarding',
       description: 'Corridor-specific KYC and compliance. Get verified once, trade everywhere in your network.',
