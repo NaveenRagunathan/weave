@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, TrendingUp, CheckCircle, Users, Clock, Globe } from 'lucide-react'; // Added Globe
@@ -56,7 +57,7 @@ const SocialProofSection = () => {
         <div className="text-center">
           <Button
             size="lg"
-            className="bg-jade-flow-600 hover:bg-jade-flow-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-jade-flow-500/30 transition-all duration-300 group"
+            className="bg-silk-crimson-600 hover:bg-silk-crimson-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-silk-crimson-500/30 transition-all duration-300 group"
           >
             Join the Winning Network
             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 text-imperial-gold-500" />

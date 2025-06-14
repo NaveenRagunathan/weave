@@ -89,15 +89,15 @@ const HeroSection = () => {
         
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-ink-black/80 via-transparent to-ink-black/60" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-jade-flow-900/20 to-ink-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-silk-crimson-900/20 to-ink-black/90" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Live Counter Badge */}
-        <div className="inline-flex items-center gap-2 bg-jade-flow-500/10 backdrop-blur-sm border border-jade-flow-500/20 rounded-full px-6 py-3 mb-8 animate-fade-in">
-          <div className="w-2 h-2 bg-jade-flow-400 rounded-full animate-pulse" />
-          <span className="text-jade-flow-300 text-sm font-medium">Live Capital Moved</span>
+        <div className="inline-flex items-center gap-2 bg-silk-crimson-500/10 backdrop-blur-sm border border-silk-crimson-500/20 rounded-full px-6 py-3 mb-8 animate-fade-in">
+          <div className="w-2 h-2 bg-silk-crimson-400 rounded-full animate-pulse" />
+          <span className="text-silk-crimson-300 text-sm font-medium">Live Capital Moved</span>
           <span 
             className="text-pearl-white text-lg font-bold animate-count-up"
             aria-live="polite"
@@ -123,7 +123,7 @@ const HeroSection = () => {
           
           <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '0.9s' }}>
             WEAVE is the new financial backbone for cross-border trade between China and the Global South. 
-            <span className="block mt-2 text-jade-flow-300 font-semibold"> No banks. No delays. No losses. Just unstoppable economic flow.</span>
+            <span className="block mt-2 text-silk-crimson-300 font-semibold"> No banks. No delays. No losses. Just unstoppable economic flow.</span>
           </p>
         </div>
 
@@ -131,7 +131,7 @@ const HeroSection = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: '1.2s' }}>
           <Button 
             size="lg"
-            className="weave-shimmer-button bg-jade-flow-600 hover:bg-jade-flow-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-jade-flow-500/25 transition-all duration-300 animate-pulse-glow group"
+            className="weave-shimmer-button bg-silk-crimson-600 hover:bg-silk-crimson-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-silk-crimson-500/25 transition-all duration-300 animate-pulse-glow group"
             onClick={() => console.log('Primary CTA clicked')}
           >
             <span className="relative z-10">Create Your Account</span>
@@ -140,7 +140,7 @@ const HeroSection = () => {
           
           <Button 
             size="lg"
-            className="bg-pearl-white text-jade-flow-600 border-2 border-jade-flow-500 hover:bg-jade-flow-100 hover:text-jade-flow-700 hover:border-jade-flow-600 px-8 py-4 text-lg font-semibold rounded-full backdrop-blur-sm transition-all duration-300 group"
+            className="bg-pearl-white text-silk-crimson-600 border-2 border-silk-crimson-500 hover:bg-silk-crimson-100 hover:text-silk-crimson-700 hover:border-silk-crimson-600 px-8 py-4 text-lg font-semibold rounded-full backdrop-blur-sm transition-all duration-300 group"
             onClick={() => console.log('Secondary CTA clicked')}
           >
             <Play className="mr-2 h-5 w-5" />
@@ -150,7 +150,7 @@ const HeroSection = () => {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-1 h-8 bg-gradient-to-b from-jade-flow-400 to-transparent rounded-full" />
+          <div className="w-1 h-8 bg-gradient-to-b from-silk-crimson-400 to-transparent rounded-full" />
         </div>
       </div>
     </section>
