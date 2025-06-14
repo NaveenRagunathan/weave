@@ -1,13 +1,12 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, TrendingUp, CheckCircle, Users, Clock } from 'lucide-react'; // Placeholder icons
+import { ArrowRight, TrendingUp, CheckCircle, Users, Clock, Globe } from 'lucide-react'; // Added Globe
 
 const stats = [
   { value: '$1.2B+', label: 'Volume Moved', icon: TrendingUp },
-  { value: '12', label: 'Corridors Live', icon: Globe }, // Assuming Globe for corridors
+  { value: '12', label: 'Corridors Live', icon: Globe },
   { value: '99.9%', label: 'Uptime', icon: CheckCircle },
-  { value: '24/7', label: 'Human Support', icon: Users }, // Using Users for support
+  { value: '24/7', label: 'Human Support', icon: Users },
 ];
 
 const logos = [ // Placeholder logos
