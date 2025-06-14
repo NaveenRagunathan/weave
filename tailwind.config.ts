@@ -187,13 +187,47 @@ export default {
 					}
 				},
 				'marching-ants': {
-					'0%': { 'stroke-dashoffset': '10' }, // Start with offset
-					'100%': { 'stroke-dashoffset': '0' }, // End at 0 to complete one cycle of the pattern
+					'0%': { 'stroke-dashoffset': '10' },
+					'100%': { 'stroke-dashoffset': '0' },
 				},
 				'underline-reveal': {
           '0%': { transform: 'scaleX(0)' },
           '100%': { transform: 'scaleX(1)' },
         },
+				'narrative-glow': {
+					'0%, 100%': {
+						textShadow: '0 0 10px rgba(16, 185, 129, 0.3)',
+						transform: 'scale(1)'
+					},
+					'50%': {
+						textShadow: '0 0 30px rgba(16, 185, 129, 0.6)',
+						transform: 'scale(1.02)'
+					}
+				},
+				'flow-pulse': {
+					'0%': {
+						opacity: '0.3',
+						strokeWidth: '1'
+					},
+					'50%': {
+						opacity: '1',
+						strokeWidth: '3'
+					},
+					'100%': {
+						opacity: '0.3',
+						strokeWidth: '1'
+					}
+				},
+				'transition-reveal': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(30px) scale(0.95)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0) scale(1)'
+					}
+				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -206,6 +240,9 @@ export default {
 				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
 				'marching-ants': 'marching-ants 0.7s linear infinite',
 				'underline-reveal': 'underline-reveal 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards',
+				'narrative-glow': 'narrative-glow 3s ease-in-out infinite',
+				'flow-pulse': 'flow-pulse 2s ease-in-out infinite',
+				'transition-reveal': 'transition-reveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards'
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
