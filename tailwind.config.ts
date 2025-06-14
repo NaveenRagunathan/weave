@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -186,7 +185,15 @@ export default {
 					'50%': {
 						boxShadow: '0 0 40px rgba(16, 185, 129, 0.8)'
 					}
-				}
+				},
+				'marching-ants': {
+					'0%': { 'stroke-dashoffset': '10' }, // Start with offset
+					'100%': { 'stroke-dashoffset': '0' }, // End at 0 to complete one cycle of the pattern
+				},
+				'underline-reveal': {
+          '0%': { transform: 'scaleX(0)' },
+          '100%': { transform: 'scaleX(1)' },
+        },
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -196,7 +203,9 @@ export default {
 				'slide-in-right': 'slide-in-right 0.8s ease-out',
 				'count-up': 'count-up 1.2s ease-out',
 				'shimmer': 'shimmer 2s infinite',
-				'pulse-glow': 'pulse-glow 2s ease-in-out infinite'
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'marching-ants': 'marching-ants 0.7s linear infinite',
+				'underline-reveal': 'underline-reveal 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards',
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

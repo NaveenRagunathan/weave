@@ -42,6 +42,12 @@ const ProblemSection = () => {
             But its <span className="text-silk-crimson-500">money pipes</span> are still{' '}
             <span className="text-silk-crimson-500">colonial</span>.
           </h2>
+          {/* Animated Underline */}
+          <div
+            className={`h-1 mt-1 mx-auto bg-gradient-to-r from-silk-crimson-500 via-imperial-gold-500 to-silk-crimson-400 rounded-full origin-center
+                        ${isInView ? 'animate-underline-reveal' : 'scale-x-0'}`}
+            style={{ animationDelay: isInView ? '0.4s' : '0s', width: 'clamp(100px, 35%, 250px)' }}
+          />
         </div>
 
         {/* Problem Description */}

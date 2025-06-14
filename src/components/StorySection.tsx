@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-// Removed Button import as it's not used per new plan for this section
 
 const StorySection = () => {
   const [isInView, setIsInView] = useState(false);
@@ -38,8 +37,14 @@ const StorySection = () => {
                 <br />
                 When it clogs, empires fall.
               </h2>
+              {/* Animated Underline */}
+              <div
+                className={`h-1 mt-1 mx-auto lg:mx-0 bg-gradient-to-r from-jade-flow-400 via-imperial-gold-500 to-jade-flow-600 rounded-full origin-center lg:origin-left
+                            ${isInView ? 'animate-underline-reveal' : 'scale-x-0'}`}
+                style={{ animationDelay: isInView ? '0.4s' : '0s', width: 'clamp(100px, 35%, 250px)' }}
+              />
               
-              <div className="space-y-6 text-lg text-gray-300 leading-relaxed">
+              <div className="space-y-6 text-lg text-gray-300 leading-relaxed pt-4">
                 <p>
                   For decades, the Global South has received billions in trade, investment, and infrastructure. 
                   But its arteries are blocked. Broken money rails. Colonized finance. Delays that kill deals, 
@@ -87,7 +92,7 @@ const StorySection = () => {
               </div>
             </div>
             
-            {/* Floating Stats - This is from original, new plan does not specify for Section 1. Keeping for visual consistency for now. */}
+            {/* Floating Stats */}
             <div className="absolute -bottom-4 -right-4 bg-ink-black/90 backdrop-blur-sm border border-jade-flow-500/20 rounded-2xl p-6">
               <div className="text-center">
                 <div className="text-2xl font-bold text-jade-flow-400">$1.2B+</div>

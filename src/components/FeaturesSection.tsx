@@ -103,9 +103,9 @@ const FeaturesSection = () => {
                       y2={`${features[(index + 1) % features.length].position.y}%`}
                       stroke="url(#flow-gradient)"
                       strokeWidth="2"
-                      strokeDasharray="5,5"
-                      className="animate-pulse"
-                      style={{ animationDelay: `${index * 0.5}s` }}
+                      strokeDasharray="7 3" // Dash pattern: 7px line, 3px gap
+                      className="animate-marching-ants" // Apply new animation
+                      style={{ animationDelay: `${index * 0.15}s` }} // Stagger animation start slightly
                     />
                   ))}
                 </svg>
