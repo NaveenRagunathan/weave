@@ -11,12 +11,12 @@ const trustPillars = [
   {
     icon: Banknote,
     title: 'Multi-Layer Capital Safety',
-    description: 'Tiered vaults. Partner banks. Failover protections. You'll never wonder where your money is.',
+    description: 'Tiered vaults. Partner banks. Failover protections. You\'ll never wonder where your money is.',
   },
   {
     icon: Globe,
     title: 'Embedded Trust Networks',
-    description: 'We partner with embassies, diaspora unions, commerce chambers, and local banks to build the bridges software alone can't.',
+    description: 'We partner with embassies, diaspora unions, commerce chambers, and local banks to build the bridges software alone can\'t.',
   },
 ];
 
