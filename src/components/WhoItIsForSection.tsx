@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
@@ -23,26 +22,24 @@ const WhoItIsForSection = () => {
             If you're building beyond borders, <br className="hidden md:block" /> you're already late without WEAVE.
           </h2>
         </div>
-
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <p className="text-xl text-gray-300">
+            <p className="text-xl text-pearl-white/90">
               The WEAVE network powers those who make things happen:
             </p>
             <ul className="space-y-4">
               {userSegments.map((segment, index) => (
                 <li key={index} className="flex items-start text-lg">
                   <span className="text-2xl mr-3 shrink-0">{segment.emoji}</span>
-                  <span className="text-gray-300">{segment.text}</span>
+                  <span className="text-pearl-white/80">{segment.text}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="bg-gray-800/30 p-8 rounded-xl aspect-video flex items-center justify-center border border-jade-flow-500/20">
-            <p className="text-gray-500 text-center">Visual Slider Placeholder: <br />Illustrating user segments in action.</p>
+          <div className="bg-silk-crimson-400/20 p-8 rounded-xl aspect-video flex items-center justify-center border border-imperial-gold-500/20">
+            <p className="text-imperial-gold-500 text-center">Visual Slider Placeholder: <br />Illustrating user segments in action.</p>
           </div>
         </div>
-
         <div className="mt-16 text-center">
           <Button
             size="lg"

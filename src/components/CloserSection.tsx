@@ -1,11 +1,10 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
 const CloserSection = () => {
   return (
-    <section className="py-24 lg:py-32 bg-ink-black text-pearl-white">
+    <section className="py-24 lg:py-32 bg-silk-crimson-400 text-pearl-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-8">
           The next 100 years will be built on capital that flows with <span className="weave-gradient-text">freedom, not permission</span>.
@@ -17,7 +16,7 @@ const CloserSection = () => {
           </p>
           <p>That money should move where the people move.</p>
           <p>That opportunity should flow like capital — borderless, instant, and real.</p>
-          <p className="mt-6 text-jade-flow-300 font-semibold">
+          <p className="mt-6 text-imperial-gold-400 font-semibold">
             The new economy won’t be built on payment apps.
             <br />
             It will be built on trust, infrastructure, and scale.

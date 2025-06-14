@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Clock, DollarSign, AlertTriangle } from 'lucide-react';
 import ScrollReveal from '@/components/interactions/ScrollReveal';
@@ -34,8 +33,7 @@ const ProblemSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="py-24 lg:py-32 bg-gradient-to-b from-silk-crimson-400 to-ink-black" // New: deep red to ink black
-      // Optionally, use: bg-red-glow-panel if you want a more vibrant shimmer
+      className="py-24 lg:py-32 bg-silk-crimson-400 to-ink-black"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -75,7 +73,7 @@ const ProblemSection = () => {
                   <ScrollReveal key={index} delay={600 + index * 200} direction="left">
                     <StoryBeat trigger="hover" intensity="subtle">
                       <li className="flex items-center text-lg">
-                        <Icon className={`w-6 h-6 mr-3 shrink-0 ${point.color}`} />
+                        <Icon className={`w-6 h-6 mr-3 shrink-0 text-imperial-gold-500`} />
                         <span className="text-pearl-white">{point.text}</span>
                       </li>
                     </StoryBeat>

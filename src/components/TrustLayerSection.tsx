@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Shield, Banknote, Globe } from 'lucide-react'; // Using Banknote for Capital Safety, Globe for Networks
 
@@ -31,26 +30,24 @@ const TrustLayerSection = () => {
             No guesswork. No Drift. <br className="hidden md:block" /> Just <span className="weave-gradient-text">Control & Confidence</span> <br className="hidden md:block" /> you can build a nation on.
           </h2>
         </div>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 items-start">
           {trustPillars.map((pillar, index) => {
             const Icon = pillar.icon;
             return (
-              <div key={index} className="bg-gray-800/30 p-8 rounded-xl border border-jade-flow-500/20 text-center md:text-left">
+              <div key={index} className="bg-silk-crimson-400/10 p-8 rounded-xl border border-imperial-gold-500/20 text-center md:text-left">
                 <div className="flex justify-center md:justify-start mb-4">
-                   <div className="w-12 h-12 bg-jade-flow-500/10 rounded-lg flex items-center justify-center">
-                     <Icon className="w-6 h-6 text-jade-flow-400" />
+                   <div className="w-12 h-12 bg-imperial-gold-500/10 rounded-lg flex items-center justify-center">
+                     <Icon className="w-6 h-6 text-imperial-gold-500" />
                    </div>
                 </div>
                 <h3 className="text-xl font-bold text-pearl-white mb-3">{pillar.title}</h3>
-                <p className="text-gray-400 leading-relaxed">{pillar.description}</p>
+                <p className="text-pearl-white/80 leading-relaxed">{pillar.description}</p>
               </div>
             );
           })}
         </div>
-        
-        <div className="mt-16 bg-gray-800/30 p-8 rounded-xl aspect-video flex items-center justify-center border border-jade-flow-500/20">
-            <p className="text-gray-500 text-center">Animated "Trust Triangle" Placeholder: <br />Linking Compliance ↔ Security ↔ Relationships.</p>
+        <div className="mt-16 bg-silk-crimson-400/15 p-8 rounded-xl aspect-video flex items-center justify-center border border-imperial-gold-500/20">
+            <p className="text-imperial-gold-400 text-center">Animated "Trust Triangle" Placeholder: <br />Linking Compliance ↔ Security ↔ Relationships.</p>
         </div>
       </div>
     </section>
