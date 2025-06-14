@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Clock, DollarSign, TrendingDown, AlertTriangle, CheckCircle } from 'lucide-react';
 import ScrollReveal from '@/components/interactions/ScrollReveal';
@@ -59,11 +58,14 @@ const ProblemSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <ScrollReveal delay={400} direction="left">
-              <p className="text-xl text-gray-300 leading-relaxed">
-                This isn't just a payment problem. It's a <span className="font-semibold text-pearl-white">development emergency:</span>
-              </p>
+              <div className="text-xl text-gray-300 leading-relaxed space-y-3">
+                <p>
+                  This isn’t just a payment problem.<br />
+                  It’s a <span className="font-semibold text-pearl-white">development emergency:</span>
+                </p>
+              </div>
             </ScrollReveal>
-            
+
             <div className="space-y-4">
               {problemPoints.map((point, index) => {
                 const Icon = point.icon;
@@ -79,36 +81,31 @@ const ProblemSection = () => {
                 );
               })}
             </div>
-            
+
             <ScrollReveal delay={1200} direction="up">
               <div className="space-y-4 text-gray-300 leading-relaxed">
-                <StoryBeat 
-                  trigger="scroll" 
-                  intensity="medium"
-                  revealText="💡 These failures cost $50B+ annually across emerging markets"
-                >
-                  <p>A <span className="text-silk-crimson-300">$2M real estate project in Brazil collapsed</span> — not from risk, but from FX clearance delays.</p>
-                </StoryBeat>
-                
-                <StoryBeat 
-                  trigger="scroll" 
-                  intensity="medium"
-                  revealText="🚫 Traditional banking deliberately throttles Global South growth"
-                >
-                  <p>A <span className="text-silk-crimson-300">Nigerian factory lost a major buyer</span> — not from fraud, but from a broken yuan-to-naira conversion.</p>
-                </StoryBeat>
-                
-                <p className="font-semibold">These aren't bugs. They're systemic sabotage. And they drain over <span className="text-silk-crimson-200">15% of revenue</span> from Global South businesses every year.</p>
+                <p>
+                  A <span className="text-silk-crimson-300">$2M real estate project in Brazil collapsed</span> — not from risk, but from FX clearance delays.
+                </p>
+                <p>
+                  A <span className="text-silk-crimson-300">Nigerian factory lost a major buyer</span> — not from fraud, but from a broken yuan-to-naira conversion.
+                </p>
+                <p>
+                  These aren’t bugs. They’re systemic sabotage.
+                  <br />
+                  And they drain over <span className="text-silk-crimson-200">15% of revenue</span> from Global South businesses every year.
+                </p>
               </div>
             </ScrollReveal>
-            
+
             <ScrollReveal delay={1600} direction="up">
               <p className="text-2xl text-jade-flow-300 font-bold mt-6">
-                WEAVE turns that loss into lifeblood. <br/> Friction becomes flow. Delay becomes power.
+                WEAVE turns that loss into lifeblood. <br /> Friction becomes flow. Delay becomes power.
               </p>
             </ScrollReveal>
           </div>
           
+          {/* Visuals: Timeline animation placeholder */}
           <ScrollReveal delay={800} direction="right">
             <div className="bg-gray-800/30 p-8 rounded-xl aspect-video flex items-center justify-center border border-jade-flow-500/20">
               <p className="text-gray-500 text-center">Visual Placeholder: <br /> Timeline animation of a failed deal vs. a WEAVE success story.</p>
