@@ -62,7 +62,6 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// WEAVE Brand Colors
 				'ink-black': '#0a0a0a',
 				'jade-flow': {
 					50: '#ecfdf5',
@@ -227,6 +226,30 @@ export default {
 						opacity: '1',
 						transform: 'translateY(0) scale(1)'
 					}
+				},
+				'gentle-bounce': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-4px)' }
+				},
+				'reveal-text': {
+					'0%': { 
+						opacity: '0', 
+						transform: 'translateY(20px) scale(0.9)' 
+					},
+					'100%': { 
+						opacity: '1', 
+						transform: 'translateY(0) scale(1)' 
+					}
+				},
+				'tension-pulse': {
+					'0%, 100%': { 
+						transform: 'scale(1)',
+						filter: 'brightness(1)'
+					},
+					'50%': { 
+						transform: 'scale(1.01)',
+						filter: 'brightness(1.1)'
+					}
 				}
 			},
 			animation: {
@@ -242,7 +265,14 @@ export default {
 				'underline-reveal': 'underline-reveal 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards',
 				'narrative-glow': 'narrative-glow 3s ease-in-out infinite',
 				'flow-pulse': 'flow-pulse 2s ease-in-out infinite',
-				'transition-reveal': 'transition-reveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards'
+				'transition-reveal': 'transition-reveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+				'gentle-bounce': 'gentle-bounce 2s ease-in-out infinite',
+				'reveal-text': 'reveal-text 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+				'tension-pulse': 'tension-pulse 3s ease-in-out infinite'
+			},
+			scale: {
+				'101': '1.01',
+				'102': '1.02'
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

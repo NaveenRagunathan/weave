@@ -1,5 +1,8 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Clock, DollarSign, TrendingDown, AlertTriangle, CheckCircle } from 'lucide-react';
+import ScrollReveal from '@/components/interactions/ScrollReveal';
+import StoryBeat from '@/components/interactions/StoryBeat';
 
 const ProblemSection = () => {
   const [isInView, setIsInView] = useState(false);
@@ -35,50 +38,82 @@ const ProblemSection = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className={`text-center mb-16 ${isInView ? 'animate-fade-in' : 'opacity-0'}`}>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-pearl-white leading-tight mb-6">
-            The Global South is rising.
-            <br />
-            But its <span className="text-silk-crimson-500">money pipes</span> are still{' '}
-            <span className="text-silk-crimson-500">colonial</span>.
-          </h2>
-          {/* Animated Underline */}
-          <div
-            className={`h-1 mt-1 mx-auto bg-gradient-to-r from-silk-crimson-500 via-imperial-gold-500 to-silk-crimson-400 rounded-full origin-center
-                        ${isInView ? 'animate-underline-reveal' : 'scale-x-0'}`}
-            style={{ animationDelay: isInView ? '0.4s' : '0s', width: 'clamp(100px, 35%, 250px)' }}
-          />
-        </div>
+        <ScrollReveal delay={200} direction="up">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-pearl-white leading-tight mb-6">
+              The Global South is rising.
+              <br />
+              But its <span className="text-silk-crimson-500">money pipes</span> are still{' '}
+              <span className="text-silk-crimson-500">colonial</span>.
+            </h2>
+            {/* Animated Underline */}
+            <div
+              className={`h-1 mt-1 mx-auto bg-gradient-to-r from-silk-crimson-500 via-imperial-gold-500 to-silk-crimson-400 rounded-full origin-center
+                          ${isInView ? 'animate-underline-reveal' : 'scale-x-0'}`}
+              style={{ animationDelay: isInView ? '0.4s' : '0s', width: 'clamp(100px, 35%, 250px)' }}
+            />
+          </div>
+        </ScrollReveal>
 
         {/* Problem Description */}
-        <div className={`grid lg:grid-cols-2 gap-12 items-center ${isInView ? 'animate-fade-in' : 'opacity-0'}`} style={{animationDelay: '0.3s'}}>
-            <div className="space-y-6">
-                <p className="text-xl text-gray-300 leading-relaxed">
-                    This isn’t just a payment problem. It’s a <span className="font-semibold text-pearl-white">development emergency:</span>
-                </p>
-                <ul className="space-y-4">
-                    {problemPoints.map((point, index) => {
-                        const Icon = point.icon;
-                        return (
-                        <li key={index} className="flex items-center text-lg">
-                            <Icon className={`w-6 h-6 mr-3 shrink-0 ${point.color}`} />
-                            <span className="text-gray-300">{point.text}</span>
-                        </li>
-                        );
-                    })}
-                </ul>
-                <div className="space-y-4 text-gray-300 leading-relaxed">
-                    <p>A <span className="text-silk-crimson-300">$2M real estate project in Brazil collapsed</span> — not from risk, but from FX clearance delays.</p>
-                    <p>A <span className="text-silk-crimson-300">Nigerian factory lost a major buyer</span> — not from fraud, but from a broken yuan-to-naira conversion.</p>
-                    <p className="font-semibold">These aren’t bugs. They’re systemic sabotage. And they drain over <span className="text-silk-crimson-200">15% of revenue</span> from Global South businesses every year.</p>
-                </div>
-                <p className="text-2xl text-jade-flow-300 font-bold mt-6">
-                    WEAVE turns that loss into lifeblood. <br/> Friction becomes flow. Delay becomes power.
-                </p>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <ScrollReveal delay={400} direction="left">
+              <p className="text-xl text-gray-300 leading-relaxed">
+                This isn't just a payment problem. It's a <span className="font-semibold text-pearl-white">development emergency:</span>
+              </p>
+            </ScrollReveal>
+            
+            <div className="space-y-4">
+              {problemPoints.map((point, index) => {
+                const Icon = point.icon;
+                return (
+                  <ScrollReveal key={index} delay={600 + index * 200} direction="left">
+                    <StoryBeat trigger="hover" intensity="subtle">
+                      <li className="flex items-center text-lg">
+                        <Icon className={`w-6 h-6 mr-3 shrink-0 ${point.color}`} />
+                        <span className="text-gray-300">{point.text}</span>
+                      </li>
+                    </StoryBeat>
+                  </ScrollReveal>
+                );
+              })}
             </div>
+            
+            <ScrollReveal delay={1200} direction="up">
+              <div className="space-y-4 text-gray-300 leading-relaxed">
+                <StoryBeat 
+                  trigger="scroll" 
+                  intensity="medium"
+                  revealText="💡 These failures cost $50B+ annually across emerging markets"
+                >
+                  <p>A <span className="text-silk-crimson-300">$2M real estate project in Brazil collapsed</span> — not from risk, but from FX clearance delays.</p>
+                </StoryBeat>
+                
+                <StoryBeat 
+                  trigger="scroll" 
+                  intensity="medium"
+                  revealText="🚫 Traditional banking deliberately throttles Global South growth"
+                >
+                  <p>A <span className="text-silk-crimson-300">Nigerian factory lost a major buyer</span> — not from fraud, but from a broken yuan-to-naira conversion.</p>
+                </StoryBeat>
+                
+                <p className="font-semibold">These aren't bugs. They're systemic sabotage. And they drain over <span className="text-silk-crimson-200">15% of revenue</span> from Global South businesses every year.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal delay={1600} direction="up">
+              <p className="text-2xl text-jade-flow-300 font-bold mt-6">
+                WEAVE turns that loss into lifeblood. <br/> Friction becomes flow. Delay becomes power.
+              </p>
+            </ScrollReveal>
+          </div>
+          
+          <ScrollReveal delay={800} direction="right">
             <div className="bg-gray-800/30 p-8 rounded-xl aspect-video flex items-center justify-center border border-jade-flow-500/20">
-                 <p className="text-gray-500 text-center">Visual Placeholder: <br /> Timeline animation of a failed deal vs. a WEAVE success story.</p>
+              <p className="text-gray-500 text-center">Visual Placeholder: <br /> Timeline animation of a failed deal vs. a WEAVE success story.</p>
             </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

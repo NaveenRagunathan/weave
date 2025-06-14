@@ -16,9 +16,29 @@ import SectionTransition from '@/components/transitions/SectionTransition';
 import NarrativeBridge from '@/components/transitions/NarrativeBridge';
 import FlowLineSystem from '@/components/transitions/FlowLineSystem';
 
+// Interaction Components
+import ProgressIndicator from '@/components/interactions/ProgressIndicator';
+import TensionBuilder from '@/components/interactions/TensionBuilder';
+
+// Hooks
+import { useReducedMotion } from '@/hooks/useReducedMotion';
+
 const Index = () => {
+  const prefersReducedMotion = useReducedMotion();
+  
+  const sections = [
+    'Hero', 'Story', 'Problem', 'Features', 
+    'Who It\'s For', 'Advantage', 'Trust', 
+    'Social Proof', 'Closer'
+  ];
+
   return (
     <div className="min-h-screen bg-ink-black relative">
+      {/* Progress Indicator */}
+      {!prefersReducedMotion && (
+        <ProgressIndicator sections={sections} />
+      )}
+      
       <HeroSection />
       
       {/* Hero → Story Transition */}
@@ -43,7 +63,9 @@ const Index = () => {
         />
       </SectionTransition>
       
-      <ProblemSection />
+      <TensionBuilder type="stress" intensity="medium">
+        <ProblemSection />
+      </TensionBuilder>
       
       {/* Problem → Features Transition */}
       <SectionTransition type="transform" fromSection="problem" toSection="features">
@@ -55,7 +77,9 @@ const Index = () => {
         />
       </SectionTransition>
       
-      <FeaturesSection />
+      <TensionBuilder type="breakthrough" intensity="high">
+        <FeaturesSection />
+      </TensionBuilder>
       
       {/* Features → Who It's For Transition */}
       <SectionTransition type="portal" fromSection="features" toSection="who">
@@ -91,7 +115,9 @@ const Index = () => {
         />
       </SectionTransition>
       
-      <TrustLayerSection />
+      <TensionBuilder type="relief" intensity="medium">
+        <TrustLayerSection />
+      </TensionBuilder>
       
       {/* Trust → Social Proof Transition */}
       <SectionTransition type="portal" fromSection="trust" toSection="proof">
@@ -115,7 +141,10 @@ const Index = () => {
         />
       </SectionTransition>
       
-      <CloserSection />
+      <TensionBuilder type="buildup" intensity="high">
+        <CloserSection />
+      </TensionBuilder>
+      
       <FooterSection />
     </div>
   );
