@@ -40,26 +40,26 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
     switch (type) {
       case 'bridge':
         return {
-          background: 'linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.5) 50%, transparent 100%)',
-          minHeight: '200px'
+          background: 'linear-gradient(180deg, transparent 0%, rgba(16, 185, 129, 0.02) 50%, transparent 100%)',
+          minHeight: '120px'
         };
       case 'portal':
         return {
-          background: 'radial-gradient(circle at center, rgba(16, 185, 129, 0.1) 0%, transparent 70%)',
-          minHeight: '300px'
+          background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.03) 0%, transparent 70%)',
+          minHeight: '150px'
         };
       case 'reveal':
         return {
-          background: 'linear-gradient(90deg, transparent 0%, rgba(245, 158, 11, 0.05) 50%, transparent 100%)',
-          minHeight: '150px'
+          background: 'linear-gradient(180deg, transparent 0%, rgba(245, 158, 11, 0.02) 50%, transparent 100%)',
+          minHeight: '100px'
         };
       case 'transform':
         return {
-          background: 'linear-gradient(45deg, rgba(239, 68, 68, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%)',
-          minHeight: '250px'
+          background: 'linear-gradient(180deg, rgba(239, 68, 68, 0.02) 0%, rgba(16, 185, 129, 0.02) 100%)',
+          minHeight: '130px'
         };
       default:
-        return { minHeight: '100px' };
+        return { minHeight: '80px' };
     }
   };
 
@@ -69,34 +69,31 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
       className={`relative overflow-hidden transition-all duration-1000 ${className}`}
       style={getTransitionStyles()}
     >
-      {/* Animated Flow Lines */}
-      <svg className="absolute inset-0 w-full h-full opacity-60">
-        <defs>
-          <linearGradient id={`flow-${type}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="rgba(16, 185, 129, 0.6)" />
-            <stop offset="50%" stopColor="rgba(245, 158, 11, 0.4)" />
-            <stop offset="100%" stopColor="rgba(16, 185, 129, 0.6)" />
-          </linearGradient>
-        </defs>
-        
-        {/* Flow Path */}
-        <path
-          d="M0,50 Q50,25 100,50 T200,50"
-          stroke={`url(#flow-${type})`}
-          strokeWidth="2"
-          fill="none"
-          strokeDasharray="8,4"
-          className={`transition-all duration-1000 ${
-            isInView ? 'animate-marching-ants opacity-100' : 'opacity-30'
-          }`}
-          transform="scale(5)"
-        />
-      </svg>
+      {/* Subtle Particle Effect */}
+      <div className="absolute inset-0 opacity-40">
+        {[...Array(12)].map((_, i) => (
+          <div
+            key={i}
+            className={`absolute w-1 h-1 bg-jade-flow-400/30 rounded-full transition-all duration-2000 ${
+              isInView ? 'opacity-100 animate-gentle-float' : 'opacity-0'
+            }`}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${i * 0.3}s`,
+              animationDuration: `${3 + Math.random() * 2}s`
+            }}
+          />
+        ))}
+      </div>
 
       {/* Content */}
       <div className="relative z-10 flex items-center justify-center h-full">
         {children}
       </div>
+
+      {/* Bottom fade effect */}
+      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-ink-black/20 to-transparent" />
     </div>
   );
 };
