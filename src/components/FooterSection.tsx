@@ -22,7 +22,7 @@ const FooterSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"> {/* Adjusted grid for fewer categories */}
           {Object.entries(footerLinksConfig).map(([category, links]) => (
             <div key={category}>
-              <h3 className="text-sm font-semibold text-jade-flow-400 uppercase tracking-wide mb-4">
+              <h3 className="text-sm font-semibold text-imperial-gold-400 uppercase tracking-wide mb-4">
                 {category}
               </h3>
               <ul className="space-y-3">
@@ -41,7 +41,7 @@ const FooterSection = () => {
           ))}
            {/* Social Links Column for consistency on larger screens */}
            <div className="md:col-start-3 lg:col-start-auto">
-             <h3 className="text-sm font-semibold text-jade-flow-400 uppercase tracking-wide mb-4">Connect</h3>
+             <h3 className="text-sm font-semibold text-imperial-gold-400 uppercase tracking-wide mb-4">Connect</h3>
               <div className="flex items-center space-x-5">
                 {socialLinksConfig.map((social) => {
                   const SocialIcon = social.Icon;
@@ -49,7 +49,7 @@ const FooterSection = () => {
                     <a
                       key={social.name}
                       href={social.href}
-                      className="text-gray-400 hover:text-jade-flow-400 transition-colors duration-200"
+                      className="text-gray-400 hover:text-imperial-gold-400 transition-colors duration-200"
                       aria-label={social.name}
                     >
                       <SocialIcon className="w-5 h-5" />
@@ -67,7 +67,7 @@ const FooterSection = () => {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Logo and Copyright */}
             <div className="flex items-center space-x-4">
-              <div className="w-8 h-8 bg-jade-flow-500 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-imperial-gold-500 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">W</span>
               </div>
               <div>
@@ -78,7 +78,7 @@ const FooterSection = () => {
 
             {/* Tagline */}
             <div className="text-gray-400 text-sm">
-              “Capital. Trust. Growth.”
+              "Capital. Trust. Growth."
             </div>
           </div>
         </div>

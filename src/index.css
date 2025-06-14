@@ -92,7 +92,7 @@
 @layer components {
   /* WEAVE Brand Components */
   .weave-gradient-text {
-    @apply bg-gradient-to-r from-jade-flow-400 via-imperial-gold-500 to-jade-flow-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-imperial-gold-400 via-imperial-gold-500 to-imperial-gold-600 bg-clip-text text-transparent;
   }
   
   .weave-shimmer-button {
@@ -134,9 +134,9 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-jade-flow-500/30 rounded-full;
+  @apply bg-imperial-gold-500/30 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-jade-flow-500/50;
+  @apply bg-imperial-gold-500/50;
 }
