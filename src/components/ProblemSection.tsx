@@ -1,5 +1,6 @@
+
 import React, { useState, useRef, useEffect } from 'react';
-import { Clock, DollarSign, TrendingDown, AlertTriangle, CheckCircle } from 'lucide-react';
+import { Clock, DollarSign, AlertTriangle } from 'lucide-react';
 import ScrollReveal from '@/components/interactions/ScrollReveal';
 import StoryBeat from '@/components/interactions/StoryBeat';
 
@@ -99,15 +100,15 @@ const ProblemSection = () => {
             </ScrollReveal>
 
             <ScrollReveal delay={1600} direction="up">
-              <p className="text-2xl text-jade-flow-300 font-bold mt-6">
-                WEAVE turns that loss into lifeblood. <br /> Friction becomes flow. Delay becomes power.
+              <p className="text-2xl text-silk-crimson-400 font-bold mt-6">
+                WEAVE turns that loss into lifeblood. <br /> <span className="text-imperial-gold-500">Friction becomes flow.</span> <span className="text-imperial-gold-500">Delay becomes power.</span>
               </p>
             </ScrollReveal>
           </div>
           
           {/* Visuals: Timeline animation placeholder */}
           <ScrollReveal delay={800} direction="right">
-            <div className="bg-gray-800/30 p-8 rounded-xl aspect-video flex items-center justify-center border border-jade-flow-500/20">
+            <div className="bg-gray-800/30 p-8 rounded-xl aspect-video flex items-center justify-center border border-silk-crimson-400/30">
               <p className="text-gray-500 text-center">Visual Placeholder: <br /> Timeline animation of a failed deal vs. a WEAVE success story.</p>
             </div>
           </ScrollReveal>
