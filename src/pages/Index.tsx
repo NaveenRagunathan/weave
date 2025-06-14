@@ -14,7 +14,6 @@ import FooterSection from '@/components/FooterSection';
 // Transition Components
 import SectionTransition from '@/components/transitions/SectionTransition';
 import NarrativeBridge from '@/components/transitions/NarrativeBridge';
-import FlowLineSystem from '@/components/transitions/FlowLineSystem';
 
 // Interaction Components
 import ProgressIndicator from '@/components/interactions/ProgressIndicator';
@@ -41,109 +40,109 @@ const Index = () => {
       
       <HeroSection />
       
-      {/* Hero → Story Transition */}
-      <SectionTransition type="bridge" fromSection="hero" toSection="story">
-        <FlowLineSystem pattern="smooth" intensity="medium" color="jade" />
-        <NarrativeBridge 
-          text="When capital flows..." 
-          subtext="civilizations rise"
-          intensity="subtle"
-        />
-      </SectionTransition>
+      {/* Story Section with seamless transition overlay */}
+      <div className="relative">
+        <StorySection />
+        <SectionTransition type="bridge" fromSection="hero" toSection="story">
+          <NarrativeBridge 
+            text="When capital flows..." 
+            subtext="civilizations rise"
+            intensity="subtle"
+          />
+        </SectionTransition>
+      </div>
       
-      <StorySection />
+      {/* Problem Section with seamless transition overlay */}
+      <div className="relative">
+        <TensionBuilder type="stress" intensity="medium">
+          <ProblemSection />
+        </TensionBuilder>
+        <SectionTransition type="reveal" fromSection="story" toSection="problem">
+          <NarrativeBridge 
+            text="But something's blocking the flow..." 
+            subtext="The old pipes are broken"
+            intensity="medium"
+          />
+        </SectionTransition>
+      </div>
       
-      {/* Story → Problem Transition */}
-      <SectionTransition type="reveal" fromSection="story" toSection="problem">
-        <FlowLineSystem pattern="disrupted" intensity="high" color="crimson" />
-        <NarrativeBridge 
-          text="But something's blocking the flow..." 
-          subtext="The old pipes are broken"
-          intensity="medium"
-        />
-      </SectionTransition>
+      {/* Features Section with seamless transition overlay */}
+      <div className="relative">
+        <TensionBuilder type="breakthrough" intensity="high">
+          <FeaturesSection />
+        </TensionBuilder>
+        <SectionTransition type="transform" fromSection="problem" toSection="features">
+          <NarrativeBridge 
+            text="WEAVE cuts through..." 
+            subtext="Liberation through innovation"
+            intensity="dramatic"
+          />
+        </SectionTransition>
+      </div>
       
-      <TensionBuilder type="stress" intensity="medium">
-        <ProblemSection />
-      </TensionBuilder>
+      {/* Who It's For Section with seamless transition overlay */}
+      <div className="relative">
+        <WhoItIsForSection />
+        <SectionTransition type="portal" fromSection="features" toSection="who">
+          <NarrativeBridge 
+            text="Built for the new builders..." 
+            subtext="Your empire awaits"
+            intensity="medium"
+          />
+        </SectionTransition>
+      </div>
       
-      {/* Problem → Features Transition */}
-      <SectionTransition type="transform" fromSection="problem" toSection="features">
-        <FlowLineSystem pattern="explosive" intensity="high" color="mixed" />
-        <NarrativeBridge 
-          text="WEAVE cuts through..." 
-          subtext="Liberation through innovation"
-          intensity="dramatic"
-        />
-      </SectionTransition>
+      {/* Advantage Section with seamless transition overlay */}
+      <div className="relative">
+        <AdvantageSection />
+        <SectionTransition type="reveal" fromSection="who" toSection="advantage">
+          <NarrativeBridge 
+            text="Compare the difference..." 
+            subtext="See the transformation"
+            intensity="medium"
+          />
+        </SectionTransition>
+      </div>
       
-      <TensionBuilder type="breakthrough" intensity="high">
-        <FeaturesSection />
-      </TensionBuilder>
+      {/* Trust Section with seamless transition overlay */}
+      <div className="relative">
+        <TensionBuilder type="relief" intensity="medium">
+          <TrustLayerSection />
+        </TensionBuilder>
+        <SectionTransition type="bridge" fromSection="advantage" toSection="trust">
+          <NarrativeBridge 
+            text="Secured by trust..." 
+            subtext="Built on unbreakable foundations"
+            intensity="subtle"
+          />
+        </SectionTransition>
+      </div>
       
-      {/* Features → Who It's For Transition */}
-      <SectionTransition type="portal" fromSection="features" toSection="who">
-        <FlowLineSystem pattern="converging" intensity="medium" color="jade" />
-        <NarrativeBridge 
-          text="Built for the new builders..." 
-          subtext="Your empire awaits"
-          intensity="medium"
-        />
-      </SectionTransition>
+      {/* Social Proof Section with seamless transition overlay */}
+      <div className="relative">
+        <SocialProofSection />
+        <SectionTransition type="portal" fromSection="trust" toSection="proof">
+          <NarrativeBridge 
+            text="Proven by thousands..." 
+            subtext="Join the movement"
+            intensity="medium"
+          />
+        </SectionTransition>
+      </div>
       
-      <WhoItIsForSection />
-      
-      {/* Who It's For → Advantage Transition */}
-      <SectionTransition type="reveal" fromSection="who" toSection="advantage">
-        <FlowLineSystem pattern="smooth" intensity="medium" color="mixed" />
-        <NarrativeBridge 
-          text="Compare the difference..." 
-          subtext="See the transformation"
-          intensity="medium"
-        />
-      </SectionTransition>
-      
-      <AdvantageSection />
-      
-      {/* Advantage → Trust Transition */}
-      <SectionTransition type="bridge" fromSection="advantage" toSection="trust">
-        <FlowLineSystem pattern="converging" intensity="low" color="jade" />
-        <NarrativeBridge 
-          text="Secured by trust..." 
-          subtext="Built on unbreakable foundations"
-          intensity="subtle"
-        />
-      </SectionTransition>
-      
-      <TensionBuilder type="relief" intensity="medium">
-        <TrustLayerSection />
-      </TensionBuilder>
-      
-      {/* Trust → Social Proof Transition */}
-      <SectionTransition type="portal" fromSection="trust" toSection="proof">
-        <FlowLineSystem pattern="smooth" intensity="medium" color="gold" />
-        <NarrativeBridge 
-          text="Proven by thousands..." 
-          subtext="Join the movement"
-          intensity="medium"
-        />
-      </SectionTransition>
-      
-      <SocialProofSection />
-      
-      {/* Social Proof → Closer Transition */}
-      <SectionTransition type="transform" fromSection="proof" toSection="closer">
-        <FlowLineSystem pattern="explosive" intensity="high" color="jade" />
-        <NarrativeBridge 
-          text="Ready to join the future?" 
-          subtext="Your moment is now"
-          intensity="dramatic"
-        />
-      </SectionTransition>
-      
-      <TensionBuilder type="buildup" intensity="high">
-        <CloserSection />
-      </TensionBuilder>
+      {/* Closer Section with seamless transition overlay */}
+      <div className="relative">
+        <TensionBuilder type="buildup" intensity="high">
+          <CloserSection />
+        </TensionBuilder>
+        <SectionTransition type="transform" fromSection="proof" toSection="closer">
+          <NarrativeBridge 
+            text="Ready to join the future?" 
+            subtext="Your moment is now"
+            intensity="dramatic"
+          />
+        </SectionTransition>
+      </div>
       
       <FooterSection />
     </div>

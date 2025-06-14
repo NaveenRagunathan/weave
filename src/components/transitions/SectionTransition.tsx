@@ -26,7 +26,7 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
           setIsInView(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 }
     );
 
     if (transitionRef.current) {
@@ -36,64 +36,54 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
     return () => observer.disconnect();
   }, []);
 
-  const getTransitionStyles = () => {
+  const getTransitionOverlay = () => {
     switch (type) {
       case 'bridge':
-        return {
-          background: 'linear-gradient(180deg, transparent 0%, rgba(16, 185, 129, 0.02) 50%, transparent 100%)',
-          minHeight: '120px'
-        };
+        return 'bg-gradient-to-b from-transparent via-jade-flow-500/5 to-transparent';
       case 'portal':
-        return {
-          background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.03) 0%, transparent 70%)',
-          minHeight: '150px'
-        };
+        return 'bg-gradient-to-b from-transparent via-imperial-gold-500/5 to-transparent';
       case 'reveal':
-        return {
-          background: 'linear-gradient(180deg, transparent 0%, rgba(245, 158, 11, 0.02) 50%, transparent 100%)',
-          minHeight: '100px'
-        };
+        return 'bg-gradient-to-b from-transparent via-silk-crimson-500/5 to-transparent';
       case 'transform':
-        return {
-          background: 'linear-gradient(180deg, rgba(239, 68, 68, 0.02) 0%, rgba(16, 185, 129, 0.02) 100%)',
-          minHeight: '130px'
-        };
+        return 'bg-gradient-to-b from-silk-crimson-500/5 via-jade-flow-500/5 to-transparent';
       default:
-        return { minHeight: '80px' };
+        return 'bg-transparent';
     }
   };
 
   return (
     <div 
       ref={transitionRef}
-      className={`relative overflow-hidden transition-all duration-1000 ${className}`}
-      style={getTransitionStyles()}
+      className={`absolute inset-0 pointer-events-none overflow-hidden ${className}`}
+      style={{ zIndex: 1 }}
     >
-      {/* Subtle Particle Effect */}
-      <div className="absolute inset-0 opacity-40">
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute w-1 h-1 bg-jade-flow-400/30 rounded-full transition-all duration-2000 ${
-              isInView ? 'opacity-100 animate-gentle-float' : 'opacity-0'
-            }`}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${i * 0.3}s`,
-              animationDuration: `${3 + Math.random() * 2}s`
-            }}
-          />
-        ))}
-      </div>
+      {/* Invisible atmospheric overlay */}
+      <div 
+        className={`absolute inset-0 transition-opacity duration-2000 ${
+          isInView ? 'opacity-100' : 'opacity-0'
+        } ${getTransitionOverlay()}`}
+      />
 
-      {/* Content */}
-      <div className="relative z-10 flex items-center justify-center h-full">
+      {/* Minimal particle system */}
+      {isInView && [...Array(6)].map((_, i) => (
+        <div
+          key={i}
+          className={`absolute w-0.5 h-0.5 bg-jade-flow-400/20 rounded-full transition-all duration-3000 ${
+            isInView ? 'opacity-100 animate-gentle-float' : 'opacity-0'
+          }`}
+          style={{
+            left: `${20 + Math.random() * 60}%`,
+            top: `${20 + Math.random() * 60}%`,
+            animationDelay: `${i * 0.5}s`,
+            animationDuration: `${4 + Math.random() * 3}s`
+          }}
+        />
+      ))}
+
+      {/* Content overlay */}
+      <div className="absolute inset-0 flex items-center justify-center">
         {children}
       </div>
-
-      {/* Bottom fade effect */}
-      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-ink-black/20 to-transparent" />
     </div>
   );
 };

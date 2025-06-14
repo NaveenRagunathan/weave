@@ -24,7 +24,7 @@ const NarrativeBridge: React.FC<NarrativeBridgeProps> = ({
           setIsInView(true);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
 
     if (bridgeRef.current) {
@@ -38,18 +38,18 @@ const NarrativeBridge: React.FC<NarrativeBridgeProps> = ({
     switch (intensity) {
       case 'subtle':
         return {
-          fontSize: 'text-lg md:text-xl',
-          glow: '0 0 20px rgba(16, 185, 129, 0.1)'
+          fontSize: 'text-sm md:text-base',
+          opacity: 'opacity-60'
         };
       case 'dramatic':
         return {
-          fontSize: 'text-2xl md:text-3xl lg:text-4xl',
-          glow: '0 0 40px rgba(16, 185, 129, 0.2)'
+          fontSize: 'text-lg md:text-xl',
+          opacity: 'opacity-90'
         };
       default:
         return {
-          fontSize: 'text-xl md:text-2xl lg:text-3xl',
-          glow: '0 0 30px rgba(16, 185, 129, 0.15)'
+          fontSize: 'text-base md:text-lg',
+          opacity: 'opacity-75'
         };
     }
   };
@@ -59,54 +59,31 @@ const NarrativeBridge: React.FC<NarrativeBridgeProps> = ({
   return (
     <div 
       ref={bridgeRef}
-      className="relative py-12 text-center"
+      className="absolute inset-0 flex items-center justify-center pointer-events-none"
+      style={{ zIndex: 2 }}
     >
-      {/* Atmospheric Background */}
+      {/* Completely invisible transition text that appears on scroll */}
       <div 
-        className={`absolute inset-0 transition-all duration-3000 ${
-          isInView ? 'opacity-100' : 'opacity-0'
-        }`}
-        style={{
-          background: `radial-gradient(circle at center, rgba(16, 185, 129, 0.02) 0%, transparent 80%)`,
-        }}
-      />
-
-      {/* Main Text with staggered animation */}
-      <div 
-        className={`relative z-10 transition-all duration-1200 ${
-          isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        className={`text-center transition-all duration-2000 ${
+          isInView ? `${styles.opacity} translate-y-0` : 'opacity-0 translate-y-4'
         }`}
       >
-        <h3 
-          className={`${styles.fontSize} font-semibold text-pearl-white/90 mb-3 transition-all duration-1200`}
-          style={{
-            textShadow: isInView ? styles.glow : 'none',
-            animationDelay: '0.2s'
-          }}
+        <div 
+          className={`${styles.fontSize} font-medium text-jade-flow-300/80 mb-1`}
         >
           {text}
-        </h3>
+        </div>
         
         {subtext && (
-          <p 
-            className={`text-base text-gray-400/80 max-w-xl mx-auto transition-all duration-1200 ${
-              isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+          <div 
+            className={`text-xs text-gray-400/60 transition-all duration-2000 ${
+              isInView ? 'opacity-60 translate-y-0' : 'opacity-0 translate-y-2'
             }`}
-            style={{ animationDelay: '0.5s' }}
+            style={{ animationDelay: '0.3s' }}
           >
             {subtext}
-          </p>
+          </div>
         )}
-      </div>
-
-      {/* Subtle directional indicator */}
-      <div 
-        className={`absolute ${direction === 'up' ? 'top-6' : 'bottom-6'} left-1/2 transform -translate-x-1/2 transition-all duration-1500 ${
-          isInView ? 'opacity-30' : 'opacity-0'
-        }`}
-        style={{ animationDelay: '1s' }}
-      >
-        <div className={`w-px h-6 bg-gradient-to-${direction === 'up' ? 't' : 'b'} from-jade-flow-400/40 to-transparent`} />
       </div>
     </div>
   );
