@@ -26,15 +26,16 @@ const ProblemSection = () => {
   }, []);
 
   const problemPoints = [
-    { icon: Clock, text: 'Transfers take 3–5 days', color: 'text-silk-crimson-400' },
-    { icon: DollarSign, text: 'Remittance fees average 6.5%', color: 'text-silk-crimson-400' },
-    { icon: AlertTriangle, text: 'FX swings wreck deals in minutes', color: 'text-silk-crimson-400' },
+    { icon: Clock, text: 'Transfers take 3–5 days', color: 'text-imperial-gold-500' },
+    { icon: DollarSign, text: 'Remittance fees average 6.5%', color: 'text-imperial-gold-500' },
+    { icon: AlertTriangle, text: 'FX swings wreck deals in minutes', color: 'text-imperial-gold-500' },
   ];
 
   return (
     <section 
       ref={sectionRef}
-      className="py-24 lg:py-32 bg-gradient-to-b from-gray-900 to-ink-black"
+      className="py-24 lg:py-32 bg-gradient-to-b from-silk-crimson-400 to-ink-black" // New: deep red to ink black
+      // Optionally, use: bg-red-glow-panel if you want a more vibrant shimmer
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -43,7 +44,7 @@ const ProblemSection = () => {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-pearl-white leading-tight mb-6">
               The Global South is rising.
               <br />
-              But its <span className="text-silk-crimson-500">money pipes</span> are still{' '}
+              But its <span className="text-imperial-gold-500">money pipes</span> are still{' '}
               <span className="text-silk-crimson-500">colonial</span>.
             </h2>
             {/* Animated Underline */}
@@ -59,10 +60,10 @@ const ProblemSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <ScrollReveal delay={400} direction="left">
-              <div className="text-xl text-gray-300 leading-relaxed space-y-3">
+              <div className="text-xl text-pearl-white leading-relaxed space-y-3">
                 <p>
                   This isn’t just a payment problem.<br />
-                  It’s a <span className="font-semibold text-pearl-white">development emergency:</span>
+                  It’s a <span className="font-semibold text-imperial-gold-500">development emergency:</span>
                 </p>
               </div>
             </ScrollReveal>
@@ -75,7 +76,7 @@ const ProblemSection = () => {
                     <StoryBeat trigger="hover" intensity="subtle">
                       <li className="flex items-center text-lg">
                         <Icon className={`w-6 h-6 mr-3 shrink-0 ${point.color}`} />
-                        <span className="text-gray-300">{point.text}</span>
+                        <span className="text-pearl-white">{point.text}</span>
                       </li>
                     </StoryBeat>
                   </ScrollReveal>
@@ -84,17 +85,17 @@ const ProblemSection = () => {
             </div>
 
             <ScrollReveal delay={1200} direction="up">
-              <div className="space-y-4 text-gray-300 leading-relaxed">
+              <div className="space-y-4 text-pearl-white leading-relaxed">
                 <p>
-                  A <span className="text-silk-crimson-300">$2M real estate project in Brazil collapsed</span> — not from risk, but from FX clearance delays.
+                  A <span className="text-imperial-gold-500">$2M real estate project in Brazil collapsed</span> — not from risk, but from FX clearance delays.
                 </p>
                 <p>
-                  A <span className="text-silk-crimson-300">Nigerian factory lost a major buyer</span> — not from fraud, but from a broken yuan-to-naira conversion.
+                  A <span className="text-imperial-gold-500">Nigerian factory lost a major buyer</span> — not from fraud, but from a broken yuan-to-naira conversion.
                 </p>
                 <p>
                   These aren’t bugs. They’re systemic sabotage.
                   <br />
-                  And they drain over <span className="text-silk-crimson-200">15% of revenue</span> from Global South businesses every year.
+                  And they drain over <span className="text-imperial-gold-500">15% of revenue</span> from Global South businesses every year.
                 </p>
               </div>
             </ScrollReveal>
@@ -108,8 +109,8 @@ const ProblemSection = () => {
           
           {/* Visuals: Timeline animation placeholder */}
           <ScrollReveal delay={800} direction="right">
-            <div className="bg-gray-800/30 p-8 rounded-xl aspect-video flex items-center justify-center border border-silk-crimson-400/30">
-              <p className="text-gray-500 text-center">Visual Placeholder: <br /> Timeline animation of a failed deal vs. a WEAVE success story.</p>
+            <div className="bg-ink-black/70 p-8 rounded-xl aspect-video flex items-center justify-center border border-silk-crimson-400/60">
+              <p className="text-pearl-white text-center">Visual Placeholder: <br /> Timeline animation of a failed deal vs. a WEAVE success story.</p>
             </div>
           </ScrollReveal>
         </div>
