@@ -34,17 +34,17 @@ const WhoItIsForSection = () => {
               ))}
             </ul>
           </div>
-          <div className="bg-silk-crimson-400/20 p-8 rounded-xl aspect-video flex items-center justify-center border border-imperial-gold-500/40">
+          <div className="bg-imperial-gold-400/10 p-8 rounded-xl aspect-video flex items-center justify-center border border-imperial-gold-500/40">
             <p className="text-imperial-gold-500 text-center">Visual Slider Placeholder: <br />Illustrating user segments in action.</p>
           </div>
         </div>
         <div className="mt-16 text-center">
           <Button
             size="lg"
-            className="bg-silk-crimson-600 hover:bg-silk-crimson-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-silk-crimson-500/30 transition-all duration-300 group"
+            className="bg-silk-crimson-600 hover:bg-silk-crimson-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
           >
             Open your Weave Account Today
-            <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 text-imperial-gold-500" />
+            <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 text-imperial-gold-400" />
           </Button>
         </div>
       </div>

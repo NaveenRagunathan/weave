@@ -1,12 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Play, ArrowRight } from 'lucide-react';
 
 const HeroSection = () => {
-  const [liveCounter, setLiveCounter] = useState(1200000000); // Updated initial value
-  const [currency, setCurrency] = useState("USD"); // New state
-  const [userLocale, setUserLocale] = useState("en-US"); // New state
+  const [liveCounter, setLiveCounter] = useState(1200000000);
+  const [currency, setCurrency] = useState("USD");
+  const [userLocale, setUserLocale] = useState("en-US");
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   // New useEffect to fetch currency and locale
@@ -63,7 +62,7 @@ const HeroSection = () => {
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat(userLocale, {
       style: 'currency',
-      currency: currency, // Use state variable
+      currency: currency,
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(amount);
@@ -90,15 +89,15 @@ const HeroSection = () => {
         
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-ink-black/80 via-transparent to-ink-black/60" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-silk-crimson-900/20 to-ink-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-ink-black/10 to-ink-black/90" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Live Counter Badge */}
-        <div className="inline-flex items-center gap-2 bg-silk-crimson-500/10 backdrop-blur-sm border border-silk-crimson-500/20 rounded-full px-6 py-3 mb-8 animate-fade-in">
-          <div className="w-2 h-2 bg-silk-crimson-400 rounded-full animate-pulse" />
-          <span className="text-silk-crimson-300 text-sm font-medium">Live Capital Moved</span>
+        <div className="inline-flex items-center gap-2 bg-ink-black/50 backdrop-blur-sm border border-imperial-gold-500/30 rounded-full px-6 py-3 mb-8 animate-fade-in">
+          <div className="w-2 h-2 bg-imperial-gold-400 rounded-full animate-pulse" />
+          <span className="text-imperial-gold-300 text-sm font-medium">Live Capital Moved</span>
           <span 
             className="text-pearl-white text-lg font-bold animate-count-up"
             aria-live="polite"
@@ -114,7 +113,7 @@ const HeroSection = () => {
             <span className="block animate-slide-in-left text-pearl-white">
               Move money easily
             </span>
-            <span className="block animate-slide-in-right weave-gradient-text mt-2" style={{ animationDelay: '0.3s' }}>
+            <span className="block animate-slide-in-right bg-gradient-to-r from-silk-crimson-400 via-imperial-gold-500 to-silk-crimson-600 bg-clip-text text-transparent mt-2" style={{ animationDelay: '0.3s' }}>
               and build Empires
             </span>
             <span className="block animate-slide-in-left text-pearl-white mt-2" style={{ animationDelay: '0.6s' }}>
@@ -124,7 +123,7 @@ const HeroSection = () => {
           
           <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '0.9s' }}>
             WEAVE is the new financial backbone for cross-border trade between China and the Global South. 
-            <span className="block mt-2 text-silk-crimson-300 font-semibold"> No banks. No delays. No losses. Just unstoppable economic flow.</span>
+            <span className="block mt-2 text-imperial-gold-300 font-semibold"> No banks. No delays. No losses. Just unstoppable economic flow.</span>
           </p>
         </div>
 
@@ -132,16 +131,16 @@ const HeroSection = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: '1.2s' }}>
           <Button 
             size="lg"
-            className="bg-silk-crimson-600 hover:bg-silk-crimson-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-silk-crimson-500/20 transition-all duration-300 group"
+            className="bg-silk-crimson-600 hover:bg-silk-crimson-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
             onClick={() => console.log('Primary CTA clicked')}
           >
             Create Your Account
-            <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 text-imperial-gold-400" />
           </Button>
           
           <Button 
             size="lg"
-            className="bg-pearl-white text-silk-crimson-600 border-2 border-silk-crimson-500 hover:bg-silk-crimson-100 hover:text-silk-crimson-700 hover:border-silk-crimson-600 px-8 py-4 text-lg font-semibold rounded-full backdrop-blur-sm transition-all duration-300 group"
+            className="bg-pearl-white/10 text-pearl-white border-2 border-pearl-white/20 hover:bg-pearl-white/20 hover:border-pearl-white/40 px-8 py-4 text-lg font-semibold rounded-full backdrop-blur-sm transition-all duration-300 group"
             onClick={() => console.log('Secondary CTA clicked')}
           >
             <Play className="mr-2 h-5 w-5" />
@@ -151,7 +150,7 @@ const HeroSection = () => {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-1 h-8 bg-gradient-to-b from-silk-crimson-400 to-transparent rounded-full" />
+          <div className="w-1 h-8 bg-gradient-to-b from-imperial-gold-400 to-transparent rounded-full" />
         </div>
       </div>
     </section>
