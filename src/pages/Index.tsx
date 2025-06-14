@@ -11,10 +11,6 @@ import SocialProofSection from '@/components/SocialProofSection'; // Section 7
 import CloserSection from '@/components/CloserSection'; // Section 8
 import FooterSection from '@/components/FooterSection';
 
-// Transition Components
-import SectionTransition from '@/components/transitions/SectionTransition';
-import NarrativeBridge from '@/components/transitions/NarrativeBridge';
-
 // Interaction Components
 import ProgressIndicator from '@/components/interactions/ProgressIndicator';
 import TensionBuilder from '@/components/interactions/TensionBuilder';
@@ -39,110 +35,28 @@ const Index = () => {
       )}
       
       <HeroSection />
+      <StorySection />
       
-      {/* Story Section with seamless transition overlay */}
-      <div className="relative">
-        <StorySection />
-        <SectionTransition type="bridge" fromSection="hero" toSection="story">
-          <NarrativeBridge 
-            text="When capital flows..." 
-            subtext="civilizations rise"
-            intensity="subtle"
-          />
-        </SectionTransition>
-      </div>
+      <TensionBuilder type="stress" intensity="medium">
+        <ProblemSection />
+      </TensionBuilder>
       
-      {/* Problem Section with seamless transition overlay */}
-      <div className="relative">
-        <TensionBuilder type="stress" intensity="medium">
-          <ProblemSection />
-        </TensionBuilder>
-        <SectionTransition type="reveal" fromSection="story" toSection="problem">
-          <NarrativeBridge 
-            text="But something's blocking the flow..." 
-            subtext="The old pipes are broken"
-            intensity="medium"
-          />
-        </SectionTransition>
-      </div>
+      <TensionBuilder type="breakthrough" intensity="high">
+        <FeaturesSection />
+      </TensionBuilder>
       
-      {/* Features Section with seamless transition overlay */}
-      <div className="relative">
-        <TensionBuilder type="breakthrough" intensity="high">
-          <FeaturesSection />
-        </TensionBuilder>
-        <SectionTransition type="transform" fromSection="problem" toSection="features">
-          <NarrativeBridge 
-            text="WEAVE cuts through..." 
-            subtext="Liberation through innovation"
-            intensity="dramatic"
-          />
-        </SectionTransition>
-      </div>
+      <WhoItIsForSection />
+      <AdvantageSection />
       
-      {/* Who It's For Section with seamless transition overlay */}
-      <div className="relative">
-        <WhoItIsForSection />
-        <SectionTransition type="portal" fromSection="features" toSection="who">
-          <NarrativeBridge 
-            text="Built for the new builders..." 
-            subtext="Your empire awaits"
-            intensity="medium"
-          />
-        </SectionTransition>
-      </div>
+      <TensionBuilder type="relief" intensity="medium">
+        <TrustLayerSection />
+      </TensionBuilder>
       
-      {/* Advantage Section with seamless transition overlay */}
-      <div className="relative">
-        <AdvantageSection />
-        <SectionTransition type="reveal" fromSection="who" toSection="advantage">
-          <NarrativeBridge 
-            text="Compare the difference..." 
-            subtext="See the transformation"
-            intensity="medium"
-          />
-        </SectionTransition>
-      </div>
+      <SocialProofSection />
       
-      {/* Trust Section with seamless transition overlay */}
-      <div className="relative">
-        <TensionBuilder type="relief" intensity="medium">
-          <TrustLayerSection />
-        </TensionBuilder>
-        <SectionTransition type="bridge" fromSection="advantage" toSection="trust">
-          <NarrativeBridge 
-            text="Secured by trust..." 
-            subtext="Built on unbreakable foundations"
-            intensity="subtle"
-          />
-        </SectionTransition>
-      </div>
-      
-      {/* Social Proof Section with seamless transition overlay */}
-      <div className="relative">
-        <SocialProofSection />
-        <SectionTransition type="portal" fromSection="trust" toSection="proof">
-          <NarrativeBridge 
-            text="Proven by thousands..." 
-            subtext="Join the movement"
-            intensity="medium"
-          />
-        </SectionTransition>
-      </div>
-      
-      {/* Closer Section with seamless transition overlay */}
-      <div className="relative">
-        <TensionBuilder type="buildup" intensity="high">
-          <CloserSection />
-        </TensionBuilder>
-        <SectionTransition type="transform" fromSection="proof" toSection="closer">
-          <NarrativeBridge 
-            text="Ready to join the future?" 
-            subtext="Your moment is now"
-            intensity="dramatic"
-          />
-        </SectionTransition>
-      </div>
+      <TensionBuilder type="buildup" intensity="high">
+        <CloserSection />
+      </TensionBuilder>
       
       <FooterSection />
     </div>
