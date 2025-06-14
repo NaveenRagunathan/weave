@@ -1,6 +1,5 @@
-
 import React, { useState, useRef, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
+// Removed Button import as it's not used per new plan for this section
 
 const StorySection = () => {
   const [isInView, setIsInView] = useState(false);
@@ -58,14 +57,6 @@ const StorySection = () => {
                 </p>
               </div>
             </div>
-
-            <Button 
-              variant="outline"
-              size="lg"
-              className="border-2 border-jade-flow-500 text-jade-flow-400 hover:bg-jade-flow-500 hover:text-white px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300"
-            >
-              Watch Our Story
-            </Button>
           </div>
 
           {/* Video Panel */}
@@ -77,10 +68,10 @@ const StorySection = () => {
                 muted
                 loop
                 playsInline
-                poster="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=800&q=80"
+                poster="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=800&q=80" // Placeholder poster
               >
                 <source
-                  src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1c9a87a9a&profile_id=164&oauth2_token_id=57447761"
+                  src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1c9a87a9a&profile_id=164&oauth2_token_id=57447761" // Placeholder video
                   type="video/mp4"
                 />
               </video>
@@ -96,7 +87,7 @@ const StorySection = () => {
               </div>
             </div>
             
-            {/* Floating Stats */}
+            {/* Floating Stats - This is from original, new plan does not specify for Section 1. Keeping for visual consistency for now. */}
             <div className="absolute -bottom-4 -right-4 bg-ink-black/90 backdrop-blur-sm border border-jade-flow-500/20 rounded-2xl p-6">
               <div className="text-center">
                 <div className="text-2xl font-bold text-jade-flow-400">$1.2B+</div>

@@ -1,7 +1,6 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Zap, Shield, Link, Brain } from 'lucide-react';
+import { Zap, Shield, Link, Brain, ArrowRight } from 'lucide-react';
 
 const FeaturesSection = () => {
   const [isInView, setIsInView] = useState(false);
@@ -30,7 +29,7 @@ const FeaturesSection = () => {
       icon: Zap,
       name: 'WEAVE Flow™',
       title: 'Lightning-Fast Settlements',
-      description: 'Cross-border payments settle in < 24 hours with instant confirmations. No more waiting, no more uncertainty.',
+      description: 'Cross-border payments settle in < 24 hours, with instant confirmations. Built for business, not tourists.',
       gradient: 'from-jade-flow-500 to-jade-flow-600',
       position: { x: 20, y: 30 }
     },
@@ -38,15 +37,15 @@ const FeaturesSection = () => {
       icon: Shield,
       name: 'WEAVE Vault™',
       title: 'Capital Preservation',
-      description: 'Preserve capital in stablecoins, control FX volatility, and protect your deals from market swings.',
+      description: 'Preserve capital in stablecoins. Escape inflation. Control FX volatility. Sleep at night.',
       gradient: 'from-imperial-gold-500 to-imperial-gold-600',
       position: { x: 80, y: 20 }
     },
     {
       icon: Link,
       name: 'WEAVE Bridge™',
-      title: 'Seamless Onboarding',
-      description: 'Corridor-specific KYC and compliance. Get verified once, trade everywhere in your network.',
+      title: 'Seamless Onboarding & Trust',
+      description: 'Seamless KYC, embedded compliance, and corridor-specific onboarding — the glue of trust.',
       gradient: 'from-jade-flow-400 to-imperial-gold-500',
       position: { x: 70, y: 70 }
     },
@@ -54,7 +53,7 @@ const FeaturesSection = () => {
       icon: Brain,
       name: 'WEAVE Pulse™',
       title: 'AI-Powered Intelligence',
-      description: 'Get real-time market insights, fraud detection, and intelligent routing for optimal settlements.',
+      description: 'AI-powered financial intelligence — predict fraud, detect regulation shifts, respond instantly.',
       gradient: 'from-imperial-gold-400 to-jade-flow-500',
       position: { x: 30, y: 60 }
     }
@@ -173,9 +172,10 @@ const FeaturesSection = () => {
 
             <Button 
               size="lg"
-              className="w-full bg-jade-flow-600 hover:bg-jade-flow-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-jade-flow-500/25 transition-all duration-300"
+              className="w-full bg-jade-flow-600 hover:bg-jade-flow-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-jade-flow-500/25 transition-all duration-300 group"
             >
-              Start Moving Your Money Better
+              Start moving your Money Better
+              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
         </div>

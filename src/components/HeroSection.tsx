@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Play } from 'lucide-react';
+import { Play, ArrowRight } from 'lucide-react';
 
 const HeroSection = () => {
   const [liveCounter, setLiveCounter] = useState(1289000000);
@@ -100,8 +99,7 @@ const HeroSection = () => {
           
           <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '0.9s' }}>
             WEAVE is the new financial backbone for cross-border trade between China and the Global South. 
-            <span className="text-jade-flow-300 font-semibold"> No banks. No delays. No losses.</span> 
-            Just unstoppable economic flow.
+            <span className="block mt-2 text-jade-flow-300 font-semibold"> No banks. No delays. No losses. Just unstoppable economic flow.</span>
           </p>
         </div>
 
@@ -109,16 +107,17 @@ const HeroSection = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: '1.2s' }}>
           <Button 
             size="lg"
-            className="weave-shimmer-button bg-jade-flow-600 hover:bg-jade-flow-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-jade-flow-500/25 transition-all duration-300 animate-pulse-glow"
+            className="weave-shimmer-button bg-jade-flow-600 hover:bg-jade-flow-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-jade-flow-500/25 transition-all duration-300 animate-pulse-glow group"
             onClick={() => console.log('Primary CTA clicked')}
           >
-            <span className="relative z-10">Start Moving Money Better</span>
+            <span className="relative z-10">Create Your Account</span>
+            <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 relative z-10" />
           </Button>
           
           <Button 
             variant="outline" 
             size="lg"
-            className="border-2 border-pearl-white/20 text-pearl-white hover:bg-pearl-white hover:text-ink-black px-8 py-4 text-lg font-semibold rounded-full backdrop-blur-sm transition-all duration-300"
+            className="border-2 border-pearl-white/20 text-pearl-white hover:bg-pearl-white hover:text-ink-black px-8 py-4 text-lg font-semibold rounded-full backdrop-blur-sm transition-all duration-300 group"
             onClick={() => console.log('Secondary CTA clicked')}
           >
             <Play className="mr-2 h-5 w-5" />
