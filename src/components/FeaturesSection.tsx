@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Zap, Shield, Link, Brain, ArrowRight } from 'lucide-react';
@@ -30,7 +31,7 @@ const FeaturesSection = () => {
       name: 'WEAVE Flow™',
       title: 'Lightning-Fast Settlements',
       description: 'Cross-border payments settle in < 24 hours, with instant confirmations. Built for business, not tourists.',
-      gradient: 'from-jade-flow-500 to-jade-flow-600',
+      gradient: 'from-silk-crimson-500 to-imperial-gold-500',
       position: { x: 20, y: 30 }
     },
     {
@@ -38,7 +39,7 @@ const FeaturesSection = () => {
       name: 'WEAVE Vault™',
       title: 'Capital Preservation',
       description: 'Preserve capital in stablecoins. Escape inflation. Control FX volatility. Sleep at night.',
-      gradient: 'from-imperial-gold-500 to-imperial-gold-600',
+      gradient: 'from-imperial-gold-500 to-silk-crimson-500',
       position: { x: 80, y: 20 }
     },
     {
@@ -46,7 +47,7 @@ const FeaturesSection = () => {
       name: 'WEAVE Bridge™',
       title: 'Seamless Onboarding & Trust',
       description: 'Seamless KYC, embedded compliance, and corridor-specific onboarding — the glue of trust.',
-      gradient: 'from-jade-flow-400 to-imperial-gold-500',
+      gradient: 'from-silk-crimson-400 to-imperial-gold-500',
       position: { x: 70, y: 70 }
     },
     {
@@ -54,7 +55,7 @@ const FeaturesSection = () => {
       name: 'WEAVE Pulse™',
       title: 'AI-Powered Intelligence',
       description: 'AI-powered financial intelligence — predict fraud, detect regulation shifts, respond instantly.',
-      gradient: 'from-imperial-gold-400 to-jade-flow-500',
+      gradient: 'from-imperial-gold-400 to-silk-crimson-500',
       position: { x: 30, y: 60 }
     }
   ];
@@ -80,16 +81,16 @@ const FeaturesSection = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Interactive Map */}
           <div className={`relative ${isInView ? 'animate-slide-in-left' : 'opacity-0'}`}>
-            <div className="relative aspect-square bg-gradient-to-br from-ink-black to-gray-900 rounded-3xl p-8 border border-jade-flow-500/20">
+            <div className="relative aspect-square bg-gradient-to-br from-ink-black to-gray-900 rounded-3xl p-8 border border-silk-crimson-500/20">
               {/* Global Corridor Visualization */}
               <div className="relative w-full h-full">
                 {/* Connection Lines */}
                 <svg className="absolute inset-0 w-full h-full">
                   <defs>
                     <linearGradient id="flow-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#10b981" stopOpacity="0.8" />
-                      <stop offset="50%" stopColor="#f59e0b" stopOpacity="0.6" />
-                      <stop offset="100%" stopColor="#10b981" stopOpacity="0.8" />
+                      <stop offset="0%" stopColor="#dc143c" stopOpacity="0.8" />
+                      <stop offset="50%" stopColor="#d4af37" stopOpacity="0.6" />
+                      <stop offset="100%" stopColor="#dc143c" stopOpacity="0.8" />
                     </linearGradient>
                   </defs>
                   
@@ -103,9 +104,9 @@ const FeaturesSection = () => {
                       y2={`${features[(index + 1) % features.length].position.y}%`}
                       stroke="url(#flow-gradient)"
                       strokeWidth="2"
-                      strokeDasharray="7 3" // Dash pattern: 7px line, 3px gap
-                      className="animate-marching-ants" // Apply new animation
-                      style={{ animationDelay: `${index * 0.15}s` }} // Stagger animation start slightly
+                      strokeDasharray="7 3"
+                      className="animate-marching-ants"
+                      style={{ animationDelay: `${index * 0.15}s` }}
                     />
                   ))}
                 </svg>
@@ -132,8 +133,8 @@ const FeaturesSection = () => {
               </div>
               
               {/* Center Logo */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-ink-black rounded-full flex items-center justify-center border-2 border-jade-flow-500/50">
-                <span className="text-jade-flow-400 font-bold text-lg">W</span>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-ink-black rounded-full flex items-center justify-center border-2 border-silk-crimson-500/50">
+                <span className="text-silk-crimson-400 font-bold text-lg">W</span>
               </div>
             </div>
           </div>
@@ -149,8 +150,8 @@ const FeaturesSection = () => {
                   key={index}
                   className={`p-6 rounded-2xl border transition-all duration-500 cursor-pointer ${
                     isActive 
-                      ? 'border-jade-flow-500/50 bg-jade-flow-500/5' 
-                      : 'border-gray-700/50 bg-gray-800/20 hover:border-jade-flow-500/30'
+                      ? 'border-silk-crimson-500/50 bg-silk-crimson-500/5' 
+                      : 'border-gray-700/50 bg-gray-800/20 hover:border-silk-crimson-500/30'
                   }`}
                   onClick={() => setActiveFeature(index)}
                 >
@@ -161,7 +162,7 @@ const FeaturesSection = () => {
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-2">
                         <h3 className="text-xl font-bold text-pearl-white">{feature.title}</h3>
-                        <span className="text-sm text-jade-flow-400 font-mono">{feature.name}</span>
+                        <span className="text-sm text-silk-crimson-400 font-mono">{feature.name}</span>
                       </div>
                       <p className="text-gray-300 leading-relaxed">{feature.description}</p>
                     </div>
@@ -172,7 +173,7 @@ const FeaturesSection = () => {
 
             <Button 
               size="lg"
-              className="w-full bg-jade-flow-600 hover:bg-jade-flow-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-jade-flow-500/25 transition-all duration-300 group"
+              className="w-full bg-gradient-to-r from-silk-crimson-600 to-imperial-gold-600 hover:from-silk-crimson-700 hover:to-imperial-gold-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-silk-crimson-500/25 transition-all duration-300 group"
             >
               Start moving your Money Better
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
