@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Play, ArrowRight } from 'lucide-react';
@@ -131,11 +132,11 @@ const HeroSection = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: '1.2s' }}>
           <Button 
             size="lg"
-            className="weave-shimmer-button bg-silk-crimson-600 hover:bg-silk-crimson-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-silk-crimson-500/25 transition-all duration-300 animate-pulse-glow group"
+            className="bg-silk-crimson-600 hover:bg-silk-crimson-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-silk-crimson-500/20 transition-all duration-300 group"
             onClick={() => console.log('Primary CTA clicked')}
           >
-            <span className="relative z-10">Create Your Account</span>
-            <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 relative z-10" />
+            Create Your Account
+            <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
           </Button>
           
           <Button 
