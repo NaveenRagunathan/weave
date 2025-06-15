@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Play, ArrowRight } from "lucide-react";
@@ -63,7 +62,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center items-center overflow-hidden bg-ink-black px-4 pt-12 pb-14 z-0">
+    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-ink-black px-4 py-14 z-0">
       {/* Background video with heavier blur */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <video
