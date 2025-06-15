@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,10 +19,6 @@ export default {
       }
     },
     extend: {
-      boxShadow: {
-        '3d-red': '0px 8px 25px -2px rgba(220, 20, 60, 0.3), 0px 4px 15px -4px rgba(220, 20, 60, 0.2)',
-        'glow-red': '0 0 25px rgba(220, 20, 60, 0.5)',
-      },
       colors: {
         // --- Updated Five Elements Brand Colors ---
         'ink-black': '#1C1C1C', // Modern deep neutral for panels

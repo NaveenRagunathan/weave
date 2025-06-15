@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Play, ArrowRight } from "lucide-react";
@@ -63,7 +62,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center items-center overflow-hidden bg-ink-black px-4 py-24 sm:py-32 md:py-40 z-0">
+    <section className="relative min-h-[90vh] flex flex-col justify-center items-center overflow-hidden bg-ink-black px-4 pt-12 pb-14 z-0">
       {/* Background video with heavier blur */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <video
@@ -117,9 +116,9 @@ const HeroSection = () => {
         </div>
       </div>
       {/* Main Headline Premium */}
-      <div className="relative max-w-3xl mx-auto text-center z-10">
+      <div className="relative max-w-5xl mx-auto text-center z-10">
         <h1
-          className="text-[2.2rem] sm:text-5xl md:text-7xl leading-tight font-serif font-extrabold tracking-tighter mb-12 drop-shadow-[0_3px_18px_rgba(220,20,60,0.13)] text-balance"
+          className="text-[2.2rem] sm:text-5xl md:text-7xl leading-tight font-serif font-extrabold tracking-tighter mb-8 sm:mb-10 drop-shadow-[0_3px_18px_rgba(220,20,60,0.13)] text-balance"
         >
           <span className="block bg-gradient-to-b from-pearl-white to-pearl-white/80 bg-clip-text text-transparent animate-slide-in-left">
             Borders were made for maps,<br className="hidden md:inline" />
@@ -127,7 +126,7 @@ const HeroSection = () => {
           </span>
         </h1>
         <div
-          className="text-lg md:text-2xl font-semibold leading-snug mb-10 animate-slide-in-right text-balance"
+          className="text-lg md:text-2xl font-semibold leading-snug mb-6 sm:mb-8 animate-slide-in-right text-balance"
         >
           <p className="text-imperial-gold-400 font-extrabold drop-shadow-sm">
             Trade freely. Build boldly.
@@ -139,22 +138,22 @@ const HeroSection = () => {
             easily like you want to.
           </p>
         </div>
-        <p className="prose prose-invert text-sm sm:text-base text-pearl-white/80 font-normal mb-12 max-w-2xl mx-auto leading-relaxed font-sans text-balance">
+        <p className="prose prose-invert text-sm sm:text-base text-pearl-white/80 font-normal mb-8 max-w-2xl mx-auto leading-relaxed font-sans text-balance">
           WEAVE gives traders, builders, entrepreneurs and government institutions in the Global South the power to send, receive, and protect capital —{" "}
           <span className="text-silk-crimson-400 font-semibold">without banks, borders, or permission.</span>
         </p>
         {/* CTAs */}
-        <div className="flex flex-col gap-6 sm:flex-row justify-center items-center mb-8">
+        <div className="flex flex-col gap-4 sm:flex-row justify-center items-center mb-8">
           <Button
             size="lg"
-            className="bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-600 hover:from-silk-crimson-500 hover:to-imperial-gold-400 text-pearl-white font-semibold tracking-widest px-10 py-5 rounded-full shadow-3d-red border-2 border-imperial-gold-400/15 hover:scale-105 hover:shadow-glow-red text-lg gap-3 flex items-center transition-all duration-300"
+            className="bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-600 hover:from-silk-crimson-500 hover:to-imperial-gold-400 text-pearl-white font-semibold tracking-wider px-10 py-5 rounded-full shadow-lg shadow-silk-crimson-400/20 border-2 border-imperial-gold-400/15 hover:scale-105 text-lg gap-3 flex items-center transition-all duration-300"
           >
             Open your Free WEAVE Account &rarr;
           </Button>
           <Button
             variant="outline"
             size="lg"
-            className="bg-pearl-white/10 hover:bg-pearl-white/20 backdrop-blur-md border border-pearl-white/20 hover:border-pearl-white/30 text-pearl-white px-10 py-5 rounded-full font-semibold text-lg gap-3 flex items-center transition-all duration-300 tracking-widest"
+            className="border-2 border-imperial-gold-500 text-imperial-gold-400 hover:bg-imperial-gold-400/15 hover:text-imperial-gold-600 px-10 py-5 rounded-full font-semibold backdrop-blur-sm text-lg gap-3 flex items-center transition tracking-wider"
           >
             <Play className="mr-2 h-5 w-5" />
             Watch How It Works
