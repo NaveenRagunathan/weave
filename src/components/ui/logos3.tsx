@@ -1,6 +1,6 @@
-
 import React from "react";
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
+import FastSecureUnstoppable from "./FastSecureUnstoppable";
 
 const partners = [
   { name: "Alibaba", domain: "alibaba.com", tooltip: "Facilitating infrastructure payments in 4 continents" },
@@ -18,10 +18,14 @@ const partners = [
 export function Logos3() {
   return (
     <section className="w-full bg-gradient-to-b from-pearl-white via-white/70 to-pearl-white/80 py-8 md:py-10 border-y border-imperial-gold-400/15 shadow-sm overflow-hidden">
-      <div className="text-center mb-6 px-2">
+      <div className="text-center mb-2 px-2">
         <h2 className="text-xl md:text-2xl font-extrabold text-ink-black tracking-tight md:mb-1" style={{letterSpacing: "-0.5px"}}>
           Trusted by Thousands Across the New Trade Order
         </h2>
+        {/* Premium Fast • Secure • Unstoppable row */}
+        <div className="flex justify-center">
+          <FastSecureUnstoppable />
+        </div>
         <p className="text-base md:text-lg text-ink-black/80 mt-2 max-w-2xl mx-auto font-medium leading-snug">
           From <span className="text-silk-crimson-400 font-semibold">Guangzhou</span> to <span className="text-imperial-gold-500 font-semibold">Bogotá</span>.{" "}
           <span className="text-silk-crimson-400 font-semibold">Lagos</span> to <span className="text-imperial-gold-500 font-semibold">Dubai</span>. The architects of the Global South rely on{" "}
