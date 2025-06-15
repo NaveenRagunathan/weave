@@ -18,9 +18,36 @@ const TubelightNavbar = () => {
   const { scrollProgress, scrollDirection } = useScrollProgress();
   const { scrollY } = useScroll();
   const isScrolled = scrollProgress > 1;
-  
+
   const navOpacity = useTransform(scrollY, [0, 100], [0.95, 0.98]);
   const navBlur = useTransform(scrollY, [0, 100], [8, 16]);
+
+  // Mobile menu state
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+
+  // Close menu on outside click
+  React.useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const handleClick = (e: MouseEvent) => {
+      const menu = document.getElementById('mobile-nav-menu');
+      if (menu && !menu.contains(e.target as Node)) {
+        setMobileMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [mobileMenuOpen]);
+
+  // Prevent background scroll when mobile menu is open
+  React.useEffect(() => {
+    if (mobileMenuOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [mobileMenuOpen]);
 
   return (
     <>
@@ -101,8 +128,58 @@ const TubelightNavbar = () => {
         </motion.div>
         
         <div className="md:hidden flex items-center">
-          <span className="text-pearl-white/70 text-xl cursor-pointer">☰</span>
+          <span
+            className="text-pearl-white/70 text-2xl cursor-pointer"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+            aria-label="Open mobile menu"
+            data-cursor="pointer"
+          >
+            ☰
+          </span>
         </div>
+
+        {/* Mobile Nav Menu */}
+        {mobileMenuOpen && (
+          <div
+            id="mobile-nav-menu"
+            className="fixed inset-0 z-[100] w-screen h-screen min-h-screen flex items-center justify-center md:hidden animate-fade-in bg-gradient-to-br from-[#1a1a1a] via-[#7c1d34] to-[#d4af37] backdrop-blur-xl border border-[rgba(212,175,55,0.10)] shadow-[0_0_40px_8px_rgba(212,175,55,0.12),_0_0_0_2px_rgba(212,175,55,0.15)_inset]"
+          >
+            {/* Close Button */}
+            <button
+              className="absolute top-6 right-7 w-12 h-12 flex items-center justify-center rounded-full border-2 border-imperial-gold-400 bg-ink-black/70 shadow-lg text-4xl text-imperial-gold-400 hover:bg-silk-crimson-400/20 hover:text-silk-crimson-400 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-imperial-gold-400/40"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label="Close mobile menu"
+              style={{boxShadow: '0 0 16px 2px rgba(212,175,55,0.25)'}}
+            >
+              ×
+            </button>
+            {/* Menu Content */}
+            <div className="flex flex-col items-center justify-center w-full h-full gap-12">
+              <ul className="flex flex-col gap-8 items-center w-full">
+                {navLinks.map((link) => (
+                  <li key={link.name} className="w-full flex justify-center">
+                    <a
+                      href={link.href}
+                      className="text-pearl-white text-2xl font-extrabold tracking-wider uppercase px-6 py-2 rounded transition-all duration-200 hover:text-imperial-gold-400 hover:scale-105 focus:text-silk-crimson-400 focus:underline shadow-md"
+                      style={{textShadow: '0 2px 10px rgba(0,0,0,0.12), 0 0 6px rgba(212,175,55,0.09)'}}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#"
+                className="bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-500 text-pearl-white font-extrabold text-xl px-12 py-4 rounded-full shadow-2xl border-2 border-imperial-gold-400/60 hover:from-imperial-gold-500 hover:to-silk-crimson-400 hover:scale-105 focus:ring-4 focus:ring-imperial-gold-400/40 transition-all duration-200"
+                style={{boxShadow: '0 4px 32px 0 rgba(212,175,55,0.19), 0 0 0 2px rgba(212,175,55,0.18) inset'}}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Create Account
+              </a>
+            </div>
+          </div>
+        )}
       </motion.nav>
       
       {/* Scroll Progress Indicator */}
