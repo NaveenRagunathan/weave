@@ -127,10 +127,10 @@ const HeroSection = () => {
           </span>
         </h1>
         <div
-          className="prose prose-invert prose-xl text-xl sm:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-7 sm:mb-10 animate-slide-in-right text-balance"
-          style={{ fontWeight: 700 }}
+          className="prose prose-invert text-base sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl font-semibold leading-tight mb-6 sm:mb-8 animate-slide-in-right text-balance"
+          style={{ fontWeight: 600 }}
         >
-          <span className="block w-full mb-2 sm:mb-4">
+          <span className="block w-full mb-2 sm:mb-3">
             <span className="text-imperial-gold-400 font-extrabold drop-shadow-sm">Trade freely, Build boldly,</span>
             <br className="hidden sm:block" />
             <span>
@@ -141,10 +141,6 @@ const HeroSection = () => {
             </span>
           </span>
         </div>
-        <p className="prose prose-invert prose-lg text-base sm:text-lg md:text-2xl text-pearl-white/90 font-medium mb-9 sm:mb-14 max-w-2xl mx-auto leading-relaxed font-sans text-balance" style={{letterSpacing: "-0.2px"}}>
-          WEAVE gives traders, builders, entrepreneurs and government institutions in the Global South the power to send, receive, and protect capital —{" "}
-          <span className="text-silk-crimson-400 font-semibold">without banks, borders, or permission.</span>
-        </p>
         {/* CTAs */}
         <div className="flex flex-col gap-4 sm:flex-row justify-center items-center mb-8">
           <Button
