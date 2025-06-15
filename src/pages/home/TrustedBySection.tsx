@@ -1,7 +1,7 @@
 
 import React from "react";
+import PartnerLogos from "@/components/ui/PartnerLogos";
 
-// Both the "Trusted by" logo section and the business partners section are removed.
-const TrustedBySection = () => <></>;
+const TrustedBySection = () => <PartnerLogos />;
 
 export default TrustedBySection;
