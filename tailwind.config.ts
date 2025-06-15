@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -124,6 +123,15 @@ export default {
       fontFamily: {
         serif: ['Harnet Serif', 'serif'],
         sans: ['Inter', 'sans-serif'],
+      },
+      boxShadow: {
+        // Premium shadow definitions
+        'premium-lg': '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)',
+        'premium-xl': '0 35px 60px -12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1)',
+        'glow-crimson': '0 0 20px rgba(220, 20, 60, 0.3), 0 8px 32px rgba(220, 20, 60, 0.15)',
+        'glow-gold': '0 0 20px rgba(212, 175, 55, 0.4), 0 8px 32px rgba(212, 175, 55, 0.2)',
+        'glass': 'inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 4px 32px rgba(0, 0, 0, 0.1)',
+        'depth-3d': '0 4px 8px rgba(0, 0, 0, 0.12), 0 8px 20px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
       },
       keyframes: {
         'accordion-down': {
@@ -314,6 +322,34 @@ export default {
           '100%': { 
             transform: 'translateX(-33.333%)' 
           }
+        },
+        // New premium animations
+        'magnetic-hover': {
+          '0%': { transform: 'translate(0, 0)' },
+          '100%': { transform: 'translate(var(--mouse-x, 0), var(--mouse-y, 0))' }
+        },
+        'ripple': {
+          '0%': { 
+            transform: 'scale(0)',
+            opacity: '0.6'
+          },
+          '100%': { 
+            transform: 'scale(4)',
+            opacity: '0'
+          }
+        },
+        'number-morph': {
+          '0%': { 
+            transform: 'translateY(100%) scale(0.8)',
+            opacity: '0'
+          },
+          '50%': { 
+            transform: 'translateY(-10%) scale(1.1)'
+          },
+          '100%': { 
+            transform: 'translateY(0%) scale(1)',
+            opacity: '1'
+          }
         }
       },
       animation: {
@@ -336,7 +372,11 @@ export default {
         'burst-out': 'burst-out 3s ease-out infinite',
         'converge-in': 'converge-in 2s ease-in-out infinite',
         'cta-glow': 'cta-glow 3s ease-in-out infinite',
-        'premium-scroll': 'premium-scroll 45s linear infinite'
+        'premium-scroll': 'premium-scroll 45s linear infinite',
+        // New premium animations
+        'magnetic-hover': 'magnetic-hover 0.3s ease-out',
+        'ripple': 'ripple 0.6s ease-out',
+        'number-morph': 'number-morph 0.3s ease-out'
       },
       scale: {
         '101': '1.01',
@@ -346,4 +386,3 @@ export default {
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
-

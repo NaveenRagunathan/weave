@@ -1,5 +1,7 @@
 import React from "react";
 import TubelightNavbar from "@/components/ui/tubelight-navbar";
+import CustomCursor from "@/components/ui/CustomCursor";
+import ParticleSystem from "@/components/ui/ParticleSystem";
 import HeroSection from "./HeroSection";
 import TrustedBySection from "./TrustedBySection";
 import PainPointSection from "./PainPointSection";
@@ -15,10 +17,15 @@ import FooterSection from "@/components/FooterSection";
 
 const HomePage = () => {
   return (
-    <main className="bg-ink-black text-pearl-white font-sans">
-      {/* Tubelight Navbar at the top */}
+    <main className="bg-ink-black text-pearl-white font-sans relative">
+      {/* Premium Enhancement Components */}
+      <CustomCursor />
+      <ParticleSystem />
+      
+      {/* Enhanced Navbar */}
       <TubelightNavbar />
-      {/* The original live counter sits within the HeroSection */}
+      
+      {/* Sections */}
       <HeroSection />
       <TrustedBySection />
       <PainPointSection />
