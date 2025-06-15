@@ -22,12 +22,12 @@ const partners = [
 
 const PartnerLogos = () => {
   return (
-    <section className="relative z-10 w-full bg-ink-black py-8 border-t border-b border-imperial-gold-400/15 overflow-hidden shadow-sm">
+    <section className="relative z-10 w-full bg-gradient-to-b from-ink-black via-ink-black/95 to-ink-black py-12 overflow-hidden">
       <FlowLineSystem pattern="smooth" intensity="low" color="gold" />
       
       <div className="relative z-10">
-        <div className="text-center mb-6 px-4">
-          <h2 className="text-lg md:text-xl font-semibold text-pearl-white mb-2">
+        <div className="text-center mb-8 px-4">
+          <h2 className="text-lg md:text-xl font-semibold text-pearl-white mb-3">
             Trusted by Thousands Across the New Trade Order
           </h2>
           <p className="text-sm text-pearl-white/80 max-w-3xl mx-auto font-medium leading-relaxed">
@@ -36,23 +36,23 @@ const PartnerLogos = () => {
           </p>
         </div>
 
-        <div className="relative w-full overflow-hidden py-4">
-          <div className="flex animate-scroll space-x-12 w-max px-6">
+        <div className="relative w-full overflow-hidden py-6">
+          <div className="flex animate-scroll space-x-16 w-max px-8">
             {[...partners, ...partners].map((partner, index) => (
               <Tooltip key={`${partner.name}-${index}`} delayDuration={100}>
                 <TooltipTrigger asChild>
-                  <div className="flex items-center justify-center min-w-[100px] h-14 group cursor-pointer">
+                  <div className="flex items-center justify-center min-w-[120px] h-16 group cursor-pointer">
                     <img
                       src={partner.customLogo || (partner.domain ? `https://logo.clearbit.com/${partner.domain}` : "")}
                       alt={`${partner.name} Logo`}
-                      className="h-10 md:h-12 object-contain opacity-70 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110"
+                      className="h-12 md:h-14 object-contain opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110 filter grayscale group-hover:grayscale-0"
                       loading="lazy"
                       draggable={false}
                     />
                   </div>
                 </TooltipTrigger>
-                <TooltipContent className="bg-ink-black/90 backdrop-blur-sm border-imperial-gold-500/30 text-pearl-white max-w-xs text-center shadow-lg z-50">
-                  <p className="font-medium">{partner.name}</p>
+                <TooltipContent className="bg-ink-black/95 backdrop-blur-sm border-imperial-gold-500/30 text-pearl-white max-w-xs text-center shadow-2xl z-50">
+                  <p className="font-semibold text-imperial-gold-400">{partner.name}</p>
                   <p className="text-xs text-pearl-white/80 mt-1">{partner.tooltip}</p>
                 </TooltipContent>
               </Tooltip>
@@ -65,20 +65,20 @@ const PartnerLogos = () => {
               100% { transform: translateX(-50%); }
             }
             .animate-scroll {
-              animation: scroll 35s linear infinite;
+              animation: scroll 40s linear infinite;
             }
           `}</style>
         </div>
 
-        <div className="text-center mt-6 px-4">
-          <p className="text-sm text-pearl-white/60 max-w-2xl mx-auto mb-4">
+        <div className="text-center mt-8 px-4">
+          <p className="text-sm text-pearl-white/60 max-w-2xl mx-auto mb-6">
             WEAVE is the invisible engine behind thousands of cross-border transactions every day — trusted by{" "}
             <span className="text-silk-crimson-400 font-semibold">multinationals</span>,{" "}
             <span className="text-imperial-gold-500 font-semibold">megaproject leaders</span>, and{" "}
             <span className="text-jade-flow-500 font-semibold">digital exporters</span> across the Global South.
           </p>
 
-          <button className="px-6 py-2.5 rounded-full font-semibold text-sm bg-gradient-to-r from-silk-crimson-400 via-imperial-gold-400 to-silk-crimson-400 text-pearl-white shadow hover:from-silk-crimson-500 hover:to-imperial-gold-500 transition-all duration-300 outline-none focus:ring-2 focus:ring-imperial-gold-400/30">
+          <button className="px-6 py-2.5 rounded-full font-semibold text-sm bg-gradient-to-r from-silk-crimson-400 via-imperial-gold-400 to-silk-crimson-400 text-pearl-white shadow-lg hover:from-silk-crimson-500 hover:to-imperial-gold-500 transition-all duration-300 outline-none focus:ring-2 focus:ring-imperial-gold-400/30 hover:shadow-xl">
             See How These Leaders Use WEAVE →
           </button>
         </div>

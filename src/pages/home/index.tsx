@@ -1,7 +1,9 @@
+
 import React from "react";
 import TubelightNavbar from "@/components/ui/tubelight-navbar";
 import CustomCursor from "@/components/ui/CustomCursor";
 import ParticleSystem from "@/components/ui/ParticleSystem";
+import SmoothSectionTransition from "@/components/transitions/SmoothSectionTransition";
 import HeroSection from "./HeroSection";
 import TrustedBySection from "./TrustedBySection";
 import PainPointSection from "./PainPointSection";
@@ -17,7 +19,7 @@ import FooterSection from "@/components/FooterSection";
 
 const HomePage = () => {
   return (
-    <main className="bg-ink-black text-pearl-white font-sans relative">
+    <main className="bg-ink-black text-pearl-white font-sans relative overflow-x-hidden">
       {/* Premium Enhancement Components */}
       <CustomCursor />
       <ParticleSystem />
@@ -25,18 +27,49 @@ const HomePage = () => {
       {/* Enhanced Navbar */}
       <TubelightNavbar />
       
-      {/* Sections */}
+      {/* Sections with smooth transitions */}
       <HeroSection />
-      <TrustedBySection />
-      <PainPointSection />
-      <WhatYouWantSection />
-      <MeetWeaveSection />
-      <WhoThisIsForSection />
-      <USDCSection />
-      <TrustedPowerhousesSection />
-      <SocialProofSection />
-      <LiberationSection />
-      <FinalRallySection />
+      
+      <SmoothSectionTransition>
+        <TrustedBySection />
+      </SmoothSectionTransition>
+      
+      <SmoothSectionTransition>
+        <PainPointSection />
+      </SmoothSectionTransition>
+      
+      <SmoothSectionTransition>
+        <WhatYouWantSection />
+      </SmoothSectionTransition>
+      
+      <SmoothSectionTransition>
+        <MeetWeaveSection />
+      </SmoothSectionTransition>
+      
+      <SmoothSectionTransition>
+        <WhoThisIsForSection />
+      </SmoothSectionTransition>
+      
+      <SmoothSectionTransition>
+        <USDCSection />
+      </SmoothSectionTransition>
+      
+      <SmoothSectionTransition>
+        <TrustedPowerhousesSection />
+      </SmoothSectionTransition>
+      
+      <SmoothSectionTransition>
+        <SocialProofSection />
+      </SmoothSectionTransition>
+      
+      <SmoothSectionTransition>
+        <LiberationSection />
+      </SmoothSectionTransition>
+      
+      <SmoothSectionTransition>
+        <FinalRallySection />
+      </SmoothSectionTransition>
+      
       <FooterSection />
     </main>
   );
