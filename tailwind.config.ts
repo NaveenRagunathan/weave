@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -295,6 +296,14 @@ export default {
             transform: 'translate(0, 0)',
             opacity: '0.6'
           }
+        },
+        'premium-scroll': {
+          '0%': { 
+            transform: 'translateX(0)' 
+          },
+          '100%': { 
+            transform: 'translateX(-33.333%)' 
+          }
         }
       },
       animation: {
@@ -315,7 +324,8 @@ export default {
         'gentle-float': 'gentle-float 4s ease-in-out infinite',
         'pulse-erratic': 'pulse-erratic 2s ease-in-out infinite',
         'burst-out': 'burst-out 3s ease-out infinite',
-        'converge-in': 'converge-in 2s ease-in-out infinite'
+        'converge-in': 'converge-in 2s ease-in-out infinite',
+        'premium-scroll': 'premium-scroll 45s linear infinite'
       },
       scale: {
         '101': '1.01',

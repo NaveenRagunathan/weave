@@ -66,34 +66,6 @@ export function Logos3() {
       {/* Subtle premium accent lines */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-silk-crimson-400/30 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-imperial-gold-400/30 to-transparent" />
-      
-      {/* Premium CSS animations */}
-      <style jsx>{`
-        @keyframes premium-scroll {
-          0% { 
-            transform: translateX(0); 
-          }
-          100% { 
-            transform: translateX(-33.333%); 
-          }
-        }
-        
-        .animate-premium-scroll {
-          animation: premium-scroll 45s linear infinite;
-          animation-play-state: running;
-        }
-        
-        .animate-premium-scroll:hover {
-          animation-play-state: paused;
-        }
-        
-        /* Additional premium effects */
-        @media (prefers-reduced-motion: reduce) {
-          .animate-premium-scroll {
-            animation: none;
-          }
-        }
-      `}</style>
     </div>
   );
 }
