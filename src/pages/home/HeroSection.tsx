@@ -88,22 +88,22 @@ const HeroSection = () => {
           className={`
             inline-flex items-center gap-2 bg-ink-black/60 backdrop-blur-[2px] border 
             border-imperial-gold-400/25 shadow-gold-glow rounded-full
-            px-5 py-1.5
-            sm:px-8 sm:py-3
-            text-xs sm:text-base font-medium animate-fade-in
-            min-h-[32px] sm:min-h-[45px]
+            px-4 py-1
+            sm:px-6 sm:py-2
+            text-xs font-medium animate-fade-in
+            min-h-[28px] sm:min-h-[40px]
             transition-all
           `}
           style={{
             boxShadow: "0 0 0 1px rgba(212,181,38,0.10)",
           }}
         >
-          <div className="w-2 h-2 bg-imperial-gold-400 rounded-full animate-pulse" />
-          <span className="text-imperial-gold-400 font-semibold text-[1rem] sm:text-lg" style={{ fontWeight: 600 }}>
+          <div className="w-1.5 h-1.5 bg-imperial-gold-400 rounded-full animate-pulse" />
+          <span className="text-imperial-gold-400 font-semibold text-sm sm:text-base" style={{ fontWeight: 600 }}>
             Live Capital Moved
           </span>
           <span
-            className="text-pearl-white font-extrabold text-[1.05rem] sm:text-2xl md:text-2xl font-mono animate-count-up ml-2"
+            className="text-pearl-white font-extrabold text-base sm:text-xl font-mono animate-count-up ml-2"
             aria-live="polite"
             aria-label={`Live counter showing ${formatCurrency(liveCounter)} moved`}
             style={{
@@ -141,6 +141,10 @@ const HeroSection = () => {
             </span>
           </span>
         </div>
+        <p className="prose prose-invert text-sm sm:text-base text-pearl-white/80 font-normal mb-8 max-w-2xl mx-auto leading-relaxed font-sans text-balance">
+          WEAVE gives traders, builders, entrepreneurs and government institutions in the Global South the power to send, receive, and protect capital —{" "}
+          <span className="text-silk-crimson-400 font-semibold">without banks, borders, or permission.</span>
+        </p>
         {/* CTAs */}
         <div className="flex flex-col gap-4 sm:flex-row justify-center items-center mb-8">
           <Button
