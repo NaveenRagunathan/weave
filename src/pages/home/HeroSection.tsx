@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Play, ArrowRight } from "lucide-react";
@@ -119,7 +118,7 @@ const HeroSection = () => {
       {/* Main Headline Premium */}
       <div className="relative max-w-5xl mx-auto text-center z-10">
         <h1
-          className="text-[2.2rem] sm:text-5xl md:text-7xl lg:text-7xl leading-tight font-serif tracking-tight mb-8 sm:mb-10 drop-shadow-[0_3px_18px_rgba(220,20,60,0.13)]"
+          className="prose prose-invert prose-lg text-[2.2rem] sm:text-5xl md:text-7xl lg:text-7xl leading-tight font-serif tracking-tight mb-8 sm:mb-10 drop-shadow-[0_3px_18px_rgba(220,20,60,0.13)] text-balance"
           style={{ fontFamily: "'Harnet Serif', serif", fontWeight: 800, letterSpacing: "-1px" }}
         >
           <span className="block bg-gradient-to-b from-pearl-white to-pearl-white/80 bg-clip-text text-transparent animate-slide-in-left font-extrabold">
@@ -128,7 +127,7 @@ const HeroSection = () => {
           </span>
         </h1>
         <div
-          className="text-xl sm:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-7 sm:mb-10 animate-slide-in-right"
+          className="prose prose-invert prose-xl text-xl sm:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-7 sm:mb-10 animate-slide-in-right text-balance"
           style={{ fontWeight: 700 }}
         >
           <span className="block w-full mb-2 sm:mb-4">
@@ -142,7 +141,7 @@ const HeroSection = () => {
             </span>
           </span>
         </div>
-        <p className="text-base sm:text-lg md:text-2xl text-pearl-white/90 font-medium mb-9 sm:mb-14 max-w-2xl mx-auto leading-relaxed font-sans" style={{letterSpacing: "-0.2px"}}>
+        <p className="prose prose-invert prose-lg text-base sm:text-lg md:text-2xl text-pearl-white/90 font-medium mb-9 sm:mb-14 max-w-2xl mx-auto leading-relaxed font-sans text-balance" style={{letterSpacing: "-0.2px"}}>
           WEAVE gives traders, builders, entrepreneurs and government institutions in the Global South the power to send, receive, and protect capital —{" "}
           <span className="text-silk-crimson-400 font-semibold">without banks, borders, or permission.</span>
         </p>
@@ -173,4 +172,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-
