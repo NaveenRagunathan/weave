@@ -3,7 +3,7 @@ import React from "react";
 const partners = [
   { name: "Alibaba", domain: "alibaba.com", desc: "Facilitating infrastructure payments in 4 continents" },
   { name: "Huawei", domain: "huawei.com", desc: "Using WEAVE to streamline FX operations" },
-  { name: "Sinopec", domain: null, customLogo: "http://www.sinopecgroup.com/r/cms/jtyw/default/images/logo2021.png", desc: "Corridor-enabled payouts across Africa and Latin America" },
+  { name: "Sinopec", domain: null, customLogo: "https://www.sinopecgroup.com/r/cms/jtyw/default/images/logo2021.png", desc: "Corridor-enabled payouts across Africa and Latin America" },
   { name: "Emirates Group", domain: "emirates.com", desc: "Facilitating infrastructure payments in 4 continents" },
   { name: "DP World", domain: "dpworld.com", desc: "Using WEAVE to streamline FX operations" },
   { name: "Nubank", domain: "nubank.com.br", desc: "Corridor-enabled payouts across Africa and Latin America" },
