@@ -1,70 +1,99 @@
 
 import React from "react";
 
-const logos = [
-  {
-    name: "Alibaba",
-    url: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Alibaba_Cloud_logo.svg",
-  },
-  {
-    name: "Huawei",
-    url: "https://upload.wikimedia.org/wikipedia/commons/0/01/Huawei_Standard_logo.svg",
-  },
-  {
-    name: "Sinopec",
-    url: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Sinopec_Logo.svg",
-  },
-  {
-    name: "Emirates Group",
-    url: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Emirates_logo.svg",
-  },
-  {
-    name: "DP World",
-    url: "https://seeklogo.com/images/D/dp-world-logo-15D32C8DCB-seeklogo.com.png",
-  },
-  {
-    name: "Nubank",
-    url: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Nubank_logo_2021.svg",
-  },
-  {
-    name: "Mercado Libre",
-    url: "https://upload.wikimedia.org/wikipedia/commons/a/a7/Mercado_Libre_logo.svg",
-  },
-  {
-    name: "Dangote Group",
-    url: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Dangote_Group_logo.png",
-  },
-  {
-    name: "MTN Group",
-    url: "https://upload.wikimedia.org/wikipedia/commons/8/87/MTN_Logo.svg",
-  },
-  {
-    name: "Safaricom",
-    url: "https://upload.wikimedia.org/wikipedia/commons/e/ea/Safaricom_logo.svg",
-  },
+const partners = [
+  { name: "Alibaba", domain: "alibaba.com" },
+  { name: "Huawei", domain: "huawei.com" },
+  { name: "Sinopec", domain: "sinopecgroup.com" },
+  { name: "Emirates Group", domain: "emirates.com" },
+  { name: "DP World", domain: "dpworld.com" },
+  { name: "Nubank", domain: "nubank.com.br" },
+  { name: "Mercado Libre", domain: "mercadolibre.com" },
+  { name: "Dangote Group", domain: "dangote.com" },
+  { name: "MTN Group", domain: "mtn.com" },
+  { name: "Safaricom", domain: "safaricom.co.ke" },
 ];
 
 export function Logos3() {
   return (
-    <div className="flex flex-wrap justify-center gap-8 py-4">
-      {logos.map((logo) => (
-        <div
-          key={logo.name}
-          className="flex flex-col items-center justify-center group"
-          style={{ minWidth: 96 }}
-        >
-          <img
-            src={logo.url}
-            alt={logo.name + " logo"}
-            className="h-10 max-w-[92px] grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 object-contain"
-            loading="lazy"
-            draggable={false}
-          />
-          <span className="text-xs text-pearl-white/50 font-semibold text-center mt-2">
-            {logo.name}
-          </span>
-        </div>
-      ))}
+    <div className="relative w-full overflow-hidden py-12 bg-gradient-to-r from-transparent via-ink-black/30 to-transparent">
+      {/* Premium background effects */}
+      <div className="absolute inset-0 bg-gradient-to-r from-silk-crimson-400/5 via-transparent to-imperial-gold-400/5" />
+      <div className="absolute top-0 left-1/4 w-96 h-32 bg-gradient-to-r from-silk-crimson-400/10 to-transparent blur-3xl opacity-50" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-32 bg-gradient-to-l from-imperial-gold-400/10 to-transparent blur-3xl opacity-50" />
+      
+      {/* Main scrolling container with premium styling */}
+      <div className="relative flex animate-premium-scroll space-x-16 px-8">
+        {/* Duplicate the array for seamless loop */}
+        {[...partners, ...partners, ...partners].map((partner, index) => (
+          <div
+            key={`${partner.name}-${index}`}
+            className="group relative flex-shrink-0 flex flex-col items-center justify-center min-w-[140px] h-24 p-4"
+          >
+            {/* Premium logo container with sophisticated hover effects */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              {/* Glowing background that appears on hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-silk-crimson-400/0 via-imperial-gold-400/0 to-silk-crimson-400/0 group-hover:from-silk-crimson-400/10 group-hover:via-imperial-gold-400/15 group-hover:to-silk-crimson-400/10 rounded-xl transition-all duration-700 blur-xl" />
+              
+              {/* Premium border effect */}
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-imperial-gold-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+              
+              {/* Logo image with premium filters */}
+              <img
+                src={`https://logo.clearbit.com/${partner.domain}`}
+                alt={`${partner.name} Logo`}
+                className="relative z-10 h-12 max-w-[120px] object-contain filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-90 transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-2xl"
+                loading="lazy"
+                draggable={false}
+              />
+              
+              {/* Premium shine effect on hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-pearl-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-xl" />
+            </div>
+            
+            {/* Company name with premium typography */}
+            <span className="mt-2 text-xs font-semibold text-pearl-white/50 group-hover:text-imperial-gold-400 transition-all duration-300 tracking-wider uppercase">
+              {partner.name}
+            </span>
+          </div>
+        ))}
+      </div>
+      
+      {/* Premium gradient overlays for seamless edge blending */}
+      <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-ink-black via-ink-black/80 to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-ink-black via-ink-black/80 to-transparent z-10 pointer-events-none" />
+      
+      {/* Subtle premium accent lines */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-silk-crimson-400/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-imperial-gold-400/30 to-transparent" />
+      
+      {/* Premium CSS animations */}
+      <style jsx>{`
+        @keyframes premium-scroll {
+          0% { 
+            transform: translateX(0); 
+          }
+          100% { 
+            transform: translateX(-33.333%); 
+          }
+        }
+        
+        .animate-premium-scroll {
+          animation: premium-scroll 45s linear infinite;
+          animation-play-state: running;
+        }
+        
+        .animate-premium-scroll:hover {
+          animation-play-state: paused;
+        }
+        
+        /* Additional premium effects */
+        @media (prefers-reduced-motion: reduce) {
+          .animate-premium-scroll {
+            animation: none;
+          }
+        }
+      `}</style>
     </div>
   );
 }
