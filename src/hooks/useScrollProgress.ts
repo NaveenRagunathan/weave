@@ -1,43 +1,28 @@
 
 import { useState, useEffect } from 'react';
 
-interface ScrollProgressReturn {
-  scrollProgress: number;
-  scrollDirection: 'up' | 'down';
-  isScrolling: boolean;
-}
-
-export const useScrollProgress = (): ScrollProgressReturn => {
+export const useScrollProgress = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('down');
-  const [isScrolling, setIsScrolling] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
+    let lastScrollY = window.scrollY;
 
-    const updateProgress = () => {
-      const currentScrollY = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = Math.min((currentScrollY / docHeight) * 100, 100);
+    const updateScrollProgress = () => {
+      const scrollY = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollHeight > 0 ? (scrollY / scrollHeight) * 100 : 0;
       
       setScrollProgress(progress);
-      setScrollDirection(currentScrollY > lastScrollY ? 'down' : 'up');
-      setLastScrollY(currentScrollY);
-      setIsScrolling(true);
-
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => setIsScrolling(false), 150);
+      setScrollDirection(scrollY > lastScrollY ? 'down' : 'up');
+      lastScrollY = scrollY;
     };
 
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    updateProgress();
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    updateScrollProgress();
 
-    return () => {
-      window.removeEventListener('scroll', updateProgress);
-      clearTimeout(scrollTimeout);
-    };
-  }, [lastScrollY]);
+    return () => window.removeEventListener('scroll', updateScrollProgress);
+  }, []);
 
-  return { scrollProgress, scrollDirection, isScrolling };
+  return { scrollProgress, scrollDirection };
 };
