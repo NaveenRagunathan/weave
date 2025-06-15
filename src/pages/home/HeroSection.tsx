@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Play, ArrowRight } from "lucide-react";
@@ -146,14 +147,13 @@ const HeroSection = () => {
         <div className="flex flex-col gap-4 sm:flex-row justify-center items-center mb-8">
           <Button
             size="lg"
-            className="bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-600 hover:from-silk-crimson-500 hover:to-imperial-gold-400 text-pearl-white font-semibold tracking-wider px-10 py-5 rounded-full shadow-lg shadow-silk-crimson-400/20 border-2 border-imperial-gold-400/15 hover:scale-105 text-lg gap-3 flex items-center transition-all duration-300"
+            className="bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-600 hover:from-silk-crimson-500 hover:to-imperial-gold-400 text-pearl-white font-semibold tracking-wider px-10 py-5 rounded-full border-2 border-imperial-gold-400/15 text-lg gap-3 flex items-center transition-all duration-300 animate-cta-glow"
           >
             Open your Free WEAVE Account &rarr;
           </Button>
           <Button
-            variant="outline"
             size="lg"
-            className="border-2 border-imperial-gold-500 text-imperial-gold-400 hover:bg-imperial-gold-400/15 hover:text-imperial-gold-600 px-10 py-5 rounded-full font-semibold backdrop-blur-sm text-lg gap-3 flex items-center transition tracking-wider"
+            className="bg-pearl-white/10 hover:bg-pearl-white/20 text-pearl-white border border-pearl-white/20 px-10 py-5 rounded-full font-semibold backdrop-blur-md text-lg gap-3 flex items-center transition-all duration-300 tracking-wider"
           >
             <Play className="mr-2 h-5 w-5" />
             Watch How It Works

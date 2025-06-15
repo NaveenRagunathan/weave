@@ -297,6 +297,16 @@ export default {
             opacity: '0.6'
           }
         },
+        'cta-glow': {
+          '0%, 100%': {
+            transform: 'scale(1)',
+            boxShadow: '0 8px 15px rgba(220, 20, 60, 0.2), 0 0 5px rgba(212, 175, 55, 0.3)',
+          },
+          '50%': {
+            transform: 'scale(1.02)',
+            boxShadow: '0 12px 25px rgba(220, 20, 60, 0.3), 0 0 15px rgba(212, 175, 55, 0.5)',
+          },
+        },
         'premium-scroll': {
           '0%': { 
             transform: 'translateX(0)' 
@@ -325,6 +335,7 @@ export default {
         'pulse-erratic': 'pulse-erratic 2s ease-in-out infinite',
         'burst-out': 'burst-out 3s ease-out infinite',
         'converge-in': 'converge-in 2s ease-in-out infinite',
+        'cta-glow': 'cta-glow 3s ease-in-out infinite',
         'premium-scroll': 'premium-scroll 45s linear infinite'
       },
       scale: {
@@ -335,3 +346,4 @@ export default {
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
