@@ -3,16 +3,40 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Users } from "lucide-react";
 
 const FinalRallySection = () => (
-  <section className="relative py-20 px-4 bg-gradient-to-br from-ink-black via-ink-black/95 to-silk-crimson-400/6 overflow-hidden border-t border-imperial-gold-400/14">
-    {/* Premium background effects */}
-    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-silk-crimson-400/7 to-transparent animate-shimmer" 
-         style={{ backgroundSize: '200% 100%' }} />
-    
-    {/* Floating geometric elements */}
-    <div className="absolute top-20 left-10 w-32 h-32 border border-imperial-gold-500/27 rounded-full animate-gentle-float opacity-30" />
-    <div className="absolute bottom-32 right-16 w-24 h-24 border border-silk-crimson-400/20 rounded-lg rotate-45 animate-pulse-erratic" />
-    <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-br from-imperial-gold-500/14 to-silk-crimson-400/10 rounded-full animate-converge-in" />
-    
+  <section className="relative py-20 px-4 bg-gradient-to-br from-ink-black via-ink-black/95 to-silk-crimson-400/6 overflow-hidden">
+    {/* Wave background effects */}
+    <div className="absolute inset-0 overflow-hidden">
+      {/* First wave */}
+      <svg className="absolute bottom-0 left-0 w-full h-32 text-silk-crimson-400/10" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path
+          fill="currentColor"
+          d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          className="animate-wave"
+          style={{ animationDuration: '10s' }}
+        />
+      </svg>
+      
+      {/* Second wave */}
+      <svg className="absolute bottom-0 left-0 w-full h-40 text-imperial-gold-500/10" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path
+          fill="currentColor"
+          d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          className="animate-wave"
+          style={{ animationDuration: '15s', animationDelay: '-5s' }}
+        />
+      </svg>
+      
+      {/* Third wave */}
+      <svg className="absolute bottom-0 left-0 w-full h-48 text-jade-flow-500/10" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path
+          fill="currentColor"
+          d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,90.7C672,85,768,107,864,128C960,149,1056,171,1152,165.3C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          className="animate-wave"
+          style={{ animationDuration: '20s', animationDelay: '-10s' }}
+        />
+      </svg>
+    </div>
+
     <div className="max-w-5xl mx-auto text-center relative z-10">
       {/* Premium headline with staggered animations */}
       <div className="mb-10 space-y-3">
@@ -68,20 +92,6 @@ const FinalRallySection = () => (
             Talk to a Real Human
           </span>
         </Button>
-      </div>
-
-      {/* Trust indicator with premium styling */}
-      <div className="flex items-center justify-center gap-5 text-pearl-white/65 text-base animate-reveal-text"
-           style={{ animationDelay: '1.9s', animationFillMode: 'both' }}>
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-jade-flow-500 animate-pulse" />
-          <span>Trusted by 10,000+ Global Traders</span>
-        </div>
-        <div className="w-px h-4 bg-pearl-white/35" />
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-imperial-gold-500 animate-pulse" style={{ animationDelay: '0.5s' }} />
-          <span>Zero Setup Fees</span>
-        </div>
       </div>
     </div>
 

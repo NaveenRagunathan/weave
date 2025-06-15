@@ -1,15 +1,15 @@
 
 import React from 'react';
-import HeroSection from '@/components/HeroSection';
-import StorySection from '@/components/StorySection'; // Section 1
-import ProblemSection from '@/components/ProblemSection'; // Section 2
-import FeaturesSection from '@/components/FeaturesSection'; // Section 3
-import WhoItIsForSection from '@/components/WhoItIsForSection'; // Section 4
-import AdvantageSection from '@/components/AdvantageSection'; // Section 5
-import TrustLayerSection from '@/components/TrustLayerSection'; // Section 6
-import SocialProofSection from '@/components/SocialProofSection'; // Section 7
-import CloserSection from '@/components/CloserSection'; // Section 8
-import FooterSection from '@/components/FooterSection';
+import HeroSection from '@/pages/product/HeroSection';
+import StorySection from '@/pages/product/StorySection'; // Section 1
+import ProblemSection from '@/pages/product/ProblemSection'; // Section 2
+import FeaturesSection from '@/pages/product/FeaturesSection'; // Section 3
+import WhoItIsForSection from '@/pages/product/WhoItIsForSection'; // Section 4
+import AdvantageSection from '@/pages/product/AdvantageSection'; // Section 5
+import TrustLayerSection from '@/pages/product/TrustLayerSection'; // Section 6
+import SocialProofSection from '@/pages/product/SocialProofSection'; // Section 7
+import CloserSection from '@/pages/product/CloserSection'; // Section 8
+import FooterSection from '@/pages/product/FooterSection';
 
 // Interaction Components
 import ProgressIndicator from '@/components/interactions/ProgressIndicator';

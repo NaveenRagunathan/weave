@@ -239,6 +239,14 @@ export default {
             transform: 'translateY(0) scale(1)' 
           }
         },
+        'wave': {
+          '0%': {
+            transform: 'translateX(-100%)'
+          },
+          '100%': {
+            transform: 'translateX(100%)'
+          }
+        },
         'tension-pulse': {
           '0%, 100%': { 
             transform: 'scale(1)',
@@ -366,6 +374,7 @@ export default {
         'transition-reveal': 'transition-reveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards',
         'gentle-bounce': 'gentle-bounce 2s ease-in-out infinite',
         'reveal-text': 'reveal-text 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+        'wave': 'wave 2s linear infinite',
         'tension-pulse': 'tension-pulse 3s ease-in-out infinite',
         'gentle-float': 'gentle-float 4s ease-in-out infinite',
         'pulse-erratic': 'pulse-erratic 2s ease-in-out infinite',

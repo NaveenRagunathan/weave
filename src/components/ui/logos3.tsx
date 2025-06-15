@@ -17,19 +17,19 @@ const partners = [
 
 export function Logos3() {
   return (
-    <section className="w-full bg-gradient-to-b from-pearl-white via-white/70 to-pearl-white/80 py-8 md:py-10 border-y border-imperial-gold-400/15 shadow-sm overflow-hidden">
+    <section className="w-full bg-gradient-to-br from-[#D4AF37]/90 via-[#fffbe7]/80 to-[#DC143C]/80 py-10 md:py-14 border-y border-imperial-gold-400/40 shadow-xl overflow-hidden">
       <div className="text-center mb-2 px-2">
-        <h2 className="text-xl md:text-2xl font-extrabold text-ink-black tracking-tight md:mb-1" style={{letterSpacing: "-0.5px"}}>
+        <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight md:mb-1 bg-gradient-to-r from-imperial-gold-500 via-silk-crimson-400 to-imperial-gold-600 bg-clip-text text-transparent drop-shadow-lg" style={{letterSpacing: "-0.5px"}}>
           Trusted by Thousands Across the New Trade Order
         </h2>
         {/* Premium Fast • Secure • Unstoppable row */}
         <div className="flex justify-center">
           <FastSecureUnstoppable />
         </div>
-        <p className="text-base md:text-lg text-ink-black/80 mt-2 max-w-2xl mx-auto font-medium leading-snug">
+        <p className="text-base md:text-lg text-[#A67C36] mt-2 max-w-2xl mx-auto font-semibold leading-snug drop-shadow-gold">
           From <span className="text-silk-crimson-400 font-semibold">Guangzhou</span> to <span className="text-imperial-gold-500 font-semibold">Bogotá</span>.{" "}
           <span className="text-silk-crimson-400 font-semibold">Lagos</span> to <span className="text-imperial-gold-500 font-semibold">Dubai</span>. The architects of the Global South rely on{" "}
-          <span className="bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-500 bg-clip-text text-transparent font-bold">WEAVE</span> to move capital where it matters — fast, secure, unstoppable.
+          <span className="bg-gradient-to-r from-silk-crimson-400 via-imperial-gold-500 to-silk-crimson-600 bg-clip-text text-transparent font-bold">WEAVE</span> to move capital where it matters — <span className="text-imperial-gold-500">fast</span>, <span className="text-silk-crimson-400">secure</span>, <span className="text-imperial-gold-500">unstoppable</span>.
         </p>
       </div>
       <div className="relative w-full">
@@ -40,7 +40,7 @@ export function Logos3() {
               <div key={`${partner.name}-${idx}`} className="relative group flex flex-col items-center min-w-[90px] md:min-w-[108px]">
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <div className="rounded-xl p-2 md:p-3 bg-white/90 border border-imperial-gold-400/10 shadow-md hover:shadow-lg transition-all flex items-center justify-center">
+                    <div className="rounded-xl p-2 md:p-3 bg-gradient-to-br from-[#fffbe7]/90 via-[#D4AF37]/30 to-[#DC143C]/10 border border-imperial-gold-400/40 shadow-gold hover:shadow-xl transition-all flex items-center justify-center">
                       <img
                         src={`https://logo.clearbit.com/${partner.domain}`}
                         alt={`${partner.name} Logo`}
@@ -50,11 +50,11 @@ export function Logos3() {
                       />
                     </div>
                   </TooltipTrigger>
-                  <TooltipContent side="top" className="z-40 font-medium text-xs max-w-xs text-ink-black bg-pearl-white/90 border border-silk-crimson-400/20 shadow-lg rounded-lg px-3 py-2">
+                  <TooltipContent side="top" className="z-40 font-semibold text-xs max-w-xs text-silk-crimson-600 bg-gradient-to-br from-imperial-gold-50 via-pearl-white/95 to-imperial-gold-100 border border-imperial-gold-400/30 shadow-xl rounded-xl px-3 py-2">
                     {partner.tooltip}
                   </TooltipContent>
                 </Tooltip>
-                <span className="text-xs md:text-sm text-ink-black/80 mt-2 font-semibold whitespace-nowrap">
+                <span className="text-xs md:text-sm text-imperial-gold-700 mt-2 font-bold whitespace-nowrap drop-shadow-gold">
                   {partner.name}
                 </span>
               </div>
@@ -74,14 +74,14 @@ export function Logos3() {
           }
         `}</style>
       </div>
-      <p className="text-center text-sm md:text-base text-ink-black/60 mt-8 md:mt-7 max-w-2xl mx-auto font-medium">
-        WEAVE is the invisible engine behind thousands of cross-border transactions every day — trusted by{" "}
-        <span className="text-silk-crimson-400 font-semibold">multinationals</span>,{" "}
-        <span className="text-imperial-gold-500 font-semibold">megaproject leaders</span>, and{" "}
-        <span className="text-jade-flow-500 font-semibold">digital exporters</span> across the Global South.
+      <p className="text-center text-sm md:text-base text-imperial-gold-700/80 mt-8 md:mt-7 max-w-2xl mx-auto font-semibold">
+        WEAVE is the invisible engine behind thousands of cross-border transactions every day — trusted by 
+        <span className="text-silk-crimson-400 font-bold">multinationals</span>, 
+        <span className="text-imperial-gold-500 font-bold">megaproject leaders</span>, and 
+        <span className="text-jade-flow-500 font-bold">digital exporters</span> across the Global South.
       </p>
       <div className="flex justify-center mt-4">
-        <button className="px-7 py-3 rounded-full font-semibold text-base bg-gradient-to-r from-silk-crimson-400 via-imperial-gold-400 to-silk-crimson-400 text-pearl-white shadow hover:from-silk-crimson-500 hover:to-imperial-gold-500 transition-all duration-300 outline-none focus:ring-2 focus:ring-imperial-gold-400/30">
+        <button className="px-7 py-3 rounded-full font-bold text-base bg-gradient-to-r from-imperial-gold-500 via-silk-crimson-400 to-imperial-gold-600 text-pearl-white shadow-xl hover:from-silk-crimson-500 hover:to-imperial-gold-500 transition-all duration-300 outline-none focus:ring-2 focus:ring-imperial-gold-400/40 border-2 border-imperial-gold-400">
           See How These Leaders Use WEAVE &rarr;
         </button>
       </div>

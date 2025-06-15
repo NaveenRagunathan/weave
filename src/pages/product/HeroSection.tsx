@@ -94,18 +94,6 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Live Counter Badge */}
-        <div className="inline-flex items-center gap-2 bg-ink-black/50 backdrop-blur-sm border border-imperial-gold-500/30 rounded-full px-6 py-3 mb-8 animate-fade-in">
-          <div className="w-2 h-2 bg-imperial-gold-400 rounded-full animate-pulse" />
-          <span className="text-imperial-gold-300 text-sm font-medium">Live Capital Moved</span>
-          <span 
-            className="text-pearl-white text-lg font-bold animate-count-up"
-            aria-live="polite"
-            aria-label={`Live counter showing ${formatCurrency(liveCounter)} moved`}
-          >
-            {formatCurrency(liveCounter)}+
-          </span>
-        </div>
 
         {/* Main Headlines */}
         <div className="space-y-6 mb-12">

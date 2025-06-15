@@ -5,7 +5,8 @@ import CustomCursor from "@/components/ui/CustomCursor";
 import ParticleSystem from "@/components/ui/ParticleSystem";
 import SmoothSectionTransition from "@/components/transitions/SmoothSectionTransition";
 import HeroSection from "./HeroSection";
-import TrustedBySection from "./TrustedBySection";
+import PartnerEliteScroll from "./PartnerEliteScroll";
+
 import PainPointSection from "./PainPointSection";
 import WhatYouWantSection from "./WhatYouWantSection";
 import MeetWeaveSection from "./MeetWeaveSection";
@@ -15,7 +16,7 @@ import TrustedPowerhousesSection from "./TrustedPowerhousesSection";
 import SocialProofSection from "./SocialProofSection";
 import LiberationSection from "./LiberationSection";
 import FinalRallySection from "./FinalRallySection";
-import FooterSection from "@/components/FooterSection";
+import FooterSection from "@/pages/product/FooterSection";
 
 const HomePage = () => {
   return (
@@ -29,10 +30,9 @@ const HomePage = () => {
       
       {/* Sections with smooth transitions */}
       <HeroSection />
+      <PartnerEliteScroll />
       
-      <SmoothSectionTransition>
-        <TrustedBySection />
-      </SmoothSectionTransition>
+      
       
       <SmoothSectionTransition>
         <PainPointSection />
