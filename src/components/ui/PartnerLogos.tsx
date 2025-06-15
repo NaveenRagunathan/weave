@@ -22,7 +22,7 @@ const partners = [
 
 const PartnerLogos = () => {
   return (
-    <section className="relative w-full bg-ink-black py-10 border-t border-b border-imperial-gold-400/15 overflow-hidden shadow-sm">
+    <section className="relative z-10 w-full bg-ink-black py-10 border-t border-b border-imperial-gold-400/15 overflow-hidden shadow-sm">
       <FlowLineSystem pattern="smooth" intensity="low" color="gold" />
       
       <div className="relative z-10">
