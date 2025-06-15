@@ -1,4 +1,3 @@
-
 import React from "react";
 import TubelightNavbar from "@/components/ui/tubelight-navbar";
 import HeroSection from "./HeroSection";
@@ -12,7 +11,7 @@ import TrustedPowerhousesSection from "./TrustedPowerhousesSection";
 import SocialProofSection from "./SocialProofSection";
 import LiberationSection from "./LiberationSection";
 import FinalRallySection from "./FinalRallySection";
-import FooterSection from "./FooterSection";
+import FooterSection from "@/components/FooterSection";
 
 const HomePage = () => {
   return (
