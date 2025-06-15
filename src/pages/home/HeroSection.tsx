@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Play } from "lucide-react";
@@ -68,14 +69,14 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-ink-black px-4 py-14 z-0">
-      {/* Background video with parallax */}
+    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-ink-black px-4 pt-24 pb-14 z-0">
+      {/* Background video with reduced effects for performance */}
       <motion.div 
         className="absolute inset-0 -z-10 pointer-events-none"
         style={{ y }}
       >
         <video
-          className="w-full h-[120%] object-cover brightness-[.40] contrast-125 blur-[3px] transition-opacity duration-1000"
+          className="w-full h-[120%] object-cover brightness-[.50] contrast-110 transition-opacity duration-1000"
           autoPlay
           muted
           loop
@@ -91,18 +92,18 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-ink-black/96 via-ink-black/70 to-silk-crimson-600/40" />
       </motion.div>
 
-      {/* Animated Globe Background */}
+      {/* Animated Globe Background - Reduced complexity */}
       <AnimatedGlobe />
 
-      {/* Live Counter - Enhanced */}
+      {/* Live Counter - Now properly positioned below navbar */}
       <motion.div 
-        className="flex flex-col items-center gap-2 mb-10 w-full"
-        initial={{ opacity: 0, y: 30 }}
+        className="flex flex-col items-center gap-2 mb-8 w-full"
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
       >
         <motion.div
-          className="inline-flex items-center gap-2 bg-ink-black/60 backdrop-blur-[2px] border border-imperial-gold-400/25 rounded-full px-4 py-1 sm:px-6 sm:py-2 text-xs font-medium min-h-[28px] sm:min-h-[40px] transition-all"
+          className="inline-flex items-center gap-2 bg-ink-black/60 backdrop-blur-sm border border-imperial-gold-400/25 rounded-full px-4 py-2 text-xs font-medium transition-all"
           whileHover={{ 
             scale: 1.02,
             boxShadow: "0 8px 25px rgba(212, 175, 55, 0.2)"
@@ -114,7 +115,7 @@ const HeroSection = () => {
           <motion.div 
             className="w-1.5 h-1.5 bg-imperial-gold-400 rounded-full"
             animate={{ 
-              scale: [1, 1.3, 1],
+              scale: [1, 1.2, 1],
               opacity: [0.8, 1, 0.8]
             }}
             transition={{ 
@@ -123,15 +124,15 @@ const HeroSection = () => {
               ease: "easeInOut"
             }}
           />
-          <span className="text-imperial-gold-400 font-semibold text-sm sm:text-base" style={{ fontWeight: 600 }}>
+          <span className="text-imperial-gold-400 font-semibold text-sm">
             Live Capital Moved
           </span>
           <motion.span
-            className="text-pearl-white font-extrabold text-base sm:text-xl font-mono ml-2"
+            className="text-pearl-white font-extrabold text-base font-mono ml-2"
             key={liveCounter}
-            initial={{ scale: 0.8, opacity: 0.7 }}
+            initial={{ scale: 0.9, opacity: 0.8 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             style={{
               letterSpacing: "0.01em",
               fontWeight: 800,
@@ -142,22 +143,22 @@ const HeroSection = () => {
         </motion.div>
       </motion.div>
 
-      {/* Main Content with Staggered Animations */}
+      {/* Main Content with optimized animations */}
       <motion.div 
         className="relative max-w-5xl mx-auto text-center z-10"
         style={{ opacity }}
       >
         <motion.h1
-          className="text-[2.2rem] sm:text-5xl md:text-7xl leading-tight font-serif font-extrabold tracking-tighter mb-8 sm:mb-10 drop-shadow-[0_3px_18px_rgba(220,20,60,0.13)] text-balance"
-          initial={{ opacity: 0, y: 50 }}
+          className="text-[2.2rem] sm:text-5xl md:text-7xl leading-tight font-serif font-extrabold tracking-tighter mb-6 drop-shadow-[0_3px_18px_rgba(220,20,60,0.13)] text-balance"
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
         >
           <motion.span 
             className="block bg-gradient-to-b from-pearl-white to-pearl-white/80 bg-clip-text text-transparent"
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
           >
             Borders were made for maps,<br className="hidden md:inline" />
             Not your money.
@@ -165,10 +166,10 @@ const HeroSection = () => {
         </motion.h1>
         
         <motion.div
-          className="text-lg md:text-2xl font-semibold leading-snug mb-6 sm:mb-8 text-balance"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-lg md:text-2xl font-semibold leading-snug mb-6 text-balance"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
         >
           <motion.p 
             className="text-imperial-gold-400 font-extrabold drop-shadow-sm"
@@ -198,51 +199,56 @@ const HeroSection = () => {
         
         <motion.p 
           className="prose prose-invert text-sm sm:text-base text-pearl-white/80 font-normal mb-8 max-w-2xl mx-auto leading-relaxed font-sans text-balance"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.6 }}
+          transition={{ duration: 0.5, delay: 1.6 }}
         >
           WEAVE gives traders, builders, entrepreneurs and government institutions in the Global South the power to send, receive, and protect capital —{" "}
           <span className="text-silk-crimson-400 font-semibold">without banks, borders, or permission.</span>
         </motion.p>
         
-        {/* Enhanced CTAs */}
+        {/* Smaller, better-proportioned CTAs */}
         <motion.div 
           className="flex flex-col gap-4 sm:flex-row justify-center items-center mb-8"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.8 }}
+          transition={{ duration: 0.5, delay: 1.8 }}
         >
           <PremiumButton 
             variant="primary" 
-            size="lg"
+            size="default"
             onClick={() => console.log('Primary CTA clicked')}
           >
             Open your Free WEAVE Account →
           </PremiumButton>
           
-          <PremiumButton 
-            variant="secondary" 
-            size="lg"
+          {/* Custom white button with red text */}
+          <motion.button
+            className="inline-flex items-center justify-center gap-3 px-6 py-3 text-base font-semibold tracking-wider transition-all duration-300 rounded-full border-2 bg-pearl-white hover:bg-pearl-white/90 text-silk-crimson-500 border-pearl-white/20 backdrop-blur-md"
             onClick={() => console.log('Secondary CTA clicked')}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            style={{
+              boxShadow: "0 5px 15px rgba(248, 248, 255, 0.1)"
+            }}
           >
             <Play className="mr-2 h-5 w-5" />
             Watch How It Works
-          </PremiumButton>
+          </motion.button>
         </motion.div>
       </motion.div>
 
-      {/* Enhanced Scroll Indicator */}
+      {/* Simplified scroll indicator */}
       <motion.div 
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 2.2 }}
+        transition={{ duration: 0.5, delay: 2.2 }}
       >
         <motion.div 
           className="w-1 h-10 bg-gradient-to-b from-imperial-gold-400 to-transparent rounded-full"
           animate={{ 
-            y: [0, 10, 0],
+            y: [0, 8, 0],
             opacity: [0.7, 1, 0.7]
           }}
           transition={{ 

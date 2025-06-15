@@ -43,7 +43,7 @@ const PremiumButton: React.FC<PremiumButtonProps> = ({
 
   const baseClasses = cn(
     "relative overflow-hidden font-semibold tracking-wider transition-all duration-300 rounded-full border-2 flex items-center justify-center gap-3",
-    size === 'lg' ? 'px-10 py-5 text-lg' : 'px-6 py-3 text-base',
+    size === 'lg' ? 'px-8 py-4 text-lg' : 'px-6 py-3 text-base',
     variant === 'primary' 
       ? 'bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-600 hover:from-silk-crimson-500 hover:to-imperial-gold-400 text-pearl-white border-imperial-gold-400/15' 
       : 'bg-pearl-white/10 hover:bg-pearl-white/20 text-pearl-white border-pearl-white/20 backdrop-blur-md',
@@ -61,22 +61,22 @@ const PremiumButton: React.FC<PremiumButtonProps> = ({
       style={{
         boxShadow: variant === 'primary' 
           ? isHovered 
-            ? '0 20px 40px rgba(220, 20, 60, 0.3), 0 0 20px rgba(212, 175, 55, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-            : '0 10px 20px rgba(220, 20, 60, 0.2), 0 0 10px rgba(212, 175, 55, 0.3)'
+            ? '0 15px 30px rgba(220, 20, 60, 0.25), 0 0 15px rgba(212, 175, 55, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+            : '0 8px 20px rgba(220, 20, 60, 0.2), 0 0 10px rgba(212, 175, 55, 0.25)'
           : isHovered
-            ? '0 10px 30px rgba(248, 248, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+            ? '0 8px 25px rgba(248, 248, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
             : '0 5px 15px rgba(248, 248, 255, 0.05)'
       }}
     >
-      {/* Gradient overlay animation */}
+      {/* Simplified gradient overlay animation */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-r from-transparent via-pearl-white/10 to-transparent"
         initial={{ x: '-100%' }}
         animate={isHovered ? { x: '100%' } : { x: '-100%' }}
-        transition={{ duration: 0.6, ease: 'easeInOut' }}
+        transition={{ duration: 0.5, ease: 'easeInOut' }}
       />
       
-      {/* Ripple effects */}
+      {/* Simplified ripple effects */}
       {ripples.map((ripple) => (
         <motion.div
           key={ripple.id}
@@ -86,8 +86,8 @@ const PremiumButton: React.FC<PremiumButtonProps> = ({
             top: ripple.y,
           }}
           initial={{ width: 0, height: 0, x: '-50%', y: '-50%' }}
-          animate={{ width: 300, height: 300, opacity: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          animate={{ width: 200, height: 200, opacity: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
         />
       ))}
       
