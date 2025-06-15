@@ -1,72 +1,87 @@
 
 import React from "react";
+import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
 
 const partners = [
-  { name: "Alibaba", domain: "alibaba.com" },
-  { name: "Huawei", domain: "huawei.com" },
-  { name: "Sinopec", domain: "sinopecgroup.com" },
-  { name: "Emirates Group", domain: "emirates.com" },
-  { name: "DP World", domain: "dpworld.com" },
-  { name: "Nubank", domain: "nubank.com.br" },
-  { name: "Mercado Libre", domain: "mercadolibre.com" },
-  { name: "Dangote Group", domain: "dangote.com" },
-  { name: "MTN Group", domain: "mtn.com" },
-  { name: "Safaricom", domain: "safaricom.co.ke" },
+  { name: "Alibaba", domain: "alibaba.com", tooltip: "Facilitating infrastructure payments in 4 continents" },
+  { name: "Huawei", domain: "huawei.com", tooltip: "Using WEAVE to streamline FX operations" },
+  { name: "Sinopec", domain: "sinopecgroup.com", tooltip: "Corridor-enabled payouts across Africa and Latin America" },
+  { name: "Emirates Group", domain: "emirates.com", tooltip: "Facilitating infrastructure payments in 4 continents" },
+  { name: "DP World", domain: "dpworld.com", tooltip: "Using WEAVE to streamline FX operations" },
+  { name: "Nubank", domain: "nubank.com.br", tooltip: "Corridor-enabled payouts across Africa and Latin America" },
+  { name: "Mercado Libre", domain: "mercadolibre.com", tooltip: "Using WEAVE to streamline FX operations" },
+  { name: "Dangote Group", domain: "dangote.com", tooltip: "Facilitating infrastructure payments in 4 continents" },
+  { name: "MTN Group", domain: "mtn.com", tooltip: "Corridor-enabled payouts across Africa and Latin America" },
+  { name: "Safaricom", domain: "safaricom.co.ke", tooltip: "Using WEAVE to streamline FX operations" },
 ];
 
 export function Logos3() {
   return (
-    <div className="relative w-full overflow-hidden py-12 bg-gradient-to-r from-transparent via-ink-black/30 to-transparent">
-      {/* Premium background effects */}
-      <div className="absolute inset-0 bg-gradient-to-r from-silk-crimson-400/5 via-transparent to-imperial-gold-400/5" />
-      <div className="absolute top-0 left-1/4 w-96 h-32 bg-gradient-to-r from-silk-crimson-400/10 to-transparent blur-3xl opacity-50" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-32 bg-gradient-to-l from-imperial-gold-400/10 to-transparent blur-3xl opacity-50" />
-      
-      {/* Main scrolling container with premium styling */}
-      <div className="relative flex animate-premium-scroll space-x-16 px-8">
-        {/* Duplicate the array for seamless loop */}
-        {[...partners, ...partners, ...partners].map((partner, index) => (
-          <div
-            key={`${partner.name}-${index}`}
-            className="group relative flex-shrink-0 flex flex-col items-center justify-center min-w-[140px] h-24 p-4"
-          >
-            {/* Premium logo container with sophisticated hover effects */}
-            <div className="relative w-full h-full flex items-center justify-center">
-              {/* Glowing background that appears on hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-silk-crimson-400/0 via-imperial-gold-400/0 to-silk-crimson-400/0 group-hover:from-silk-crimson-400/10 group-hover:via-imperial-gold-400/15 group-hover:to-silk-crimson-400/10 rounded-xl transition-all duration-700 blur-xl" />
-              
-              {/* Premium border effect */}
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-imperial-gold-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
-              
-              {/* Logo image with premium filters */}
-              <img
-                src={`https://logo.clearbit.com/${partner.domain}`}
-                alt={`${partner.name} Logo`}
-                className="relative z-10 h-12 max-w-[120px] object-contain filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-90 transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-2xl"
-                loading="lazy"
-                draggable={false}
-              />
-              
-              {/* Premium shine effect on hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-pearl-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-xl" />
-            </div>
-            
-            {/* Company name with premium typography */}
-            <span className="mt-2 text-xs font-semibold text-pearl-white/50 group-hover:text-imperial-gold-400 transition-all duration-300 tracking-wider uppercase">
-              {partner.name}
-            </span>
-          </div>
-        ))}
+    <section className="w-full bg-gradient-to-b from-pearl-white via-white/70 to-pearl-white/80 py-8 md:py-10 border-y border-imperial-gold-400/15 shadow-sm overflow-hidden">
+      <div className="text-center mb-6 px-2">
+        <h2 className="text-xl md:text-2xl font-extrabold text-ink-black tracking-tight md:mb-1" style={{letterSpacing: "-0.5px"}}>
+          Trusted by Thousands Across the New Trade Order
+        </h2>
+        <p className="text-base md:text-lg text-ink-black/80 mt-2 max-w-2xl mx-auto font-medium leading-snug">
+          From <span className="text-silk-crimson-400 font-semibold">Guangzhou</span> to <span className="text-imperial-gold-500 font-semibold">Bogotá</span>.{" "}
+          <span className="text-silk-crimson-400 font-semibold">Lagos</span> to <span className="text-imperial-gold-500 font-semibold">Dubai</span>. The architects of the Global South rely on{" "}
+          <span className="bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-500 bg-clip-text text-transparent font-bold">WEAVE</span> to move capital where it matters — fast, secure, unstoppable.
+        </p>
       </div>
-      
-      {/* Premium gradient overlays for seamless edge blending */}
-      <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-ink-black via-ink-black/80 to-transparent z-10 pointer-events-none" />
-      <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-ink-black via-ink-black/80 to-transparent z-10 pointer-events-none" />
-      
-      {/* Subtle premium accent lines */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-silk-crimson-400/30 to-transparent" />
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-imperial-gold-400/30 to-transparent" />
-    </div>
+      <div className="relative w-full">
+        <TooltipProvider>
+          {/* Scrolling logos */}
+          <div className="flex animate-premium-scroll space-x-10 md:space-x-14 w-max px-6 py-3">
+            {[...partners, ...partners].map((partner, idx) => (
+              <div key={`${partner.name}-${idx}`} className="relative group flex flex-col items-center min-w-[90px] md:min-w-[108px]">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div className="rounded-xl p-2 md:p-3 bg-white/90 border border-imperial-gold-400/10 shadow-md hover:shadow-lg transition-all flex items-center justify-center">
+                      <img
+                        src={`https://logo.clearbit.com/${partner.domain}`}
+                        alt={`${partner.name} Logo`}
+                        className="h-10 md:h-12 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-200"
+                        loading="lazy"
+                        draggable={false}
+                      />
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" className="z-40 font-medium text-xs max-w-xs text-ink-black bg-pearl-white/90 border border-silk-crimson-400/20 shadow-lg rounded-lg px-3 py-2">
+                    {partner.tooltip}
+                  </TooltipContent>
+                </Tooltip>
+                <span className="text-xs md:text-sm text-ink-black/80 mt-2 font-semibold whitespace-nowrap">
+                  {partner.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </TooltipProvider>
+        {/* Premium custom scroll animation */}
+        <style>{`
+          @media (max-width: 600px) {
+            .animate-premium-scroll {
+              animation: premium-scroll 38s linear infinite;
+            }
+          }
+          @keyframes premium-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+        `}</style>
+      </div>
+      <p className="text-center text-sm md:text-base text-ink-black/60 mt-8 md:mt-7 max-w-2xl mx-auto font-medium">
+        WEAVE is the invisible engine behind thousands of cross-border transactions every day — trusted by{" "}
+        <span className="text-silk-crimson-400 font-semibold">multinationals</span>,{" "}
+        <span className="text-imperial-gold-500 font-semibold">megaproject leaders</span>, and{" "}
+        <span className="text-jade-flow-500 font-semibold">digital exporters</span> across the Global South.
+      </p>
+      <div className="flex justify-center mt-4">
+        <button className="px-7 py-3 rounded-full font-semibold text-base bg-gradient-to-r from-silk-crimson-400 via-imperial-gold-400 to-silk-crimson-400 text-pearl-white shadow hover:from-silk-crimson-500 hover:to-imperial-gold-500 transition-all duration-300 outline-none focus:ring-2 focus:ring-imperial-gold-400/30">
+          See How These Leaders Use WEAVE &rarr;
+        </button>
+      </div>
+    </section>
   );
 }
 
