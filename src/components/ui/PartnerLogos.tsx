@@ -22,37 +22,38 @@ const partners = [
 
 const PartnerLogos = () => {
   return (
-    <section className="relative z-10 w-full bg-ink-black py-10 border-t border-b border-imperial-gold-400/15 overflow-hidden shadow-sm">
+    <section className="relative z-10 w-full bg-ink-black py-8 border-t border-b border-imperial-gold-400/15 overflow-hidden shadow-sm">
       <FlowLineSystem pattern="smooth" intensity="low" color="gold" />
       
       <div className="relative z-10">
-        <div className="text-center mb-6 px-2">
-          <h2 className="text-xl font-semibold text-pearl-white">
+        <div className="text-center mb-6 px-4">
+          <h2 className="text-lg md:text-xl font-semibold text-pearl-white mb-2">
             Trusted by Thousands Across the New Trade Order
           </h2>
-          <p className="text-sm text-pearl-white/80 mt-2 max-w-2xl mx-auto font-medium leading-snug">
+          <p className="text-sm text-pearl-white/80 max-w-3xl mx-auto font-medium leading-relaxed">
             From Guangzhou to Bogotá. Lagos to Dubai. The architects of the Global South rely on{" "}
             <span className="text-silk-crimson-400 font-semibold">WEAVE</span> to move capital where it matters — fast, secure, unstoppable.
           </p>
         </div>
 
-        <div className="relative w-full overflow-hidden">
-          <div className="flex animate-scroll space-x-10 w-max px-4 py-3">
+        <div className="relative w-full overflow-hidden py-4">
+          <div className="flex animate-scroll space-x-12 w-max px-6">
             {[...partners, ...partners].map((partner, index) => (
               <Tooltip key={`${partner.name}-${index}`} delayDuration={100}>
                 <TooltipTrigger asChild>
-                  <div className="flex items-center justify-center min-w-[90px] md:min-w-[108px] h-16">
+                  <div className="flex items-center justify-center min-w-[100px] h-14 group cursor-pointer">
                     <img
                       src={partner.customLogo || (partner.domain ? `https://logo.clearbit.com/${partner.domain}` : "")}
                       alt={`${partner.name} Logo`}
-                      className="h-12 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200 cursor-pointer"
+                      className="h-10 md:h-12 object-contain opacity-70 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110"
                       loading="lazy"
                       draggable={false}
                     />
                   </div>
                 </TooltipTrigger>
-                <TooltipContent className="bg-ink-black/80 backdrop-blur-sm border-imperial-gold-500/30 text-pearl-white max-w-xs text-center shadow-lg">
-                  <p>{partner.tooltip}</p>
+                <TooltipContent className="bg-ink-black/90 backdrop-blur-sm border-imperial-gold-500/30 text-pearl-white max-w-xs text-center shadow-lg z-50">
+                  <p className="font-medium">{partner.name}</p>
+                  <p className="text-xs text-pearl-white/80 mt-1">{partner.tooltip}</p>
                 </TooltipContent>
               </Tooltip>
             ))}
@@ -64,17 +65,20 @@ const PartnerLogos = () => {
               100% { transform: translateX(-50%); }
             }
             .animate-scroll {
-              animation: scroll 40s linear infinite;
+              animation: scroll 35s linear infinite;
             }
           `}</style>
         </div>
 
-        <p className="text-center text-sm text-pearl-white/60 mt-6 max-w-2xl mx-auto">
-          WEAVE is the invisible engine behind thousands of cross-border transactions every day — trusted by <span className="text-silk-crimson-400 font-semibold">multinationals</span>, <span className="text-imperial-gold-500 font-semibold">megaproject leaders</span>, and <span className="text-jade-flow-500 font-semibold">digital exporters</span> across the Global South.
-        </p>
+        <div className="text-center mt-6 px-4">
+          <p className="text-sm text-pearl-white/60 max-w-2xl mx-auto mb-4">
+            WEAVE is the invisible engine behind thousands of cross-border transactions every day — trusted by{" "}
+            <span className="text-silk-crimson-400 font-semibold">multinationals</span>,{" "}
+            <span className="text-imperial-gold-500 font-semibold">megaproject leaders</span>, and{" "}
+            <span className="text-jade-flow-500 font-semibold">digital exporters</span> across the Global South.
+          </p>
 
-        <div className="text-center mt-4">
-          <button className="px-7 py-3 rounded-full font-semibold text-base bg-gradient-to-r from-silk-crimson-400 via-imperial-gold-400 to-silk-crimson-400 text-pearl-white shadow hover:from-silk-crimson-500 hover:to-imperial-gold-500 transition-all duration-300 outline-none focus:ring-2 focus:ring-imperial-gold-400/30">
+          <button className="px-6 py-2.5 rounded-full font-semibold text-sm bg-gradient-to-r from-silk-crimson-400 via-imperial-gold-400 to-silk-crimson-400 text-pearl-white shadow hover:from-silk-crimson-500 hover:to-imperial-gold-500 transition-all duration-300 outline-none focus:ring-2 focus:ring-imperial-gold-400/30">
             See How These Leaders Use WEAVE →
           </button>
         </div>
