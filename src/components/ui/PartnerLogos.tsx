@@ -16,12 +16,12 @@ const partners = [
 
 const PartnerLogos = () => {
   return (
-    <section className="w-full bg-pearl-white/95 py-10 border-t border-b border-imperial-gold-400/15 overflow-hidden shadow-sm">
+    <section className="w-full bg-ink-black py-10 border-t border-b border-imperial-gold-400/15 overflow-hidden shadow-sm">
       <div className="text-center mb-6 px-2">
-        <h2 className="text-xl font-semibold text-ink-black">
+        <h2 className="text-xl font-semibold text-pearl-white">
           Trusted by Thousands Across the New Trade Order
         </h2>
-        <p className="text-sm text-ink-black/80 mt-2 max-w-2xl mx-auto font-medium leading-snug">
+        <p className="text-sm text-pearl-white/80 mt-2 max-w-2xl mx-auto font-medium leading-snug">
           From Guangzhou to Bogotá. Lagos to Dubai. The architects of the Global South rely on{" "}
           <span className="text-silk-crimson-400 font-semibold">WEAVE</span> to move capital where it matters — fast, secure, unstoppable.
         </p>
@@ -34,7 +34,7 @@ const PartnerLogos = () => {
               <img
                 src={partner.customLogo || (partner.domain ? `https://logo.clearbit.com/${partner.domain}` : "")}
                 alt={`${partner.name} Logo`}
-                className="h-12 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200"
+                className="h-12 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-200"
                 loading="lazy"
                 draggable={false}
               />
@@ -56,7 +56,7 @@ const PartnerLogos = () => {
         `}</style>
       </div>
 
-      <p className="text-center text-sm text-ink-black/60 mt-6 max-w-2xl mx-auto">
+      <p className="text-center text-sm text-pearl-white/60 mt-6 max-w-2xl mx-auto">
         WEAVE is the invisible engine behind thousands of cross-border transactions every day — trusted by <span className="text-silk-crimson-400 font-semibold">multinationals</span>, <span className="text-imperial-gold-500 font-semibold">megaproject leaders</span>, and <span className="text-jade-flow-500 font-semibold">digital exporters</span> across the Global South.
       </p>
 
