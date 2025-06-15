@@ -64,10 +64,10 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-[90vh] flex flex-col justify-center items-center overflow-hidden bg-ink-black px-4 pt-12 pb-14 z-0">
-      {/* Premium Hero Background video and overlays */}
+      {/* Background video with heavier blur */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <video
-          className="w-full h-full object-cover brightness-[.50] contrast-125 blur-[0.5px] transition-opacity duration-1000"
+          className="w-full h-full object-cover brightness-[.50] contrast-125 blur-[5px] transition-opacity duration-1000"
           autoPlay
           muted
           loop
@@ -83,13 +83,19 @@ const HeroSection = () => {
         {/* Mood overlays */}
         <div className="absolute inset-0 bg-gradient-to-br from-ink-black/96 via-ink-black/70 to-silk-crimson-600/40" />
       </div>
-      {/* Live Counter badge */}
-      <div className="flex flex-col items-center gap-2 mb-8">
-        <div className="inline-flex items-center gap-2 bg-ink-black/60 backdrop-blur-[2px] border border-imperial-gold-400/20 shadow-gold-glow rounded-full px-8 py-3 text-base sm:text-lg font-medium animate-fade-in">
+      {/* Live Counter - shrink size on mobile, premium badge */}
+      <div className="flex flex-col items-center gap-2 mb-7 w-full">
+        <div className="inline-flex items-center gap-2 bg-ink-black/60 backdrop-blur-[2px] border border-imperial-gold-400/20 shadow-gold-glow rounded-full
+          px-6 py-2 sm:px-8 sm:py-3
+          text-xs sm:text-base md:text-lg font-medium animate-fade-in
+          "
+        >
           <div className="w-2 h-2 bg-imperial-gold-400 rounded-full animate-pulse" />
-          <span className="text-imperial-gold-400 font-semibold">Live Capital Moved</span>
+          <span className="text-imperial-gold-400 font-semibold">
+            Live Capital Moved
+          </span>
           <span
-            className="text-pearl-white font-black text-xl sm:text-2xl md:text-3xl animate-count-up font-mono"
+            className="text-pearl-white font-black text-base sm:text-xl md:text-2xl animate-count-up font-mono"
             aria-live="polite"
             aria-label={`Live counter showing ${formatCurrency(liveCounter)} moved`}
           >
@@ -100,31 +106,31 @@ const HeroSection = () => {
       {/* Main Headline Premium */}
       <div className="relative max-w-5xl mx-auto text-center z-10">
         <h1
-          className="text-5xl sm:text-6xl md:text-7xl font-serif tracking-tight font-extrabold mb-8 drop-shadow-[0_3px_18px_rgba(220,20,60,0.13)]"
+          className="text-4xl sm:text-5xl md:text-7xl lg:text-7xl leading-normal font-serif tracking-tight mb-7 drop-shadow-[0_3px_18px_rgba(220,20,60,0.13)]"
           style={{ fontFamily: "'Harnet Serif', serif" }}
         >
-          <span className="block bg-gradient-to-b from-pearl-white to-pearl-white/80 bg-clip-text text-transparent animate-slide-in-left">
-            Borders were made for maps,
-          </span>
-          <span className="block text-pearl-white animate-slide-in-right mt-2">
+          <span className="block bg-gradient-to-b from-pearl-white to-pearl-white/80 bg-clip-text text-transparent animate-slide-in-left font-black">
+            Borders were made for maps,<br className="hidden md:inline" />
             Not your money.
           </span>
-          <span
-            className="block text-imperial-gold-400 font-serif mt-4 animate-slide-in-left"
-            style={{ fontFamily: "'Harnet Serif', serif" }}
-          >
-            Trade freely, Build boldly,
-            <br />
-            Move capital and <span className="text-silk-crimson-400">Increase your Wealth</span> easily like you want to.
-          </span>
         </h1>
-        <p className="text-lg sm:text-2xl text-pearl-white/90 font-sans font-medium mb-10 max-w-2xl mx-auto leading-relaxed">
+        <div
+          className="text-2xl sm:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-6 animate-slide-in-right"
+        >
+          <span className="block w-full">
+            <span className="text-imperial-gold-400 font-black drop-shadow-sm">Trade freely, Build boldly,</span>
+            <br className="hidden sm:block" />
+            <span>
+              <span className="text-imperial-gold-400 font-bold">Move capital</span>
+              <span className="text-pearl-white font-bold">{' '}and{' '}</span>
+              <span className="text-silk-crimson-400 font-black">Increase your Wealth</span>
+              <span className="text-pearl-white font-bold">{' '}easily like you want to.</span>
+            </span>
+          </span>
+        </div>
+        <p className="text-base sm:text-lg md:text-xl text-pearl-white/90 font-medium mb-10 max-w-2xl mx-auto leading-relaxed font-sans">
           WEAVE gives traders, builders, entrepreneurs and government institutions in the Global South the power to send, receive, and protect capital —{" "}
           <span className="text-silk-crimson-400 font-semibold">without banks, borders, or permission.</span>
-          <br />
-          <span className="text-imperial-gold-400 font-bold">
-            No delays. No losses. No gatekeepers. Just pure financial velocity.
-          </span>
         </p>
         {/* CTAs */}
         <div className="flex flex-col gap-4 sm:flex-row justify-center items-center mb-8">
@@ -153,3 +159,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
