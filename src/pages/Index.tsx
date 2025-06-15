@@ -1,13 +1,14 @@
 
 import React from 'react';
-import PainPointSection from '@/components/PainPointSection';
-import VisionSection from '@/components/VisionSection';
-import WeaponSection from '@/components/WeaponSection';
-import USDCSection from '@/components/USDCSection';
-import WhoItIsForSection from '@/components/WhoItIsForSection';
-import TrustLayerSection from '@/components/TrustLayerSection';
-import SocialProofSection from '@/components/SocialProofSection';
-import CloserSection from '@/components/CloserSection';
+import HeroSection from '@/components/HeroSection';
+import StorySection from '@/components/StorySection'; // Section 1
+import ProblemSection from '@/components/ProblemSection'; // Section 2
+import FeaturesSection from '@/components/FeaturesSection'; // Section 3
+import WhoItIsForSection from '@/components/WhoItIsForSection'; // Section 4
+import AdvantageSection from '@/components/AdvantageSection'; // Section 5
+import TrustLayerSection from '@/components/TrustLayerSection'; // Section 6
+import SocialProofSection from '@/components/SocialProofSection'; // Section 7
+import CloserSection from '@/components/CloserSection'; // Section 8
 import FooterSection from '@/components/FooterSection';
 
 // Interaction Components
@@ -21,8 +22,9 @@ const Index = () => {
   const prefersReducedMotion = useReducedMotion();
   
   const sections = [
-    'Pain Points', 'Vision', 'WEAVE Weapon', 'USDC Power',
-    'Who It\'s For', 'Trust Layer', 'Social Proof', 'Final Call'
+    'Hero', 'Story', 'Problem', 'Features', 
+    'Who It\'s For', 'Advantage', 'Trust', 
+    'Social Proof', 'Closer'
   ];
 
   return (
@@ -32,23 +34,19 @@ const Index = () => {
         <ProgressIndicator sections={sections} />
       )}
       
-      <TensionBuilder type="stress" intensity="high">
-        <PainPointSection />
-      </TensionBuilder>
+      <HeroSection />
+      <StorySection />
       
-      <TensionBuilder type="breakthrough" intensity="medium">
-        <VisionSection />
+      <TensionBuilder type="stress" intensity="medium">
+        <ProblemSection />
       </TensionBuilder>
       
       <TensionBuilder type="breakthrough" intensity="high">
-        <WeaponSection />
-      </TensionBuilder>
-      
-      <TensionBuilder type="relief" intensity="medium">
-        <USDCSection />
+        <FeaturesSection />
       </TensionBuilder>
       
       <WhoItIsForSection />
+      <AdvantageSection />
       
       <TensionBuilder type="relief" intensity="medium">
         <TrustLayerSection />
