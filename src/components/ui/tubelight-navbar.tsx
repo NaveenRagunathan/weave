@@ -52,18 +52,6 @@ const TubelightNavbar = () => {
           <span className="bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-500 bg-clip-text text-transparent">
             WEAVE
           </span>
-          <motion.span 
-            className="ml-1 w-2 h-2 rounded-full bg-imperial-gold-400 shadow-gold-glow"
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.8, 1, 0.8]
-            }}
-            transition={{ 
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
         </motion.div>
         
         <ul className="hidden md:flex gap-7 xl:gap-10 font-medium text-pearl-white/80 text-base items-center">
