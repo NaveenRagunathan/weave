@@ -5,6 +5,7 @@ import CustomCursor from "@/components/ui/CustomCursor";
 import ParticleSystem from "@/components/ui/ParticleSystem";
 import SmoothSectionTransition from "@/components/transitions/SmoothSectionTransition";
 import HeroSection from "./HeroSection";
+import CurrencyConverterSection from "./CurrencyConverterSection";
 import PartnerEliteScroll from "./PartnerEliteScroll";
 
 import PainPointSection from "./PainPointSection";
@@ -30,6 +31,7 @@ const HomePage = () => {
       
       {/* Sections with smooth transitions */}
       <HeroSection />
+      <CurrencyConverterSection />
       <PartnerEliteScroll />
       
       
