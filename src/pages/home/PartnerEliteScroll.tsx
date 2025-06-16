@@ -3,7 +3,7 @@ import React from "react";
 const partners = [
   { name: "Alibaba", domain: "alibaba.com", desc: "Facilitating infrastructure payments in 4 continents" },
   { name: "Huawei", domain: "huawei.com", desc: "Using WEAVE to streamline FX operations" },
-  { name: "Sinopec", domain: "sinopecgroup.com", customLogo: "https://www.sinopecgroup.com/r/cms/jtyw/default/images/logo2021.png", desc: "Corridor-enabled payouts across Africa and Latin America" },
+  { name: "Sinopec", domain: "sinopecgroup.com", customLogo: "https://logotyp.us/file/sinopec-group.svg", desc: "Corridor-enabled payouts across Africa and Latin America" },
   { name: "Emirates Group", domain: "emirates.com", desc: "Facilitating infrastructure payments in 4 continents" },
   { name: "DP World", domain: "dpworld.com", desc: "Using WEAVE to streamline FX operations" },
   { name: "Nubank", domain: "nubank.com.br", desc: "Corridor-enabled payouts across Africa and Latin America" },
@@ -53,8 +53,11 @@ export default function PartnerEliteScroll() {
                 <div className="rounded-xl p-2.5 bg-white/85 border border-yellow-400/15 shadow-md hover:shadow-xl transition-all duration-300">
                   <img
                     src={
-                      partner.customLogo ||
-                      (partner.domain ? `https://www.google.com/s2/favicons?sz=128&domain=${partner.domain}` : undefined)
+                      // Sinopec: use customLogo from logotyp.us (already set in partner.customLogo)
+                      partner.name === "Dangote Group"
+                        ? `https://logo.clearbit.com/${partner.domain}`
+                        : partner.customLogo ||
+                          (partner.domain ? `https://www.google.com/s2/favicons?sz=128&domain=${partner.domain}` : undefined)
                     }
                     alt={`${partner.name} Logo`}
                     className="h-10 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity"
@@ -62,15 +65,28 @@ export default function PartnerEliteScroll() {
                     draggable={false}
                     onError={e => {
                       const target = e.currentTarget as HTMLImageElement;
-                      // Fallback order: Google favicon -> Brandfetch -> Clearbit
                       const domain = partner.domain;
-                      if (target.src.includes('google.com/s2/favicons')) {
-                        target.src = domain ? `https://logo.brandfetch.io/${domain}` : '';
-                      } else if (target.src.includes('logo.brandfetch.io')) {
-                        target.src = domain ? `https://logo.clearbit.com/${domain}` : '';
-                      } else {
-                        // If all fail, hide image or set to empty
+                      if (partner.name === "Dangote Group") {
+                        // Dangote: Clearbit → Brandfetch → Google favicon
+                        if (target.src.includes('logo.clearbit.com')) {
+                          target.src = domain ? `https://logo.brandfetch.io/${domain}` : '';
+                        } else if (target.src.includes('logo.brandfetch.io')) {
+                          target.src = domain ? `https://www.google.com/s2/favicons?sz=128&domain=${domain}` : '';
+                        } else {
+                          target.style.display = 'none';
+                        }
+                      } else if (partner.name === "Sinopec") {
+                        // Sinopec: only try the customLogo (logotyp.us), hide if fails
                         target.style.display = 'none';
+                      } else {
+                        // All others: Google favicon → Clearbit → Brandfetch
+                        if (target.src.includes('google.com/s2/favicons')) {
+                          target.src = domain ? `https://logo.clearbit.com/${domain}` : '';
+                        } else if (target.src.includes('logo.clearbit.com')) {
+                          target.src = domain ? `https://logo.brandfetch.io/${domain}` : '';
+                        } else {
+                          target.style.display = 'none';
+                        }
                       }
                     }}
                   />
