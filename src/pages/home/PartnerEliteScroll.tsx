@@ -3,7 +3,7 @@ import React from "react";
 const partners = [
   { name: "Alibaba", domain: "alibaba.com", desc: "Facilitating infrastructure payments in 4 continents" },
   { name: "Huawei", domain: "huawei.com", desc: "Using WEAVE to streamline FX operations" },
-  { name: "Sinopec", domain: null, customLogo: "https://www.sinopecgroup.com/r/cms/jtyw/default/images/logo2021.png", desc: "Corridor-enabled payouts across Africa and Latin America" },
+  { name: "Sinopec", domain: "sinopecgroup.com", customLogo: "https://www.sinopecgroup.com/r/cms/jtyw/default/images/logo2021.png", desc: "Corridor-enabled payouts across Africa and Latin America" },
   { name: "Emirates Group", domain: "emirates.com", desc: "Facilitating infrastructure payments in 4 continents" },
   { name: "DP World", domain: "dpworld.com", desc: "Using WEAVE to streamline FX operations" },
   { name: "Nubank", domain: "nubank.com.br", desc: "Corridor-enabled payouts across Africa and Latin America" },
@@ -52,19 +52,32 @@ export default function PartnerEliteScroll() {
               >
                 <div className="rounded-xl p-2.5 bg-white/85 border border-yellow-400/15 shadow-md hover:shadow-xl transition-all duration-300">
                   <img
-                    src={partner.customLogo || `https://logo.clearbit.com/${partner.domain}`}
+                    src={
+                      partner.customLogo ||
+                      (partner.domain ? `https://www.google.com/s2/favicons?sz=128&domain=${partner.domain}` : undefined)
+                    }
                     alt={`${partner.name} Logo`}
                     className="h-10 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity"
                     loading="lazy"
                     draggable={false}
+                    onError={e => {
+                      const target = e.currentTarget as HTMLImageElement;
+                      // Fallback order: Google favicon -> Brandfetch -> Clearbit
+                      const domain = partner.domain;
+                      if (target.src.includes('google.com/s2/favicons')) {
+                        target.src = domain ? `https://logo.brandfetch.io/${domain}` : '';
+                      } else if (target.src.includes('logo.brandfetch.io')) {
+                        target.src = domain ? `https://logo.clearbit.com/${domain}` : '';
+                      } else {
+                        // If all fail, hide image or set to empty
+                        target.style.display = 'none';
+                      }
+                    }}
                   />
+                  <span className="absolute left-1/2 -translate-x-1/2 top-[115%] px-3 py-1.5 bg-white/95 border border-yellow-400/25 shadow-xl rounded-md text-ink-black text-[11px] font-normal opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 text-center z-10" style={{ minWidth: '180px', maxWidth: '220px' }}>
+                    {partner.desc}
+                  </span>
                 </div>
-                <span className="text-xs text-ink-black/90 mt-1 font-medium text-center">
-                  {partner.name}
-                </span>
-                <span className="absolute left-1/2 -translate-x-1/2 top-[115%] px-3 py-1.5 bg-white/95 border border-yellow-400/25 shadow-xl rounded-md text-ink-black text-[11px] font-normal opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 text-center z-10" style={{ minWidth: '180px', maxWidth: '220px' }}>
-                  {partner.desc}
-                </span>
               </div>
             ))}
           </div>
