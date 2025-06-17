@@ -9,15 +9,14 @@ import CurrencyConverterSection from "./CurrencyConverterSection";
 import PartnerEliteScroll from "./PartnerEliteScroll";
 
 import HowItWorksSection from "./HowItWorksSection";
-import WhatYouWantSection from "./WhatYouWantSection";
-import MeetWeaveSection from "./MeetWeaveSection";
 import WhoThisIsForSection from "./WhoThisIsForSection";
 import USDCSection from "./USDCSection";
 
 import SocialProofSection from "./SocialProofSection";
-import LiberationSection from "./LiberationSection";
+
 import FinalRallySection from "./FinalRallySection";
 import FooterSection from "@/pages/product/FooterSection";
+import TradeVoicesMicroSection from "./TradeVoicesMicroSection";
 
 const HomePage = () => {
   return (
@@ -32,22 +31,16 @@ const HomePage = () => {
       {/* Sections with smooth transitions */}
       <HeroSection />
       <CurrencyConverterSection />
+      
       <PartnerEliteScroll />
-      
-      
-      
       <SmoothSectionTransition>
         <HowItWorksSection />
       </SmoothSectionTransition>
-      
+
       <SmoothSectionTransition>
-        <WhatYouWantSection />
+        <TradeVoicesMicroSection />
       </SmoothSectionTransition>
-      
-      <SmoothSectionTransition>
-        <MeetWeaveSection />
-      </SmoothSectionTransition>
-      
+
       <SmoothSectionTransition>
         <WhoThisIsForSection />
       </SmoothSectionTransition>
@@ -56,15 +49,10 @@ const HomePage = () => {
         <USDCSection />
       </SmoothSectionTransition>
       
-
-      
       <SmoothSectionTransition>
         <SocialProofSection />
       </SmoothSectionTransition>
-      
-      <SmoothSectionTransition>
-        <LiberationSection />
-      </SmoothSectionTransition>
+
       
       <SmoothSectionTransition>
         <FinalRallySection />

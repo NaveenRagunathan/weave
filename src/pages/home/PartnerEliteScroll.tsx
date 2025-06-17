@@ -30,13 +30,13 @@ const PartnerEliteScroll = () => {
   };
 
   return (
-    <section className="w-full py-20 relative overflow-hidden bg-gradient-to-b from-ink-black via-ink-black to-imperial-gold/5">
+    <section className="w-full py-20 relative overflow-hidden bg-pearl-white">
       <div className="max-w-5xl mx-auto px-4 text-center">
-        <h2 className="font-serif text-3xl md:text-4xl font-bold text-pearl-white mb-4">
-          Trusted by the Titans of Trade
+        <h2 className="font-serif text-3xl md:text-4xl font-bold text-ink-black mb-4">
+          WHY BUSINESSES TRUST WEAVE
         </h2>
-        <p className="text-lg text-pearl-white/70 max-w-3xl mx-auto">
-          From industrial conglomerates to financial innovators, the world's most demanding organizations trust Weave to power their global financial operations.
+        <p className="text-lg text-ink-black/70 max-w-3xl mx-auto">
+          We are used by powerhouses in the Global South because we make moving money fast, easy, and safe for them. This ensures they are growing steadily.
         </p>
       </div>
 
@@ -92,6 +92,13 @@ const PartnerEliteScroll = () => {
             </div>
           ))}
         </motion.div>
+      </div>
+      <div className="w-full flex justify-center mt-16">
+        <div className="max-w-2xl mx-auto text-center">
+          <span className="block text-lg sm:text-xl font-semibold text-silk-crimson-400">
+            From Government Institutions to infrastructure giants to high-volume traders — <span className="text-imperial-gold-500">WEAVE</span> is the Nitro Boost making their deals close faster.
+          </span>
+        </div>
       </div>
     </section>
   );

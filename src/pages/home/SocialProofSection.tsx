@@ -1,97 +1,55 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { DollarSign, Globe, Zap, Users, MessageSquare, Landmark, ArrowRight } from 'lucide-react';
+
+import { Globe, Zap, Users, MessageSquare } from 'lucide-react';
 
 const stats = [
-  { name: 'Volume Moved', stat: '$1.2B+', icon: DollarSign },
+  { name: 'Verified Businesses', stat: '24,000+', icon: Users },
   { name: 'Corridors Live', stat: '12', icon: Globe },
   { name: 'Uptime', stat: '99.9%', icon: Zap },
-  { name: 'Verified Accounts', stat: '24,000+', icon: Users },
-  { name: 'Human Support', stat: 'Real-time', icon: MessageSquare },
-  { name: 'Partner Institutions', stat: '60+', icon: Landmark },
+  { name: 'Human Support', stat: 'Always On', icon: MessageSquare },
 ];
 
 const SocialProofSection = () => {
   return (
-    <div className="bg-ink-black pt-24 pb-16 sm:pt-32 sm:pb-20">
+    <section className="bg-pearl-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:max-w-none">
-          <motion.div 
-            className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl font-bold tracking-tight text-pearl-white sm:text-4xl">
-              The Network Gets Smarter With You
-            </h2>
-            <p className="mt-4 text-lg leading-8 text-pearl-white/70">
-            Over 24,000 verified business accounts already move capital through WEAVE. We are reshaping cross-border finance — corridor by corridor.
-            </p>
-          </motion.div>
-          <motion.dl 
-            className="mt-16 grid grid-cols-1 gap-8 text-center sm:grid-cols-2 lg:grid-cols-3"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{ 
-              visible: { transition: { staggerChildren: 0.1 } },
-              hidden: {}
-            }}
-          >
-            {stats.map((stat) => (
-              <motion.div 
-                key={stat.name}
-                className="flex flex-col items-center justify-center p-8 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm"
-                variants={{ 
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-                  hidden: { opacity: 0, y: 30 }
-                }}
-              >
-                <dt className="text-sm font-semibold leading-6 text-pearl-white/70 flex items-center gap-2">
-                  <stat.icon className="h-5 w-5 text-imperial-gold-300" aria-hidden="true" />
-                  {stat.name}
-                </dt>
-                <dd className="mt-2 text-3xl font-bold tracking-tight text-pearl-white">
-                  {stat.stat}
-                </dd>
-              </motion.div>
-            ))}
-          </motion.dl>
-
-          {/* Logo Wall and CTA */}
-          <motion.div 
-            className="mt-20 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="flex justify-center gap-x-8 gap-y-4 flex-wrap">
-              {[
-                'Chamber of Commerce China–Africa',
-                'Shenzhen Port Tech',
-                'Nairobi Corridor Fund',
-                'Diaspora Capital Alliance',
-                'African Fintech Circle'
-              ].map((name) => (
-                <p key={name} className="text-sm text-pearl-white/70 font-medium tracking-wider transition-colors hover:text-pearl-white">
-                  {name}
-                </p>
-              ))}
+        <div className="mx-auto max-w-3xl text-center mb-14">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-ink-black font-serif mb-4">
+            The Network Gets Smarter With You
+          </h2>
+          <p className="mt-4 text-lg leading-8 text-ink-black/70 font-medium">
+            Every user strengthens the grid.
+          </p>
+        </div>
+        <dl className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {stats.map((stat) => (
+            <div
+              key={stat.name}
+              className="flex flex-col items-center justify-center p-8 bg-white border border-imperial-gold-200 rounded-2xl shadow-[0_2px_12px_0_rgba(212,175,55,0.06)]"
+            >
+              <dt className="text-base font-semibold leading-6 text-ink-black flex items-center gap-2 mb-2">
+                <stat.icon className="h-6 w-6 text-silk-crimson-400" aria-hidden="true" />
+                {stat.name}
+              </dt>
+              <dd className="mt-1 text-3xl font-extrabold tracking-tight text-ink-black">
+                {stat.stat}
+              </dd>
             </div>
-            <div className="mt-12">
-              <a href="#" className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-ink-black bg-imperial-gold-300 hover:bg-imperial-gold-400 shadow-lg shadow-imperial-gold-500/20 transition-all duration-300 transform hover:scale-105">
-                Join the Winning Network
-                <ArrowRight className="h-5 w-5 ml-2" />
-              </a>
-            </div>
-          </motion.div>
+          ))}
+        </dl>
+        <div className="text-center mt-16">
+          <a
+            href="#"
+            className="inline-flex items-center justify-center px-8 py-3 border border-silk-crimson-400 text-base font-bold rounded-full text-silk-crimson-400 bg-white hover:bg-imperial-gold-100 hover:text-silk-crimson-500 transition-all duration-200 shadow-md"
+          >
+            Join the Network
+            <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
-
 export default SocialProofSection;

@@ -3,14 +3,12 @@ import React from "react";
 import { Linkedin, X, MessageCircle, Smartphone } from "lucide-react";
 
 const footerLinks = [
-  { name: "Products", href: "#" },
-  { name: "About", href: "#" },
-  { name: "Corridors", href: "#" },
-  { name: "Benefits", href: "#" },
-  { name: "Why Weave", href: "#" },
-  { name: "Contact", href: "#" },
-  { name: "Legal", href: "#" },
-  { name: "Community", href: "#" },
+  { name: "Corridors", href: "/corridors" },
+  { name: "How It Works", href: "/how-it-works" },
+  { name: "Fees", href: "/fees" },
+  { name: "Why Weave", href: "/why-weave" },
+  { name: "About", href: "/about" },
+  { name: "Legal", href: "/legal" },
 ];
 
 const socials = [
@@ -21,16 +19,16 @@ const socials = [
 ];
 
 const FooterSection = () => (
-  <footer className="bg-gradient-to-t from-ink-black/95 to-ink-black border-t-2 border-silk-crimson-400/25 pt-12 pb-3 px-4 font-sans">
+  <footer className="bg-pearl-white border-t-2 border-imperial-gold-500/25 pt-12 pb-3 px-4 font-sans shadow-[0_-2px_12px_0_rgba(212,175,55,0.04)]">
     <div className="max-w-6xl mx-auto">
       {/* Top: links left, socials right */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-8 border-b border-imperial-gold-400/10 pb-6 mb-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-8 border-b border-imperial-gold-500/15 pb-6 mb-6">
         <nav className="flex flex-wrap gap-x-6 gap-y-3">
           {footerLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-pearl-white/85 hover:text-imperial-gold-400 font-semibold text-base relative px-1 after:bg-imperial-gold-500/60 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform after:duration-200"
+              className="text-ink-black/90 hover:text-silk-crimson-400 font-semibold text-base relative px-1 after:bg-silk-crimson-400/60 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform after:duration-200"
             >
               {link.name}
             </a>
@@ -44,7 +42,7 @@ const FooterSection = () => (
                 key={s.name}
                 href={s.href}
                 aria-label={s.name}
-                className="rounded-full p-2 bg-transparent hover:bg-silk-crimson-400/15 text-pearl-white/80 hover:text-imperial-gold-400 transition flex items-center justify-center border border-silk-crimson-400/15 hover:border-imperial-gold-400/35"
+                className="rounded-full p-2 bg-pearl-white hover:bg-imperial-gold-500/15 text-silk-crimson-400 hover:text-imperial-gold-500 transition flex items-center justify-center border border-imperial-gold-500/20 hover:border-silk-crimson-400/40 shadow-sm"
               >
                 <Icon className="w-5 h-5" />
               </a>

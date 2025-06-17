@@ -21,9 +21,21 @@ const HeroSection = () => {
 
   return (
     <section className="relative h-screen w-full overflow-hidden bg-ink-black flex flex-col items-center">
-      <HeroMapIllustration className="absolute inset-0 w-full h-full object-cover scale-125 blur-3xl opacity-10" />
+      {/* Video Background */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover z-0 opacity-70 mix-blend-luminosity blur-[1px] brightness-90"
+        // src="/Weave.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+        tabIndex={-1}
+      />
+      <HeroMapIllustration className="absolute inset-0 w-full h-full object-cover scale-125 blur-3xl opacity-10 pointer-events-none" />
       <AnimatedGrid />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink-black via-ink-black/80 to-transparent z-0" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink-black/70 via-ink-black/60 to-transparent z-10" />
       
       <motion.div 
         className="relative z-10 flex flex-col items-center text-center w-full h-full px-4 pt-28"

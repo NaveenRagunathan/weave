@@ -2,7 +2,12 @@
 import React from "react";
 
 const links = [
-  "Products", "About", "Corridors", "Benefits", "Why Weave", "Contact", "Legal", "Community"
+  { name: "Corridors", href: "/corridors" },
+  { name: "How It Works", href: "/how-it-works" },
+  { name: "Fees", href: "/fees" },
+  { name: "Why Weave", href: "/why-weave" },
+  { name: "About", href: "/about" },
+  { name: "Legal", href: "/legal" },
 ];
 
 const socials = [
@@ -18,11 +23,11 @@ const FooterSection = () => (
       <nav className="flex flex-wrap justify-center gap-4 mb-2">
         {links.map((l) => (
           <a
-            key={l}
-            href="#"
+            key={l.name}
+            href={l.href}
             className="text-pearl-white/80 hover:text-silk-crimson-400 transition text-sm font-semibold"
           >
-            {l}
+            {l.name}
           </a>
         ))}
       </nav>

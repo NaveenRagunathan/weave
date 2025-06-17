@@ -5,12 +5,10 @@ import { useScrollProgress } from "@/hooks/useScrollProgress";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "Product", href: "/product" },
+  { name: "How It Works", href: "/how-it-works" },
+  { name: "Fees", href: "/fees" },
   { name: "Why Weave", href: "/why-weave" },
-  { name: "Benefits", href: "/benefits" },
-  { name: "Community", href: "/community" },
-  { name: "Contact", href: "/contact" },
+  { name: "About", href: "/about" },
   { name: "Legal", href: "/legal" },
 ];
 

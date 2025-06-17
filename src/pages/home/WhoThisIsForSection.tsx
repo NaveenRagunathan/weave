@@ -27,36 +27,42 @@ const audiences = [
 
 const WhoThisIsForSection = () => {
   return (
-    <section className="py-32 px-4 bg-gradient-to-b from-[#18181c] to-[#23232a] flex items-center justify-center min-h-[80vh]">
-      <div className="relative max-w-2xl w-full mx-auto rounded-3xl bg-ink-black/70 border border-imperial-gold-400/30 shadow-2xl backdrop-blur-lg p-10 flex flex-col items-center"
-        style={{ boxShadow: "0 8px 48px 0 #D4AF3740, 0 1.5px 0 0 #DC143C" }}>
+    <section className="py-32 px-4 bg-pearl-white flex items-center justify-center min-h-[80vh]">
+      <div className="relative max-w-2xl w-full mx-auto rounded-3xl bg-white border border-imperial-gold-200 shadow-[0_8px_48px_0_rgba(212,175,55,0.08)] p-10 flex flex-col items-center">
         {/* Header */}
-        <h2 className="text-4xl font-black text-center bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-500 bg-clip-text text-transparent mb-2 tracking-tight animate-reveal-text">
-          Who This Is For
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-center text-ink-black mb-2 tracking-tight font-serif">
+          We built WEAVE for the ones who move capital and make the world go round.
         </h2>
-        <div className="h-1 w-16 bg-gradient-to-r from-imperial-gold-500 to-silk-crimson-400 rounded-full mb-8 animate-underline-reveal" />
+        <div className="h-1 w-16 bg-gradient-to-r from-imperial-gold-500 to-silk-crimson-400 rounded-full mb-8" />
         {/* Audiences */}
         <ul className="w-full space-y-5 mb-10">
-          {audiences.map((aud, i) => (
-            <li key={i} className="flex items-center gap-4 text-lg font-medium text-pearl-white/90">
-              <span>{aud.icon}</span>
-              <span>{aud.text}</span>
-            </li>
-          ))}
+          <li className="flex items-center gap-4 text-lg font-semibold text-ink-black">
+            <span className="text-2xl">🇨🇳</span>
+            <span>Chinese exporters selling to Africa & LatAm</span>
+          </li>
+          <li className="flex items-center gap-4 text-lg font-semibold text-ink-black">
+            <span className="text-2xl">🌍</span>
+            <span>Diaspora entrepreneurs sending capital home</span>
+          </li>
+          <li className="flex items-center gap-4 text-lg font-semibold text-ink-black">
+            <span className="text-2xl">📦</span>
+            <span>African traders importing from Asia</span>
+          </li>
+          <li className="flex items-center gap-4 text-lg font-semibold text-ink-black">
+            <span className="text-2xl">🏗️</span>
+            <span>Megaproject developers moving 6-figures fast</span>
+          </li>
         </ul>
-        {/* Subheaders */}
+        {/* Microcopy */}
         <div className="text-center mb-8">
-          <span className="block text-lg font-semibold text-imperial-gold-400 mb-1 animate-fade-in">
-            If moving Products, you already know you need to move Capital Fast
-          </span>
-          <span className="block text-base text-silk-crimson-400 animate-fade-in delay-200">
-            And if you're building beyond borders, you're already late without WEAVE.
+          <span className="block text-lg font-semibold text-silk-crimson-400">
+            If you’re wiring money, clearing FX, or closing cross-border deals — WEAVE was built for you.
           </span>
         </div>
         {/* CTA */}
         <Button
           size="lg"
-          className="bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-500 hover:from-silk-crimson-600 hover:to-imperial-gold-600 text-pearl-white font-bold px-10 py-5 rounded-full shadow-xl transition"
+          className="border-2 border-silk-crimson-400 text-silk-crimson-400 bg-white hover:bg-imperial-gold-100 hover:text-silk-crimson-500 font-bold px-10 py-5 rounded-full shadow-md transition-all"
         >
           Open your Weave Account Today
         </Button>

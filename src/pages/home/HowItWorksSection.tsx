@@ -1,84 +1,54 @@
 import React from "react";
-import { motion } from "framer-motion";
+
 import { ArrowRight, Network, CircleDollarSign, CheckCircle2 } from "lucide-react";
 
 const steps = [
   {
-    title: "Open a Corridor",
-    description: "Choose your route: China → Nigeria, Brazil, and beyond.",
+    title: "Create your free WEAVE account",
+    description: "",
     icon: Network,
   },
   {
-    title: "Fund in USDC",
-    description: "Instantly backed, instantly auditable. No delay, no doubts.",
+    title: "Deposit CN¥ or your local currency",
+    description: "",
     icon: CircleDollarSign,
   },
   {
-    title: "Send & Settle",
-    description: "Funds delivered in hours. Local currency hits instantly.",
+    title: "Send USDC to your recipient — anywhere, instantly.",
+    description: "",
     icon: CheckCircle2,
   },
 ];
 
 export default function HowItWorksSection() {
   return (
-    <section className="bg-gradient-to-b from-ink-black via-ink-black to-imperial-gold/5 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-serif text-base font-semibold leading-7 text-imperial-gold-300">How Weave Works</h2>
-          <p className="font-serif mt-2 text-4xl font-bold tracking-tight text-pearl-white sm:text-5xl">
-            No middlemen. No permission.<br />
-            Just capital, flowing.
-          </p>
-        </div>
-        <div className="relative mt-20">
-          <div
-            className="absolute left-1/2 top-4 -ml-px h-[calc(100%-2rem)] w-px bg-pearl-white/10 md:hidden"
-            aria-hidden="true"
-          />
-          <div className="hidden md:block absolute top-1/2 left-0 -mt-px w-full h-px bg-pearl-white/10" aria-hidden="true" />
-          <motion.div 
-            className="relative flex flex-col md:flex-row justify-between items-start gap-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={{
-              visible: { transition: { staggerChildren: 0.2 } }
-            }}
-          >
-            {steps.map((step, index) => (
-              <motion.div
+    <section className="bg-pearl-white py-24 sm:py-32">
+      <div className="mx-auto max-w-4xl px-4 lg:px-0">
+        <div className="text-center">
+          <h2 className="text-base font-bold tracking-widest text-silk-crimson-400 uppercase mb-2">HOW WEAVE WORKS</h2>
+          <div className="grid gap-10 md:grid-cols-3 mt-12">
+            {steps.map((step, idx) => (
+              <div
                 key={step.title}
-                className="flex-1 text-center flex flex-col items-center"
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-                }}
+                className="flex flex-col items-center bg-white border border-imperial-gold-200 rounded-2xl px-6 py-10 shadow-[0_2px_12px_0_rgba(212,175,55,0.08)]"
               >
-                <div className="flex items-center justify-center w-16 h-16 bg-white/5 border border-white/10 rounded-full">
-                  <step.icon className="w-8 h-8 text-imperial-gold-300" />
+                <div className="flex items-center justify-center w-14 h-14 rounded-full bg-silk-crimson-400/10 border border-silk-crimson-400 mb-4">
+                  <step.icon className="w-7 h-7 text-silk-crimson-400" />
                 </div>
-                <h3 className="mt-6 text-xl font-semibold text-pearl-white">{step.title}</h3>
-                <p className="mt-2 text-base text-pearl-white/70">{step.description}</p>
-              </motion.div>
+                <h3 className="text-lg font-semibold text-ink-black mb-2 text-center">{step.title}</h3>
+              </div>
             ))}
-          </motion.div>
+          </div>
+          <div className="text-center mt-14">
+            <a
+              href="#"
+              className="inline-flex items-center justify-center px-8 py-3 border border-silk-crimson-400 text-base font-bold rounded-full text-silk-crimson-400 bg-white hover:bg-imperial-gold-100 hover:text-silk-crimson-500 transition-all duration-200 shadow-md"
+            >
+              Check out your Corridor
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+          </div>
         </div>
-        <motion.div 
-          className="text-center mt-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <a
-            href="#"
-            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-ink-black bg-imperial-gold-300 hover:bg-imperial-gold-400 shadow-lg shadow-imperial-gold-500/20 transition-all duration-300 transform hover:scale-105"
-          >
-            Open Your First Corridor
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </a>
-        </motion.div>
       </div>
     </section>
   );

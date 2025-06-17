@@ -1,106 +1,70 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { DollarSign, FileText, Globe, Zap, ArrowRight } from 'lucide-react';
+
+const features = [
+  { icon: DollarSign, text: "1:1 backed with U.S. dollars" },
+  { icon: FileText, text: "Monthly audits" },
+  { icon: Globe, text: "Accepted across continents" },
+  { icon: Zap, text: "Final settlements, not rollbacks" },
+];
 
 export default function WeaveUSDCSection() {
   return (
-    <section className="relative bg-[#1C1C1C] text-[#F8F8FF] overflow-hidden">
-      {/* Background Video */}
-      <div className="absolute inset-0 z-0 opacity-20">
-        <video
-          autoPlay
-          loop
-          muted
-          className="w-full h-full object-cover"
-          src="https://cdn.pixabay.com/video/2023/03/26/157105-814234897_large.mp4"
-        />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 flex flex-col gap-10">
-        {/* Title & Intro */}
-        <div className="space-y-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#DC143C] hover:scale-105 transition-transform duration-300">
-            The Dollar, Reborn for This Century
-          </h2>
-          <p className="text-xl md:text-2xl font-semibold text-[#D4AF37]">
-            A Stablecoin You Can Bet Your Business On.
-          </p>
-          <p className="text-md md:text-lg text-[#F8F8FF] max-w-3xl mx-auto">
-            In a world where capital must move fast and stay safe, <span className="text-[#00A86B] font-bold">WEAVE</span> runs on <span className="underline">USDC</span>.<br/>
-            Because in cross-border trade, you don’t gamble with your money.
-          </p>
-        </div>
-
-        {/* Trust Section */}
-        <div className="flex items-center gap-6 justify-center hover:scale-105 transition-transform duration-300">
-        <img src="https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png" alt="USDC" width="32" />
-          <h3 className="text-2xl font-semibold">Powering WEAVE with Trust You Can Count.</h3>
-        </div>
-
-        {/* Tagline */}
-        <div className="text-center text-[#F8F8FF] text-lg italic">
-          In Trade, <span className="text-[#D4AF37] font-semibold">Trust</span> Is the Real Currency.
-        </div>
-
-        {/* Animated Features */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            {
-              icon: "✅",
-              title: "Fully Regulated",
-              desc: "Audited monthly. Backed 1:1 with U.S. dollars in U.S. banks.",
-            },
-            {
-              icon: "⚡",
-              title: "Final & Fast",
-              desc: "No rollbacks. No 72-hour maybes. Just money—settled.",
-            },
-            {
-              icon: "🌍",
-              title: "Globally Liquid",
-              desc: "Accepted across the Global South. No conversion headaches.",
-            },
-            {
-              icon: "🔒",
-              title: "Rock-Solid Trust",
-              desc: "No funny business. Just the safest rails in digital finance.",
-            },
-          ].map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
-              className="bg-[#1C1C1C]/50 backdrop-blur-sm border border-[#F8F8FF]/10 p-6 rounded-2xl shadow-md hover:shadow-xl transition-all cursor-pointer"
-            >
-              <div className="text-3xl mb-2">{item.icon}</div>
-              <h4 className="text-xl font-semibold text-[#D4AF37]">{item.title}</h4>
-              <p className="text-sm text-[#F8F8FF] mt-1">{item.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Footer Copy */}
-        <div className="text-center text-lg max-w-3xl mx-auto mt-10 text-[#F8F8FF]">
-          <p className="font-medium italic">
-            The old dollar was built for banks.<br/>
-            <span className="text-[#00A86B] font-bold">USDC</span> was built for builders.
-          </p>
-          <p className="mt-4 text-[#D4AF37] font-semibold">
-            💼 This isn’t crypto hype. It’s modern money.
-          </p>
-          <p className="text-sm text-[#F8F8FF]/80">
-            It’s how <span className="font-semibold">WEAVE</span> powers serious trade and the engine that will build your Business Empire.
-          </p>
-        </div>
-
-        {/* CTA Button */}
+    <section className="relative bg-pearl-white text-ink-black py-24 sm:py-32">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        {/* Header */}
         <div className="text-center">
-          <Button className="bg-[#DC143C] text-white px-8 py-3 text-lg rounded-full shadow-md hover:bg-[#b01030] hover:scale-105 transition-all">
-            Experience the USDC Advantage →
+          <p className="font-semibold text-lg text-silk-crimson-400 tracking-wider uppercase">
+            Instant Capital Movement, Built on USDC
+          </p>
+          <h2 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight text-ink-black">
+            The Digital Dollar: <span className="text-imperial-gold-500">Fast. Stable. Regulated.</span>
+            <br />
+            Built for Global Trade.
+          </h2>
+          <p className="mt-6 max-w-3xl mx-auto text-xl text-ink-black/80">
+            WEAVE runs on USDC — a regulated, audit-backed stablecoin that clears fast, settles instantly, and protects your value.
+          </p>
+        </div>
+
+        {/* Content Layout */}
+        <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Visual Side */}
+          <div className="relative flex justify-center items-center h-full">
+            <div className="relative w-64 h-64 flex items-center justify-center">
+              <div className="absolute inset-0 bg-imperial-gold-500/10 rounded-full animate-pulse"></div>
+              <div className="absolute inset-2 bg-silk-crimson-400/10 rounded-full animate-pulse [animation-delay:0.5s]"></div>
+              <div className="relative bg-white p-4 rounded-full shadow-2xl">
+                <Globe className="w-24 h-24 text-imperial-gold-500" />
+              </div>
+              <p className="absolute top-0 -left-12 text-lg font-semibold">Guangzhou</p>
+              <p className="absolute bottom-1/2 left-[-100px] text-lg font-semibold">Lagos</p>
+              <p className="absolute bottom-0 -right-12 text-lg font-semibold">Bogotá</p>
+            </div>
+          </div>
+
+          {/* Features Side */}
+          <div className="flex flex-col gap-y-8">
+            {features.map((feature, index) => (
+              <div key={index} className="flex items-start gap-x-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-imperial-gold-500/10 flex items-center justify-center">
+                  <feature.icon className="w-6 h-6 text-imperial-gold-500" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-ink-black">{feature.text}</h3>
+                  <p className="mt-1 text-base text-ink-black/70">Built for reliability and trust in global transactions.</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="mt-24 text-center">
+          <Button size="lg" className="group bg-imperial-gold-500 text-ink-black hover:bg-imperial-gold-600 rounded-full px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transform transition-all duration-300 hover:-translate-y-1">
+            Learn Why USDC Works for Real Trade
+            <ArrowRight className="ml-3 w-6 h-6 transform transition-transform duration-300 group-hover:translate-x-2" />
           </Button>
         </div>
       </div>
