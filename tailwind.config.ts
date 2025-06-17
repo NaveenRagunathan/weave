@@ -18,6 +18,10 @@ export default {
       }
     },
     extend: {
+      fontFamily: {
+        serif: ['"Harnet Serif"', 'serif'],
+        sans: ['Inter', 'sans-serif'],
+      },
       colors: {
         // --- Updated Five Elements Brand Colors ---
         'ink-black': '#1C1C1C', // Modern deep neutral for panels

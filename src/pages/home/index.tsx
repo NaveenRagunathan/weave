@@ -8,12 +8,12 @@ import HeroSection from "./HeroSection";
 import CurrencyConverterSection from "./CurrencyConverterSection";
 import PartnerEliteScroll from "./PartnerEliteScroll";
 
-import PainPointSection from "./PainPointSection";
+import HowItWorksSection from "./HowItWorksSection";
 import WhatYouWantSection from "./WhatYouWantSection";
 import MeetWeaveSection from "./MeetWeaveSection";
 import WhoThisIsForSection from "./WhoThisIsForSection";
 import USDCSection from "./USDCSection";
-import TrustedPowerhousesSection from "./TrustedPowerhousesSection";
+
 import SocialProofSection from "./SocialProofSection";
 import LiberationSection from "./LiberationSection";
 import FinalRallySection from "./FinalRallySection";
@@ -37,7 +37,7 @@ const HomePage = () => {
       
       
       <SmoothSectionTransition>
-        <PainPointSection />
+        <HowItWorksSection />
       </SmoothSectionTransition>
       
       <SmoothSectionTransition>
@@ -56,9 +56,7 @@ const HomePage = () => {
         <USDCSection />
       </SmoothSectionTransition>
       
-      <SmoothSectionTransition>
-        <TrustedPowerhousesSection />
-      </SmoothSectionTransition>
+
       
       <SmoothSectionTransition>
         <SocialProofSection />

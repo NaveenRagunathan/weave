@@ -1,178 +1,174 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
-import PremiumButton from "@/components/ui/PremiumButton";
-import { Select, SelectItem, SelectContent, SelectTrigger } from "@/components/ui/select";
+import { ChevronsUpDown } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { currencies } from "../../lib/currency-data";
 
-// Major world currencies, can be expanded
-const CURRENCIES = [
-  { code: "CNY", name: "Chinese Yuan", symbol: "¥" },
-  { code: "USD", name: "US Dollar", symbol: "$" },
-  { code: "USDC", name: "USD Coin", symbol: "₮" },
-  { code: "INR", name: "Indian Rupee", symbol: "₹" },
-  { code: "EUR", name: "Euro", symbol: "€" },
-  { code: "GBP", name: "British Pound", symbol: "£" },
-  { code: "NGN", name: "Nigerian Naira", symbol: "₦" },
-  { code: "BRL", name: "Brazilian Real", symbol: "R$" },
-  { code: "MXN", name: "Mexican Peso", symbol: "$" },
-  { code: "KES", name: "Kenyan Shilling", symbol: "Ksh" },
-  { code: "ZAR", name: "South African Rand", symbol: "R" },
-  { code: "IDR", name: "Indonesian Rupiah", symbol: "Rp" },
-  { code: "PHP", name: "Philippine Peso", symbol: "₱" },
-  { code: "TRY", name: "Turkish Lira", symbol: "₺" },
-];
 
-// Dummy FX rates for demo (CNY→USDC, USDC→target)
-const FX = {
-  CNY: { USDC: 0.14 }, // 1 CNY = 0.14 USDC
-  USDC: {
-    USD: 1,
-    INR: 83,
-    EUR: 0.92,
-    GBP: 0.79,
-    NGN: 1400,
-    BRL: 5,
-    MXN: 17,
-    KES: 130,
-    ZAR: 18,
-    IDR: 16200,
-    PHP: 57,
-    TRY: 32,
-    CNY: 7.2,
-  },
-};
 
-function getCurrencyMeta(code: string) {
-  return CURRENCIES.find((c) => c.code === code) || { code, name: code, symbol: code };
+interface CurrencyConverterWidgetProps {
+  sendAmount: number;
+  onSendAmountChange: (amount: number) => void;
 }
 
-// Demo ticker data
-const TICKER_RATES = [
-  { pair: "USD/INR", rate: "83.12" },
-  { pair: "EUR/USD", rate: "1.08" },
-  { pair: "GBP/USD", rate: "1.27" },
-  { pair: "CNY/USDC", rate: "0.14" },
-  { pair: "USDC/NGN", rate: "1400" },
-  { pair: "USDC/BRL", rate: "5.0" },
-  { pair: "USD/MXN", rate: "17.0" },
-  { pair: "USDC/INR", rate: "83.0" },
-  { pair: "USDC/KES", rate: "130.0" },
-];
-
-const CurrencyConverterWidget = () => {
+const CurrencyConverterWidget: React.FC<CurrencyConverterWidgetProps> = ({ sendAmount, onSendAmountChange }) => {
   const [sendCurrency, setSendCurrency] = useState("CNY");
   const [receiveCurrency, setReceiveCurrency] = useState("INR");
-  const [sendAmount, setSendAmount] = useState(1000);
-  const [usdcAmount, setUsdcAmount] = useState(0);
   const [receiveAmount, setReceiveAmount] = useState(0);
+  const [isCalculating, setIsCalculating] = useState(false);
+  const [openSelector, setOpenSelector] = useState<'send' | 'receive' | null>(null);
 
   useEffect(() => {
-    // Step 1: CNY → USDC
-    const cnyToUsdc = FX[sendCurrency]?.USDC || 0.14;
-    const usdc = sendAmount * cnyToUsdc;
-    setUsdcAmount(usdc);
-    // Step 2: USDC → recipient
-    const usdcToRecip = FX["USDC"][receiveCurrency] || 1;
-    setReceiveAmount(usdc * usdcToRecip);
-  }, [sendCurrency, receiveCurrency, sendAmount]);
+    if (!sendCurrency || !receiveCurrency || !sendAmount) return;
+
+    const getConversion = async () => {
+      if (sendCurrency === receiveCurrency) {
+        setReceiveAmount(sendAmount);
+        return;
+      }
+      setIsCalculating(true);
+      const from = sendCurrency === 'USDC' ? 'USD' : sendCurrency;
+      const to = receiveCurrency === 'USDC' ? 'USD' : receiveCurrency;
+
+      try {
+        const response = await fetch(`https://api.frankfurter.app/latest?amount=${sendAmount}&from=${from}&to=${to}`);
+        if (!response.ok) throw new Error('API error fetching conversion rate');
+        const data = await response.json();
+        if (data.rates && data.rates[to]) {
+          setReceiveAmount(data.rates[to]);
+        } else {
+          if (from === to) {
+            setReceiveAmount(sendAmount);
+          } else {
+            throw new Error('Could not find rate for the selected currency.');
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch real-time rates:", error);
+        setReceiveAmount(0);
+      }
+      setIsCalculating(false);
+    };
+
+    const timer = setTimeout(() => getConversion(), 300);
+    return () => clearTimeout(timer);
+  }, [sendAmount, sendCurrency, receiveCurrency]);
+
+  const currencyList = Object.keys(currencies);
+
+  const handleSelectCurrency = (type: 'send' | 'receive', currency: string) => {
+    if (type === 'send') {
+      setSendCurrency(currency);
+    } else {
+      setReceiveCurrency(currency);
+    }
+    setOpenSelector(null);
+  };
 
   return (
-    <motion.section
-      className="w-full flex flex-col justify-center items-center py-12 px-4 bg-gradient-to-br from-silk-crimson-600 via-pearl-white/5 to-imperial-gold-400/40 border-t border-pearl-white/10"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      style={{ minHeight: 320 }}
-    >
-      {/* Live Rate Ticker Banner */}
-      <div className="w-full max-w-3xl mb-4 overflow-hidden">
-        <div className="relative w-full h-10 bg-gradient-to-r from-imperial-gold-400/20 to-silk-crimson-400/10 rounded-full flex items-center">
-          <div className="animate-marquee flex gap-8 whitespace-nowrap px-4 text-pearl-white/90 text-sm font-medium">
-            {TICKER_RATES.map((item, idx) => (
-              <span key={idx} className="flex items-center gap-1">
-                <span className="font-bold text-imperial-gold-400">{item.pair}</span>
-                <span className="mx-1">•</span>
-                <span className="font-mono">{item.rate}</span>
-              </span>
-            ))}
+    <div className="flex flex-col gap-6 justify-center w-full max-w-md">
+      <div className={`flex flex-col gap-2 relative ${openSelector === 'send' ? 'z-20' : 'z-10'}`}>
+        <label className="text-pearl-white/90 text-sm font-semibold mb-1">You send</label>
+        <div className="flex items-center bg-gray-800/50 rounded-xl border border-pearl-white/10 backdrop-blur-sm">
+          <div className="relative flex-grow">
+            <input
+              type="number"
+              className="w-full bg-transparent p-4 text-2xl font-bold text-pearl-white outline-none"
+              value={sendAmount}
+              onChange={(e) => onSendAmountChange(Number(e.target.value))}
+              placeholder="0"
+            />
           </div>
+          <CurrencySelector
+            currency={sendCurrency}
+            onSelect={(c) => handleSelectCurrency('send', c)}
+            currencyList={currencyList}
+            isOpen={openSelector === 'send'}
+            onToggle={() => setOpenSelector(openSelector === 'send' ? null : 'send')}
+          />
         </div>
       </div>
-      <div className="w-full max-w-3xl rounded-3xl shadow-xl bg-ink-black/80 border border-pearl-white/10 p-8 flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-stretch">
-        {/* Left: QuickCalc fields */}
-        <div className="flex-1 flex flex-col gap-6 justify-center">
-          <div className="flex flex-col gap-2">
-            <label className="text-pearl-white/90 text-sm font-semibold mb-1">You send</label>
-            <div className="flex items-center gap-2 bg-pearl-white/5 rounded-xl px-4 py-2 border border-pearl-white/10">
-              <input
-                type="number"
-                min={1}
-                className="w-28 bg-transparent text-lg font-bold text-pearl-white outline-none"
-                value={sendAmount}
-                onChange={e => setSendAmount(Number(e.target.value))}
-              />
-              <Select
-                value={sendCurrency}
-                onValueChange={setSendCurrency}
-              >
-                <SelectTrigger className="w-28 bg-transparent text-lg font-bold text-pearl-white outline-none border-none" />
-                <SelectContent>
-                  {CURRENCIES.map((c) => (
-                    <SelectItem key={c.code} value={c.code} className="flex items-center gap-2 min-w-[80px] bg-pearl-white/10 rounded-lg text-pearl-white font-medium border-none focus:ring-0">
-                      <span>{c.symbol}</span>
-                      <span>{c.code}</span>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
 
-          <div className="flex flex-col gap-2">
-            <label className="text-pearl-white/90 text-sm font-semibold mb-1">Recipient gets</label>
-            <div className="flex items-center gap-2 bg-pearl-white/5 rounded-xl px-4 py-2 border border-pearl-white/10">
-              <input
-                type="number"
-                className="w-28 bg-transparent text-lg font-bold text-pearl-white outline-none"
-                value={Math.floor(receiveAmount)}
-                readOnly
-              />
-              <Select
-                value={receiveCurrency}
-                onValueChange={setReceiveCurrency}
-              >
-                <SelectTrigger className="w-28 bg-transparent text-lg font-bold text-pearl-white outline-none border-none" />
-                <SelectContent>
-                  {CURRENCIES.filter(c => c.code !== sendCurrency).map((c) => (
-                    <SelectItem key={c.code} value={c.code} className="flex items-center gap-2 min-w-[80px] bg-pearl-white/10 rounded-lg text-pearl-white font-medium border-none focus:ring-0">
-                      <span>{c.symbol}</span>
-                      <span>{c.code}</span>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="text-xs text-pearl-white/60 mt-1">via <span className="font-semibold text-imperial-gold-400">USDC</span> rails</div>
+      <div className={`flex flex-col gap-2 relative ${openSelector === 'receive' ? 'z-20' : 'z-10'}`}>
+        <label className="text-pearl-white/90 text-sm font-semibold mb-1">Recipient gets</label>
+        <div className="flex items-center bg-gray-800/50 rounded-xl border border-pearl-white/10 backdrop-blur-sm">
+          <div className="relative flex-grow">
+            <input
+              type="text"
+              readOnly
+              className={`w-full bg-transparent p-4 text-2xl font-bold text-pearl-white outline-none transition-opacity duration-300 ${isCalculating ? 'opacity-50' : 'opacity-100'}`}
+              value={isCalculating ? '...' : receiveAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            />
           </div>
-        </div>
-
-        {/* Right: Visual/Value Prop */}
-        <div className="flex-1 flex flex-col gap-4 justify-center items-center text-center">
-          <div className="text-2xl md:text-3xl font-bold text-pearl-white mb-1">
-            Instantly convert & move money globally
-          </div>
-          <div className="text-pearl-white/80 text-base md:text-lg mb-2">
-            Powered by <span className="text-imperial-gold-400 font-semibold">USDC</span> and <span className="text-silk-crimson-400 font-semibold">Weave</span> rails.<br />
-            No banks. No delays. No losses.
-          </div>
-          <PremiumButton size="default" className="w-full md:w-auto mt-2">
-            Try Weave Currency Converter
-          </PremiumButton>
+          <CurrencySelector
+            currency={receiveCurrency}
+            onSelect={(c) => handleSelectCurrency('receive', c)}
+            currencyList={currencyList}
+            isOpen={openSelector === 'receive'}
+            onToggle={() => setOpenSelector(openSelector === 'receive' ? null : 'receive')}
+          />
         </div>
       </div>
-    </motion.section>
+
+      <p className="text-center text-xs text-pearl-white/50 font-mono tracking-tighter">
+        via USDC rails
+      </p>
+    </div>
   );
 };
+
+const CurrencySelector = ({ currency, onSelect, currencyList, isOpen, onToggle }: {
+  currency: string;
+  onSelect: (c: string) => void;
+  currencyList: string[];
+  isOpen: boolean;
+  onToggle: () => void;
+}) => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredCurrencies = currencyList.filter(c =>
+    c.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    currencies[c].name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div className="relative">
+      <button onClick={onToggle} className="flex items-center gap-2 p-4 hover:bg-gray-700/50 transition-colors duration-200 h-full">
+        <img src={`https://flagcdn.com/16x12/${currencies[currency]?.flag.toLowerCase()}.png`} alt={`${currency} flag`} className="w-4 h-3" />
+        <span className="font-bold text-pearl-white text-lg">{currency}</span>
+        <ChevronsUpDown className="h-4 w-4 text-pearl-white/60" />
+      </button>
+
+      {isOpen && (
+        <motion.div 
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="absolute right-0 top-full mt-2 w-72 bg-gray-900 border border-pearl-white/20 rounded-lg shadow-2xl z-50 overflow-hidden"
+        >
+          <div className="p-2">
+            <input
+              type="text"
+              placeholder="Search currency..."
+              className="w-full bg-ink-black p-2 rounded-md text-pearl-white border border-pearl-white/10 focus:ring-1 focus:ring-imperial-gold-500 outline-none"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              autoFocus
+            />
+          </div>
+          <ul className="max-h-60 overflow-y-auto">
+            {filteredCurrencies.map(c => (
+              <li key={c} onClick={() => { onSelect(c); setSearchTerm(''); }} className="flex items-center gap-3 p-3 hover:bg-imperial-gold-500/10 cursor-pointer transition-colors duration-150">
+                <img src={`https://flagcdn.com/16x12/${currencies[c]?.flag.toLowerCase()}.png`} alt={`${c} flag`} className="w-4 h-3" />
+                <div>
+                  <span className="font-bold text-pearl-white">{c}</span>
+                  <span className="text-sm text-pearl-white/60 ml-2">{currencies[c].name}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      )}
+    </div>
+  )
+}
 
 export default CurrencyConverterWidget;

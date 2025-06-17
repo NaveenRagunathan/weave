@@ -1,170 +1,112 @@
-
-import React, { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Play } from "lucide-react";
-import PremiumButton from "@/components/ui/PremiumButton";
-import HeroMapIllustration from "@/components/ui/HeroMapIllustration";
+import React from 'react';
+import { motion, Variants } from 'framer-motion';
+import { Play, ArrowRight, ChevronsDown } from 'lucide-react';
+import PremiumButton from '@/components/ui/PremiumButton';
+import HeroMapIllustration from '@/components/ui/HeroMapIllustration';
+import AnimatedGrid from '../../components/ui/AnimatedGrid';
 
 const HeroSection = () => {
-  const [liveCounter, setLiveCounter] = useState(1200000000);
-  const [currency, setCurrency] = useState("USD");
-  const [userLocale, setUserLocale] = useState("en-US");
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, -150]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-
-  useEffect(() => {
-    fetch("https://ipapi.co/json/")
-      .then((res) => res.json())
-      .then((data) => {
-        setCurrency(data.currency || "USD");
-        const languages = data.languages;
-        if (typeof languages === "string" && languages.length > 0) {
-          setUserLocale(languages.split(",")[0] || "en-US");
-        } else {
-          setUserLocale("en-US");
-        }
-      })
-      .catch(() => {
-        setCurrency("USD");
-        setUserLocale("en-US");
-      });
-  }, []);
-
-  useEffect(() => {
-    const startValue = 1200000000;
-    const endValue = 1289000000;
-    const duration = 2000;
-    const increment = (endValue - startValue) / (duration / 16);
-    let current = startValue;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= endValue) {
-        setLiveCounter(endValue);
-        clearInterval(timer);
-      } else {
-        setLiveCounter(Math.floor(current));
-      }
-    }, 16);
-
-    const liveTimer = setInterval(() => {
-      setLiveCounter((prev) => prev + Math.floor(Math.random() * 50000) + 10000);
-    }, 3000);
-
-    return () => {
-      clearInterval(timer);
-      clearInterval(liveTimer);
-    };
-  }, []);
-
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat(userLocale, {
-      style: "currency",
-      currency: currency,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(amount);
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2, delayChildren: 0.3 },
+    },
   };
 
-  const [showSub, setShowSub] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      if (window.scrollY > 80) setShowSub(true);
-      else setShowSub(false);
-    };
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
+  };
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-ink-black px-4 pt-24 pb-14 z-0">
-      {/* Main Heading & Above-the-fold Content */}
-      <div className="flex flex-col items-center gap-6 w-full">
-        <motion.h1
-          className="text-[4rem] sm:text-8xl md:text-9xl leading-[1.05] font-serif font-black tracking-tighter drop-shadow-[0_8px_36px_rgba(220,20,60,0.18)] text-balance text-pearl-white text-center mb-2"
-          initial={{ opacity: 0, scale: 0.98, y: 30 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-        >
-          Money without borders.
-        </motion.h1>
-        <motion.div
-          className="max-w-2xl mx-auto text-2xl md:text-3xl font-semibold text-pearl-white/90 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
-        >
-          Send Money globally faster, better and for lesser.
-        </motion.div>
-        <motion.div
-          className="flex flex-row items-center justify-center gap-3"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-        >
-          <HeroMapIllustration className="w-12 h-12 md:w-16 md:h-16 mr-2" />
-          <span className="text-xl md:text-2xl font-semibold text-pearl-white/90">
-            Borders were made for maps, <span className="text-silk-crimson-400 font-bold">Not your money.</span>
-          </span>
-        </motion.div>
-      </div>
-
-      {/* Subheadings & CTA, revealed on scroll */}
-      <motion.div
-        className="relative w-full max-w-4xl mx-auto z-10 flex flex-col items-center justify-center min-h-[40vh] md:min-h-[40vh] mt-12"
-        initial={{ opacity: 0, y: 60 }}
-        animate={showSub ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-        transition={{ duration: 0.7, ease: 'easeOut' }}
-      >
-        <div className="max-w-3xl mx-auto text-center text-pearl-white/90 text-2xl md:text-3xl font-bold mb-4">
-          <span className="bg-gradient-to-r from-imperial-gold-400 via-pearl-white/60 to-silk-crimson-400 bg-clip-text text-transparent font-extrabold">
-            Gain the power to Move capital instantly across the Global South.
-          </span>
-          <br />and Increase your Wealth easily like you want to — <span className="text-imperial-gold-400 font-bold">no banks, no delays, no losses, no stress.</span>
-        </div>
-        <div className="max-w-2xl text-lg md:text-xl font-normal text-pearl-white/70 mb-6">
-          WEAVE gives You the power to send, receive, and protect your Money — without depending on banks, borders, or permission.<br />
-          <span className="block mt-1 text-pearl-white/60">No delays. No losses. No gatekeepers. Just pure financial velocity.</span>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-5 justify-center items-center mt-4">
-          <PremiumButton size="default" className="text-lg px-8 py-4" onClick={() => console.log('Primary CTA clicked')}>
-            Start moving Money with Weave→
-          </PremiumButton>
-          <motion.button
-            className="inline-flex items-center justify-center gap-3 px-7 py-4 text-lg font-semibold tracking-wider transition-all duration-300 rounded-full border-2 bg-pearl-white hover:bg-pearl-white/90 text-silk-crimson-500 border-pearl-white/20 backdrop-blur-md shadow-lg"
-            onClick={() => console.log('Secondary CTA clicked')}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            style={{ boxShadow: '0 5px 22px rgba(248, 248, 255, 0.13)' }}
-          >
-            <Play className="mr-2 h-5 w-5" />
-            Watch How It Works
-          </motion.button>
-        </div>
-      </motion.div>
-
-      {/* Simplified scroll indicator */}
+    <section className="relative h-screen w-full overflow-hidden bg-ink-black flex flex-col items-center">
+      <HeroMapIllustration className="absolute inset-0 w-full h-full object-cover scale-125 blur-3xl opacity-10" />
+      <AnimatedGrid />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink-black via-ink-black/80 to-transparent z-0" />
+      
       <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 2.2 }}
+        className="relative z-10 flex flex-col items-center text-center w-full h-full px-4 pt-28"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
       >
+        {/* Spacer to push content from the top, creating a centered feel in the upper part */}
+        <div className="flex-grow" />
+
+        {/* Main Content Block */}
+        <div className="flex flex-col items-center">
+          <motion.div 
+            className="mb-6 bg-gray-800/50 backdrop-blur-sm text-pearl-white/80 px-6 py-2 rounded-full text-sm font-medium border border-imperial-gold-300/30 shadow-lg shadow-imperial-gold-300/20 transition-all duration-300 hover:shadow-imperial-gold-300/40 hover:scale-105"
+            variants={itemVariants}
+          >
+            Borders were made for maps, <span className="text-imperial-gold-300">Not your money.</span>
+          </motion.div>
+
+          <motion.h1 
+            className="font-serif text-5xl md:text-7xl lg:text-8xl font-extrabold text-pearl-white tracking-tighter text-balance drop-shadow-2xl bg-gradient-to-b from-pearl-white to-pearl-white/70 bg-clip-text text-transparent"
+            variants={itemVariants}
+          >
+            Money without borders.
+          </motion.h1>
+          <motion.p 
+            className="mt-4 text-lg md:text-xl text-imperial-gold-300 font-medium"
+            variants={itemVariants}
+          >
+            Send and Recieve Money globally faster, better and for lesser fees.
+          </motion.p>
+
+          <motion.div 
+            className="mt-8 max-w-3xl text-lg md:text-xl text-pearl-white text-center flex flex-col items-center gap-y-6"
+            variants={{
+              visible: { transition: { staggerChildren: 0.2, delayChildren: 0.5 } }
+            }}
+          >
+            <motion.p variants={itemVariants} className="max-w-2xl text-pearl-white/90">
+              Gain the power to Move money instantly across the countries you run business and Increase your Wealth easily like you want to.
+            </motion.p>
+            
+            <motion.div variants={itemVariants} className="w-full max-w-2xl">
+              <p className="mb-3 text-sm font-medium text-pearl-white/60">With...</p>
+              <div className="flex flex-wrap justify-center gap-3 text-center text-base font-semibold">
+                <span className="py-2 px-4 rounded-full bg-white/5 border border-white/10 text-imperial-gold-300 backdrop-blur-sm">No banks</span>
+                <span className="py-2 px-4 rounded-full bg-white/5 border border-white/10 text-imperial-gold-300 backdrop-blur-sm">No delays</span>
+                <span className="py-2 px-4 rounded-full bg-white/5 border border-white/10 text-imperial-gold-300 backdrop-blur-sm">No losses</span>
+                <span className="py-2 px-4 rounded-full bg-white/5 border border-white/10 text-imperial-gold-300 backdrop-blur-sm">No stress</span>
+                <span className="py-2 px-4 rounded-full bg-white/5 border border-white/10 text-imperial-gold-300 backdrop-blur-sm">No gatekeepers</span>
+              </div>
+            </motion.div>
+
+            <motion.p variants={itemVariants} className="text-pearl-white font-bold text-2xl tracking-wide pt-4 drop-shadow-lg">
+              Just pure financial velocity.
+            </motion.p>
+          </motion.div>
+        </div>
+
+        {/* Spacer to push CTAs down */}
+        <div className="flex-grow-[2]" />
+
+        {/* CTA Buttons */}
+        <motion.div className="flex flex-col sm:flex-row items-center gap-4" variants={itemVariants}>
+          <PremiumButton size="lg" className="font-semibold px-8 py-2">
+            Start Moving Money →
+          </PremiumButton>
+          <button className="flex items-center gap-2 px-8 py-2 font-semibold text-silk-crimson-500 bg-white rounded-full hover:bg-gray-200 transition-colors duration-300 shadow-md">
+            <Play className="h-5 w-5" />
+            <span>Watch How It Works</span>
+          </button>
+        </motion.div>
+
+        {/* Spacer to push arrow to the bottom */}
+        <div className="flex-grow" />
+
+        {/* Bouncing Arrow */}
         <motion.div 
-          className="w-1 h-10 bg-gradient-to-b from-imperial-gold-400 to-transparent rounded-full"
-          animate={{ 
-            y: [0, 8, 0],
-            opacity: [0.7, 1, 0.7]
-          }}
-          transition={{ 
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
+          className="mb-4 text-imperial-gold-300 animate-bounce drop-shadow-[0_2px_5px_rgba(252,191,73,0.5)]"
+          variants={itemVariants}
+        >
+          <ChevronsDown className="h-8 w-8" />
+        </motion.div>
       </motion.div>
     </section>
   );
