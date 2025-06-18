@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import { gradients } from '@/lib/gradients';
 
 import { ArrowRight, Network, CircleDollarSign, CheckCircle2 } from "lucide-react";
 
@@ -22,7 +23,7 @@ const steps = [
 
 export default function HowItWorksSection() {
   return (
-    <section className="bg-pearl-white py-24 sm:py-32">
+        <section className={`${gradients[5]} py-24 sm:py-32`}>
       <div className="mx-auto max-w-4xl px-4 lg:px-0">
         <div className="text-center">
           <h2 className="text-base font-bold tracking-widest text-silk-crimson-400 uppercase mb-2">HOW WEAVE WORKS</h2>

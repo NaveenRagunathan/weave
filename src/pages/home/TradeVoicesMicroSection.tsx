@@ -1,64 +1,77 @@
-import React, { useState } from "react";
 import { Quote } from "lucide-react";
+import React from "react";
+
+import { motion } from "framer-motion";
+import { Volume2 } from "lucide-react";
 
 const quotes = [
   {
+    name: "Sarah",
+    country: "Dubai",
     text: "It used to take 3 days and a broker. Now it takes 10 minutes and no phone calls.",
-    author: "Sarah, African textile importer - Dubai",
+    accent: "en-GB"
   },
   {
+    name: "Nana",
+    country: "Ghana",
     text: "We saved $23,000 in FX fees in Q1 alone.",
-    author: "Nana, Timber Exporter – Ghana",
+    accent: "en-GB"
   },
   {
+    name: "Li Ming",
+    country: "Shenzhen",
     text: "USDC helps us close African deals without bank lag.",
-    author: "Li Ming, Logistics Director – Shenzhen",
-  },
+    accent: "en-US"
+  }
 ];
 
-export default function TradeVoicesMicroSection() {
-  const [active, setActive] = useState(0);
+const CustomsStampTrail = () => {
+    const [speaking, setSpeaking] = React.useState(false);
 
-  // Simple auto-advance carousel
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setActive((prev) => (prev + 1) % quotes.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
+  const speak = ({ text, lang }) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    utterance.onstart = () => setSpeaking(true);
+    utterance.onend = () => setSpeaking(false);
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const cancel = () => {
+    window.speechSynthesis.cancel();
+    setSpeaking(false);
+  };
 
   return (
-    <section className="w-full py-8 px-2 flex justify-center bg-pearl-white">
-      <div className="max-w-2xl w-full mx-auto rounded-2xl bg-white border border-imperial-gold-200 shadow-[0_2px_18px_0_rgba(212,175,55,0.08)] px-6 py-8 flex flex-col items-center relative">
-        <div className="absolute -top-7 left-1/2 -translate-x-1/2 bg-pearl-white border border-imperial-gold-200 rounded-full p-2 shadow-md">
-          <Quote className="w-7 h-7 text-silk-crimson-400" />
-        </div>
-        <div className="min-h-[80px] flex flex-col items-center justify-center text-center">
-          <p className="text-lg sm:text-xl font-semibold text-ink-black mb-3 italic transition-all duration-300">
-            “{quotes[active].text}”
-          </p>
-          <span className="block text-sm text-imperial-gold-500 font-medium">
-            — {quotes[active].author}
-          </span>
-        </div>
-        <div className="flex gap-2 mt-5">
-          {quotes.map((_, idx) => (
+    <div className="w-full py-10 bg-yellow-50">
+      <h2 className="text-xl font-bold text-center mb-4 text-red-800">Customs Stamp Trail</h2>
+      <div className="flex flex-col items-center gap-8">
+        {quotes.map((q, i) => (
+          <motion.div
+            key={i}
+            className="w-11/12 max-w-md bg-white border-4 border-dashed border-red-400 px-6 py-4 rounded-xl relative"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.3 }}
+          >
+                        <p className="text-md italic text-red-800">“{q.text}”</p>
+                        <p className="text-sm mt-2 font-semibold text-red-800">— {q.name}, {q.country}</p>
+            <div className="absolute -top-4 -right-4 bg-red-200 text-red-800 px-2 py-1 text-xs font-bold rounded-full rotate-[-10deg]">
+              {q.country.toUpperCase()}
+            </div>
             <button
-              key={idx}
-              className={`w-2.5 h-2.5 rounded-full border-2 transition-all duration-200 ${
-                idx === active
-                  ? "bg-silk-crimson-400 border-silk-crimson-400"
-                  : "bg-imperial-gold-100 border-imperial-gold-200"
-              }`}
-              onClick={() => setActive(idx)}
-              aria-label={`Show quote ${idx + 1}`}
-            />
-          ))}
-        </div>
-        <div className="mt-6 text-xs uppercase tracking-widest text-silk-crimson-400 font-bold flex items-center gap-2">
-          <span className="text-xl">🗣️</span> REAL VOICES FROM THE TRADE FRONTLINES
-        </div>
+              onClick={() =>
+                speaking ? cancel() : speak({ text: q.text, lang: q.accent })
+              }
+              className="absolute bottom-3 right-3 text-gray-500 hover:text-red-600"
+            >
+              <Volume2 />
+            </button>
+          </motion.div>
+        ))}
       </div>
-    </section>
+    </div>
   );
-}
+};
+
+export default CustomsStampTrail;

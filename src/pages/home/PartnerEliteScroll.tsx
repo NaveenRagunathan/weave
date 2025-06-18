@@ -1,4 +1,6 @@
 import React from 'react';    
+import { cn } from "@/lib/utils";
+import { gradients } from '@/lib/gradients';    
 import { motion, Variants } from 'framer-motion';
 
 const partners = [
@@ -30,7 +32,7 @@ const PartnerEliteScroll = () => {
   };
 
   return (
-    <section className="w-full py-20 relative overflow-hidden bg-pearl-white">
+        <section className={`w-full py-20 relative overflow-hidden ${gradients[4]}`}>
       <div className="max-w-5xl mx-auto px-4 text-center">
         <h2 className="font-serif text-3xl md:text-4xl font-bold text-ink-black mb-4">
           WHY BUSINESSES TRUST WEAVE

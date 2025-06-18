@@ -1,4 +1,6 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { gradients } from '@/lib/gradients';
 import { Button } from "@/components/ui/button";
 import { DollarSign, FileText, Globe, Zap, ArrowRight } from 'lucide-react';
 
@@ -11,7 +13,7 @@ const features = [
 
 export default function WeaveUSDCSection() {
   return (
-    <section className="relative bg-pearl-white text-ink-black py-24 sm:py-32">
+        <section className={`relative ${gradients[1]} text-ink-black py-24 sm:py-32`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="text-center">
@@ -19,7 +21,7 @@ export default function WeaveUSDCSection() {
             Instant Capital Movement, Built on USDC
           </p>
           <h2 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight text-ink-black">
-            The Digital Dollar: <span className="text-imperial-gold-500">Fast. Stable. Regulated.</span>
+            The Digital Dollar: <span className="bg-clip-text text-transparent bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-500">Fast. Stable. Regulated.</span>
             <br />
             Built for Global Trade.
           </h2>

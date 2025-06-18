@@ -5,7 +5,7 @@ import CustomCursor from "@/components/ui/CustomCursor";
 import ParticleSystem from "@/components/ui/ParticleSystem";
 import SmoothSectionTransition from "@/components/transitions/SmoothSectionTransition";
 import HeroSection from "./HeroSection";
-import CurrencyConverterSection from "./CurrencyConverterSection";
+
 import PartnerEliteScroll from "./PartnerEliteScroll";
 
 import HowItWorksSection from "./HowItWorksSection";
@@ -30,33 +30,25 @@ const HomePage = () => {
       
       {/* Sections with smooth transitions */}
       <HeroSection />
-      <CurrencyConverterSection />
-      
-      <PartnerEliteScroll />
-      <SmoothSectionTransition>
-        <HowItWorksSection />
-      </SmoothSectionTransition>
 
-      <SmoothSectionTransition>
-        <TradeVoicesMicroSection />
-      </SmoothSectionTransition>
-
-      <SmoothSectionTransition>
-        <WhoThisIsForSection />
-      </SmoothSectionTransition>
       
-      <SmoothSectionTransition>
+      
+      <WhoThisIsForSection /> 
         <USDCSection />
-      </SmoothSectionTransition>
-      
-      <SmoothSectionTransition>
-        <SocialProofSection />
-      </SmoothSectionTransition>
+      <PartnerEliteScroll />
+
+        <HowItWorksSection />
 
       
-      <SmoothSectionTransition>
+        <TradeVoicesMicroSection />
+      
+
+     
+        
+
+        <SocialProofSection />
+
         <FinalRallySection />
-      </SmoothSectionTransition>
       
       <FooterSection />
     </main>

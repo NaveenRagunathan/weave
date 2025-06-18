@@ -43,7 +43,7 @@ const FooterSection = () => (
           </a>
         ))}
       </div>
-      <div className="text-pearl-white/50 text-xs text-center mt-2">
+      <div className="text-black text-xs text-center mt-2">
         © 2025 WEAVE Financial Systems<br />
         <span className="italic">“Capital. Trust. Growth.”</span>
       </div>

@@ -1,125 +1,212 @@
-import React from 'react';
-import { motion, Variants } from 'framer-motion';
-import { Play, ArrowRight, ChevronsDown } from 'lucide-react';
-import PremiumButton from '@/components/ui/PremiumButton';
-import HeroMapIllustration from '@/components/ui/HeroMapIllustration';
-import AnimatedGrid from '../../components/ui/AnimatedGrid';
+import CurrencyConverterWidget from "@/components/ui/CurrencyConverterWidget";
+import { motion } from "framer-motion";
+import { ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+
+
 
 const HeroSection = () => {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.3 },
-    },
-  };
+  console.log('Component rendering');
+  const [sendAmount, setSendAmount] = useState(100000);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  
+  // Log video state changes
+  React.useEffect(() => {
+    console.log('isPlaying state changed:', isPlaying);
+  }, [isPlaying]);
+  
+  // Log video reference changes
+  React.useEffect(() => {
+    console.log('Video ref updated:', {
+      current: videoRef.current,
+      readyState: videoRef.current?.readyState,
+      error: videoRef.current?.error,
+      networkState: videoRef.current?.networkState,
+      src: videoRef.current?.currentSrc || videoRef.current?.src
+    });
+  }, [videoRef.current]);
 
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
-  };
+  // Set video source after component mounts
+  React.useEffect(() => {
+    console.log('useEffect - Component mounted');
+    setIsVisible(true);
+    
+    // Try to play video on initial load
+    const attemptPlay = () => {
+      console.log('Attempting to play video...');
+      if (videoRef.current) {
+        console.log('Video element found, checking readyState:', videoRef.current.readyState);
+        const playPromise = videoRef.current.play();
+        
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              console.log('Video playback started successfully');
+              setIsPlaying(true);
+            })
+            .catch((error) => {
+              console.warn('Initial play failed, will wait for user interaction:', error);
+              // Will be handled by user interaction
+            });
+        }
+      } else {
+        console.warn('Video ref is not available');
+      }
+    };
+    
+    // Add event listeners for video events
+    const video = videoRef.current;
+    const addVideoListeners = () => {
+      if (video) {
+        video.addEventListener('loadeddata', () => {
+          console.log('Video loaded data, readyState:', video.readyState);
+        });
+        video.addEventListener('canplay', () => {
+          console.log('Video can play');
+        });
+        video.addEventListener('play', () => {
+          console.log('Video play event fired');
+        });
+        video.addEventListener('error', (e) => {
+          console.error('Video error:', e);
+          console.error('Video error details:', {
+            error: video.error,
+            networkState: video.networkState,
+            readyState: video.readyState,
+            src: video.currentSrc || video.src
+          });
+        });
+        video.addEventListener('waiting', () => {
+          console.log('Video waiting for data');
+        });
+        video.addEventListener('stalled', () => {
+          console.log('Media data download has been stalled');
+        });
+      }
+    };
+    
+    // Add a small delay to ensure the video element is in the DOM
+    const timer = setTimeout(() => {
+      console.log('Initial play attempt after mount');
+      addVideoListeners();
+      attemptPlay();
+    }, 100);
+    
+    // Add click event to document to handle first interaction
+    const handleFirstInteraction = () => {
+      console.log('First user interaction detected, attempting to play video');
+      if (videoRef.current && !isPlaying) {
+        videoRef.current.play()
+          .then(() => {
+            console.log('Video started after user interaction');
+            setIsPlaying(true);
+          })
+          .catch(e => {
+            console.error('Playback failed after user interaction:', e);
+            console.error('Video state:', {
+              error: videoRef.current?.error,
+              networkState: videoRef.current?.networkState,
+              readyState: videoRef.current?.readyState,
+              src: videoRef.current?.currentSrc || videoRef.current?.src
+            });
+          });
+      }
+      document.removeEventListener('click', handleFirstInteraction);
+    };
+    
+    document.addEventListener('click', handleFirstInteraction);
+    
+    return () => {
+      console.log('Cleaning up event listeners');
+      document.removeEventListener('click', handleFirstInteraction);
+      clearTimeout(timer);
+      if (video) {
+        video.removeEventListener('loadeddata', () => {});
+        video.removeEventListener('canplay', () => {});
+        video.removeEventListener('play', () => {});
+        video.removeEventListener('error', () => {});
+        video.removeEventListener('waiting', () => {});
+        video.removeEventListener('stalled', () => {});
+      }
+    };
+  }, []);
+
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-ink-black flex flex-col items-center">
+    <section className="relative w-full h-screen overflow-hidden">
       {/* Video Background */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover z-0 opacity-70 mix-blend-luminosity blur-[1px] brightness-90"
-        // src="/Weave.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        aria-hidden="true"
-        tabIndex={-1}
-      />
-      <HeroMapIllustration className="absolute inset-0 w-full h-full object-cover scale-125 blur-3xl opacity-10 pointer-events-none" />
-      <AnimatedGrid />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink-black/70 via-ink-black/60 to-transparent z-10" />
-      
-      <motion.div 
-        className="relative z-10 flex flex-col items-center text-center w-full h-full px-4 pt-28"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {/* Spacer to push content from the top, creating a centered feel in the upper part */}
-        <div className="flex-grow" />
-
-        {/* Main Content Block */}
-        <div className="flex flex-col items-center">
-          <motion.div 
-            className="mb-6 bg-gray-800/50 backdrop-blur-sm text-pearl-white/80 px-6 py-2 rounded-full text-sm font-medium border border-imperial-gold-300/30 shadow-lg shadow-imperial-gold-300/20 transition-all duration-300 hover:shadow-imperial-gold-300/40 hover:scale-105"
-            variants={itemVariants}
-          >
-            Borders were made for maps, <span className="text-imperial-gold-300">Not your money.</span>
-          </motion.div>
-
-          <motion.h1 
-            className="font-serif text-5xl md:text-7xl lg:text-8xl font-extrabold text-pearl-white tracking-tighter text-balance drop-shadow-2xl bg-gradient-to-b from-pearl-white to-pearl-white/70 bg-clip-text text-transparent"
-            variants={itemVariants}
-          >
-            Money without borders.
-          </motion.h1>
-          <motion.p 
-            className="mt-4 text-lg md:text-xl text-imperial-gold-300 font-medium"
-            variants={itemVariants}
-          >
-            Send and Recieve Money globally faster, better and for lesser fees.
-          </motion.p>
-
-          <motion.div 
-            className="mt-8 max-w-3xl text-lg md:text-xl text-pearl-white text-center flex flex-col items-center gap-y-6"
-            variants={{
-              visible: { transition: { staggerChildren: 0.2, delayChildren: 0.5 } }
+      {isVisible && (
+        <div className="absolute inset-0 w-full h-full">
+          <video
+            ref={videoRef}
+            autoPlay 
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{
+              backgroundColor: 'black',
+              zIndex: 1,
+              opacity: 0.3
             }}
+            onPlay={() => setIsPlaying(true)}
           >
-            <motion.p variants={itemVariants} className="max-w-2xl text-pearl-white/90">
-              Gain the power to Move money instantly across the countries you run business and Increase your Wealth easily like you want to.
-            </motion.p>
-            
-            <motion.div variants={itemVariants} className="w-full max-w-2xl">
-              <p className="mb-3 text-sm font-medium text-pearl-white/60">With...</p>
-              <div className="flex flex-wrap justify-center gap-3 text-center text-base font-semibold">
-                <span className="py-2 px-4 rounded-full bg-white/5 border border-white/10 text-imperial-gold-300 backdrop-blur-sm">No banks</span>
-                <span className="py-2 px-4 rounded-full bg-white/5 border border-white/10 text-imperial-gold-300 backdrop-blur-sm">No delays</span>
-                <span className="py-2 px-4 rounded-full bg-white/5 border border-white/10 text-imperial-gold-300 backdrop-blur-sm">No losses</span>
-                <span className="py-2 px-4 rounded-full bg-white/5 border border-white/10 text-imperial-gold-300 backdrop-blur-sm">No stress</span>
-                <span className="py-2 px-4 rounded-full bg-white/5 border border-white/10 text-imperial-gold-300 backdrop-blur-sm">No gatekeepers</span>
-              </div>
-            </motion.div>
-
-            <motion.p variants={itemVariants} className="text-pearl-white font-bold text-2xl tracking-wide pt-4 drop-shadow-lg">
-              Just pure financial velocity.
-            </motion.p>
-          </motion.div>
+            <source src="/Weave.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
+      )}
 
-        {/* Spacer to push CTAs down */}
-        <div className="flex-grow-[2]" />
-
-        {/* CTA Buttons */}
-        <motion.div className="flex flex-col sm:flex-row items-center gap-4" variants={itemVariants}>
-          <PremiumButton size="lg" className="font-semibold px-8 py-2">
-            Start Moving Money →
-          </PremiumButton>
-          <button className="flex items-center gap-2 px-8 py-2 font-semibold text-silk-crimson-500 bg-white rounded-full hover:bg-gray-200 transition-colors duration-300 shadow-md">
-            <Play className="h-5 w-5" />
-            <span>Watch How It Works</span>
-          </button>
-        </motion.div>
-
-        {/* Spacer to push arrow to the bottom */}
-        <div className="flex-grow" />
-
-        {/* Bouncing Arrow */}
-        <motion.div 
-          className="mb-4 text-imperial-gold-300 animate-bounce drop-shadow-[0_2px_5px_rgba(252,191,73,0.5)]"
-          variants={itemVariants}
+      {/* Content Overlay */}
+      <div className="relative z-10 w-full h-full flex items-center justify-center">
+      <div className="container mx-auto px-4 flex flex-col items-center justify-center text-center">
+        
+        <motion.div
+          className="max-w-3xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <ChevronsDown className="h-8 w-8" />
+          <h1 className="font-serif text-5xl md:text-7xl font-extrabold text-white tracking-tight">
+            Send Money To and From China — <br className="md:hidden"/>
+            <span className="bg-gradient-to-r from-amber-400 via-red-500 to-orange-500 bg-clip-text text-transparent">
+              Without Delay
+            </span>
+          </h1>
+          <p className="mt-6 max-w-xl mx-auto text-lg text-white">
+            No banks. No brokers. No waiting. <br />  Just instant money movement with USDC.
+          </p>
         </motion.div>
-      </motion.div>
+
+        <motion.div
+          className="mt-12 w-full max-w-md md:max-w-3xl"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+        >
+          <CurrencyConverterWidget sendAmount={sendAmount} onSendAmountChange={setSendAmount} />
+          <p className="text-xs text-center text-white mt-4">
+            Guaranteed rate for 1 hour
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="mt-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+        >
+          <motion.button
+            className="bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-500 text-white font-bold py-4 px-10 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+            whileHover={{ scale: 1.05, transition: { type: 'spring', stiffness: 300 } }}
+          >
+            Create Your Free Account <ArrowRight className="inline-block ml-2 w-5 h-5" />
+          </motion.button>
+        </motion.div>
+      </div>
+      </div>
     </section>
   );
 };

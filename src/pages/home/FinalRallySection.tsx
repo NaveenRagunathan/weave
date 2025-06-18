@@ -1,9 +1,10 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Users } from "lucide-react";
+import { ArrowRight, Users, Globe, BadgePercent } from "lucide-react";
+import { gradients } from '@/lib/gradients';
 
 const FinalRallySection = () => (
-  <section className="relative py-20 px-4 bg-pearl-white overflow-hidden shadow-[0_-2px_24px_0_rgba(212,175,55,0.04)]">
+    <section className={`relative py-20 px-4 ${gradients[6]} overflow-hidden shadow-[0_-2px_24px_0_rgba(212,175,55,0.04)]`}>
     {/* Wave background effects */}
     <div className="absolute inset-0 overflow-hidden">
       {/* First wave */}
@@ -45,27 +46,21 @@ const FinalRallySection = () => (
         </h2>
       </div>
 
-      {/* Premium copy with elegant spacing */}
-      <div className="max-w-4xl mx-auto mb-16 animate-reveal-text" 
+      <div className="max-w-4xl mx-auto mb-12 text-center animate-reveal-text" 
            style={{ animationDelay: '1.1s', animationFillMode: 'both' }}>
-        <p className="text-xl sm:text-2xl leading-relaxed text-ink-black/90 mb-12 font-light">
+        <p className="text-xl sm:text-2xl leading-relaxed text-ink-black/90 font-light">
           You've done the work — now move like a global force.
         </p>
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {[
-            "No borders.",
-            "No delays.",
-            "No FX leakage.",
-            "Just WEAVE."
-          ].map((phrase, idx) => (
-            <span
-              key={idx}
-              className="inline-block px-6 py-3 rounded-full border border-imperial-gold-500/50 bg-imperial-gold-500/10 text-silk-crimson-400 text-lg font-bold tracking-wide uppercase transition-colors hover:bg-imperial-gold-500/20"
-            >
-              {phrase}
-            </span>
-          ))}
-        </div>
+      </div>
+
+      {/* Persuasive Tagline */}
+      <div className="text-center mb-16 animate-reveal-text" style={{ animationDelay: '1.3s', animationFillMode: 'both' }}>
+        <p className="text-3xl sm:text-4xl font-bold tracking-wide text-ink-black">
+          No borders. No delays. No FX leakage.
+        </p>
+        <p className="mt-3 text-5xl sm:text-6xl font-extrabold tracking-tighter">
+          <span className="font-serif italic text-silk-crimson-400">Just WEAVE.</span>
+        </p>
       </div>
 
       {/* Premium CTA buttons with sophisticated styling */}

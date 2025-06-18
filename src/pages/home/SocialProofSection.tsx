@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { gradients } from '@/lib/gradients';
 import { Globe, Zap, Users, MessageSquare } from 'lucide-react';
 
 const stats = [
@@ -11,7 +11,7 @@ const stats = [
 
 const SocialProofSection = () => {
   return (
-    <section className="bg-pearl-white py-24 sm:py-32">
+        <section className={`${gradients[3]} py-24 sm:py-32`}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center mb-14">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-ink-black font-serif mb-4">

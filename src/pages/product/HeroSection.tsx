@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import { VideoBackground } from '@/components/ui/VideoBackground';
 import { Play, ArrowRight } from 'lucide-react';
 
 const HeroSection = () => {
@@ -71,6 +72,10 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-ink-black">
       {/* Background Video */}
+            <VideoBackground 
+              videoSource="/Weave.mp4" 
+              className="z-0 pointer-events-none" 
+            />
       <div className="absolute inset-0 z-0">
         <video
           className="weave-hero-video"
@@ -128,7 +133,7 @@ const HeroSection = () => {
           
           <Button 
             size="lg"
-            className="bg-pearl-white/10 text-pearl-white border-2 border-pearl-white/20 hover:bg-pearl-white/20 hover:border-pearl-white/40 px-8 py-4 text-lg font-semibold rounded-full backdrop-blur-sm transition-all duration-300 group"
+                        className="bg-white/10 text-white border-2 border-white/20 hover:bg-white/20 hover:border-white/40 px-8 py-4 text-lg font-semibold rounded-full backdrop-blur-sm transition-all duration-300 group"
             onClick={() => console.log('Secondary CTA clicked')}
           >
             <Play className="mr-2 h-5 w-5" />

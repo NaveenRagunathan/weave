@@ -46,7 +46,7 @@ const PremiumButton: React.FC<PremiumButtonProps> = ({
     size === 'lg' ? 'px-8 py-4 text-lg' : 'px-6 py-3 text-base',
     variant === 'primary' 
       ? 'bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-600 hover:from-silk-crimson-500 hover:to-imperial-gold-400 text-pearl-white border-imperial-gold-400/15' 
-      : 'bg-pearl-white/10 hover:bg-pearl-white/20 text-pearl-white border-pearl-white/20 backdrop-blur-md',
+      : 'bg-white/10 hover:bg-white/20 text-white border-white/20 backdrop-blur-md',
     className
   );
 
@@ -80,7 +80,7 @@ const PremiumButton: React.FC<PremiumButtonProps> = ({
       {ripples.map((ripple) => (
         <motion.div
           key={ripple.id}
-          className="absolute bg-pearl-white/30 rounded-full pointer-events-none"
+          className="absolute bg-white/30 rounded-full pointer-events-none"
           style={{
             left: ripple.x,
             top: ripple.y,
