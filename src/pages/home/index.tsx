@@ -6,6 +6,7 @@ import ParticleSystem from "@/components/ui/ParticleSystem";
 import SmoothSectionTransition from "@/components/transitions/SmoothSectionTransition";
 import HeroSection from "./HeroSection";
 
+import FeesComparisonSection from "./FeesComparisonSection";
 import PartnerEliteScroll from "./PartnerEliteScroll";
 
 import HowItWorksSection from "./HowItWorksSection";
@@ -35,6 +36,7 @@ const HomePage = () => {
       
       <WhoThisIsForSection /> 
         <USDCSection />
+      <FeesComparisonSection />
       <PartnerEliteScroll />
 
         <HowItWorksSection />
