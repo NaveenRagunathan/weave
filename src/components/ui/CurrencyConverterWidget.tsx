@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ChevronsUpDown, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { currencies } from "../../lib/currency-data";
+
+// Cache object to store exchange rates
+let exchangeRatesCache: Record<string, number> = {};
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes cache duration
+let lastFetchTime = 0;
+const API_KEY = '621b1fc9287a4763968a031ababd8c85'; // Note: In production, move this to environment variables
 
 interface CurrencyConverterWidgetProps {
   sendAmount: number;
@@ -15,34 +21,86 @@ const CurrencyConverterWidget: React.FC<CurrencyConverterWidgetProps> = ({ sendA
 
   const [isCalculating, setIsCalculating] = useState(false);
   const [openSelector, setOpenSelector] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const isMounted = useRef(true);
 
   useEffect(() => {
-    if (!sendCurrency || !sendAmount) return;
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
-    const getConversion = async () => {
+  const fetchExchangeRates = async () => {
+    const now = Date.now();
+    
+    // Return cached rates if they're still valid
+    if (Object.keys(exchangeRatesCache).length > 0 && (now - lastFetchTime) < CACHE_DURATION) {
+      return exchangeRatesCache;
+    }
+
+    try {
+      const response = await fetch(
+        `https://api.currencyfreaks.com/v2.0/rates/latest?apikey=${API_KEY}`
+      );
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch exchange rates');
+      }
+      
+      const data = await response.json();
+      if (data.rates) {
+        // Cache the rates and update the timestamp
+        exchangeRatesCache = data.rates;
+        lastFetchTime = now;
+        return data.rates;
+      }
+      throw new Error('Invalid response format');
+    } catch (err) {
+      console.error('Error fetching exchange rates:', err);
+      throw err;
+    }
+  };
+
+  useEffect(() => {
+    if (!sendCurrency || !sendAmount) {
+      setReceiveAmount(0);
+      return;
+    }
+
+    const convertCurrency = async () => {
+      if (!isMounted.current) return;
+      
       setIsCalculating(true);
-      const from = sendCurrency === 'USDC' ? 'USD' : sendCurrency;
-      const to = 'USD'; // API requires 'USD' for USDC
+      setError(null);
 
       try {
-        const response = await fetch(`https://api.frankfurter.app/latest?amount=${sendAmount}&from=${from}&to=${to}`);
-        if (!response.ok) throw new Error('API error fetching conversion rate');
-        const data = await response.json();
-        if (data.rates && data.rates[to]) {
-          setReceiveAmount(data.rates[to]);
-        } else if (from === to) {
+        const rates = await fetchExchangeRates();
+        
+        if (sendCurrency === 'USDC') {
           setReceiveAmount(sendAmount);
-        } else {
-          throw new Error('Could not find rate for the selected currency.');
+          return;
         }
-      } catch (error) {
-        console.error("Failed to fetch real-time rates:", error);
-        setReceiveAmount(0); // Reset on error
+
+        const usdRate = rates[sendCurrency];
+        if (!usdRate) {
+          throw new Error(`Exchange rate not available for ${sendCurrency}`);
+        }
+
+        // Convert from send currency to USD (since USDC is pegged to USD)
+        const usdAmount = sendAmount / parseFloat(usdRate);
+        setReceiveAmount(parseFloat(usdAmount.toFixed(6))); // USDC typically has 6 decimal places
+      } catch (err) {
+        console.error('Conversion error:', err);
+        setError('Failed to convert currency. Please try again.');
+        setReceiveAmount(0);
+      } finally {
+        if (isMounted.current) {
+          setIsCalculating(false);
+        }
       }
-      setIsCalculating(false);
     };
 
-    const timer = setTimeout(() => getConversion(), 500);
+    const timer = setTimeout(convertCurrency, 300);
     return () => clearTimeout(timer);
   }, [sendAmount, sendCurrency]);
 

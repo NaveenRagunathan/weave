@@ -34,15 +34,31 @@ export default function WeaveUSDCSection() {
         <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Visual Side */}
           <div className="relative flex justify-center items-center h-full">
-            <div className="relative w-64 h-64 flex items-center justify-center">
+            <div className="relative w-72 h-72 flex items-center justify-center">
               <div className="absolute inset-0 bg-imperial-gold-500/10 rounded-full animate-pulse"></div>
               <div className="absolute inset-2 bg-silk-crimson-400/10 rounded-full animate-pulse [animation-delay:0.5s]"></div>
-              <div className="relative bg-white p-4 rounded-full shadow-2xl">
-                <Globe className="w-24 h-24 text-imperial-gold-500" />
+              <div className="relative bg-white p-2 rounded-full shadow-2xl">
+                <img 
+                  src="/image.png" 
+                  alt="Global Payment Network" 
+                  className="w-40 h-40 object-contain"
+                />
               </div>
-              <p className="absolute top-0 -left-12 text-lg font-semibold">Guangzhou</p>
-              <p className="absolute bottom-1/2 left-[-100px] text-lg font-semibold">Lagos</p>
-              <p className="absolute bottom-0 -right-12 text-lg font-semibold">Bogotá</p>
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 transform hover:scale-105 transition-transform duration-300">
+                <span className="inline-block bg-white/90 px-4 py-2 rounded-full text-lg font-extrabold bg-gradient-to-r from-silk-crimson-500 to-imperial-gold-500 bg-clip-text text-transparent shadow-lg">
+                  Guangzhou
+                </span>
+              </div>
+              <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 transform md:-left-6 hover:scale-105 transition-transform duration-300">
+                <span className="inline-block bg-white/90 px-4 py-2 rounded-full text-lg font-extrabold bg-gradient-to-r from-imperial-gold-500 to-silk-crimson-500 bg-clip-text text-transparent shadow-lg">
+                  Lagos
+                </span>
+              </div>
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 transform hover:scale-105 transition-transform duration-300">
+                <span className="inline-block bg-white/90 px-4 py-2 rounded-full text-lg font-extrabold bg-gradient-to-r from-silk-crimson-500 to-imperial-gold-500 bg-clip-text text-transparent shadow-lg">
+                  Bogotá
+                </span>
+              </div>
             </div>
           </div>
 

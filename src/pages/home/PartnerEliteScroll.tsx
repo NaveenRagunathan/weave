@@ -1,7 +1,7 @@
-import React from 'react';    
+import React, { useRef } from 'react';
 import { cn } from "@/lib/utils";
-import { gradients } from '@/lib/gradients';    
-import { motion, Variants } from 'framer-motion';
+import { gradients } from '@/lib/gradients';
+import { useAnimationFrame } from 'framer-motion';
 
 const partners = [
   { name: "Alibaba", domain: "alibaba.com", desc: "Facilitating infrastructure payments across 4 continents." },
@@ -17,22 +17,24 @@ const partners = [
 ];
 
 const PartnerEliteScroll = () => {
-  const duplicatedPartners = [...partners, ...partners];
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const speed = 1.4;
 
-  const marqueeVariants: Variants = {
-    animate: {
-      x: ['0%', '-100%'],
-      transition: {
-        ease: "linear",
-        duration: 60,
-        repeat: Infinity,
-        repeatType: "loop",
-      }
-    },
-  };
+  useAnimationFrame((t, delta) => {
+    if (!scrollRef.current) return;
+
+    const el = scrollRef.current;
+    const isPaused = el.dataset.paused;
+    const scrollSpeed = isPaused === 'soft' ? 1.0 : speed;
+
+    el.scrollLeft += scrollSpeed * (delta / 16);
+    if (el.scrollLeft >= el.scrollWidth / 2) {
+      el.scrollLeft -= el.scrollWidth / 2;
+    }
+  });
 
   return (
-        <section className={`w-full py-20 relative overflow-hidden ${gradients[4]}`}>
+    <section className={`w-full py-20 relative overflow-hidden ${gradients[4]}`}>
       <div className="max-w-5xl mx-auto px-4 text-center">
         <h2 className="font-serif text-3xl md:text-4xl font-bold text-ink-black mb-4">
           WHY BUSINESSES TRUST WEAVE
@@ -42,18 +44,23 @@ const PartnerEliteScroll = () => {
         </p>
       </div>
 
-      <div className="w-full overflow-hidden mt-16">
-        <motion.div
-          className="flex"
-          variants={marqueeVariants}
-          animate="animate"
-        >
-          {duplicatedPartners.map((partner, index) => (
+      <div
+        className="w-full overflow-hidden mt-16"
+        ref={scrollRef}
+        onMouseEnter={() => {
+          if (scrollRef.current) scrollRef.current.dataset.paused = 'soft';
+        }}
+        onMouseLeave={() => {
+          if (scrollRef.current) scrollRef.current.dataset.paused = '';
+        }}
+      >
+        <div className="flex gap-0.5 w-max">
+          {[...partners, ...partners].map((partner, index) => (
             <div
               key={`${partner.name}-${index}`}
-              className="relative flex-shrink-0 w-64 h-32 flex items-center justify-center"
+              className="relative flex-shrink-0 w-64 h-32 flex items-center justify-center group"
             >
-              <div className="relative w-48 h-20 flex items-center justify-center bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm p-4 transition-all duration-300">
+              <div className="relative w-48 h-20 flex items-center justify-center bg-white/10 border border-white/20 rounded-2xl backdrop-blur-sm p-4 transition-all duration-300 shadow-lg hover:shadow-xl hover:border-white/30 hover:bg-white/20 hover:brightness-110">
                 <img
                   src={
                     partner.name === "Dangote Group"
@@ -89,12 +96,15 @@ const PartnerEliteScroll = () => {
                     }
                   }}
                 />
-
+                <div className="absolute bottom-full mb-2 hidden group-hover:block bg-white text-xs text-black rounded px-2 py-1 shadow-lg z-10 whitespace-nowrap">
+                  {partner.desc}
+                </div>
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
+
       <div className="w-full flex justify-center mt-16">
         <div className="max-w-2xl mx-auto text-center">
           <span className="block text-lg sm:text-xl font-semibold text-silk-crimson-400">

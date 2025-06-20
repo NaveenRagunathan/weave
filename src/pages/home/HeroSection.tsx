@@ -1,7 +1,7 @@
 import CurrencyConverterWidget from "@/components/ui/CurrencyConverterWidget";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 
@@ -11,6 +11,13 @@ const HeroSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [liveCounter, setLiveCounter] = useState(1200000000);
+  const [currency, setCurrency] = useState("USD");
+  const [userLocale, setUserLocale] = useState("en-US");
+
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, -150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
   
   // Log video state changes
   React.useEffect(() => {
@@ -134,8 +141,68 @@ const HeroSection = () => {
   }, []);
 
 
+  useEffect(() => {
+    fetch("https://ipapi.co/json/")
+      .then((res) => res.json())
+      .then((data) => {
+        setCurrency(data.currency || "USD");
+        const languages = data.languages;
+        if (typeof languages === "string" && languages.length > 0) {
+          setUserLocale(languages.split(",")[0] || "en-US");
+        } else {
+          setUserLocale("en-US");
+        }
+      })
+      .catch(() => {
+        setCurrency("USD");
+        setUserLocale("en-US");
+      });
+  }, []);
+
+  useEffect(() => {
+    const startValue = 1200000000;
+    const endValue = 1289000000;
+    const duration = 2000;
+    const increment = (endValue - startValue) / (duration / 16);
+    let current = startValue;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= endValue) {
+        setLiveCounter(endValue);
+        clearInterval(timer);
+      } else {
+        setLiveCounter(Math.floor(current));
+      }
+    }, 16);
+
+    const liveTimer = setInterval(() => {
+      setLiveCounter((prev) => prev + Math.floor(Math.random() * 50000) + 10000);
+    }, 3000);
+
+    return () => {
+      clearInterval(timer);
+      clearInterval(liveTimer);
+    };
+  }, []);
+
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat(userLocale, {
+      style: "currency",
+      currency: currency,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(amount);
+  };
+
   return (
     <section className="relative w-full h-screen overflow-hidden">
+      {/* Live Counter */}
+      <motion.div 
+        className="absolute top-0 left-0 right-0 bg-black/50 text-white py-2 z-20 text-center text-sm font-medium"
+        style={{ y, opacity }}
+      >
+        <span className="text-amber-400">Live:</span> {formatCurrency(liveCounter)} sent and counting...
+      </motion.div>
       {/* Video Background */}
       {isVisible && (
         <div className="absolute inset-0 w-full h-full">
