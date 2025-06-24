@@ -30,12 +30,7 @@ const arcsData = [
     { startLat: -33.8688, startLng: 151.2093, endLat: 35.8617, endLng: 104.1954, color: '#9c27b0' }
 ];
 
-const stats = [
-    { name: 'Verified Businesses', stat: '24,000+', icon: Users },
-    { name: 'Corridors Live', stat: '12', icon: GlobeIcon },
-    { name: 'Uptime', stat: '99.9%', icon: Zap },
-    { name: 'Human Support', stat: 'Always On', icon: MessageSquare },
-];
+
 
 const WhoThisIsForSection = () => {
     const globeEl = useRef<any>();
@@ -213,32 +208,8 @@ const WhoThisIsForSection = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                    className="w-full max-w-5xl mx-auto mt-16"
-                >
-                    <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {stats.map((stat) => (
-                            <div
-                                key={stat.name}
-                                className="flex flex-col items-center justify-center p-6 bg-gray-900/50 border border-brand-blue/20 rounded-2xl"
-                            >
-                                <dt className="text-base font-semibold leading-6 text-gray-300 flex items-center gap-2 mb-2">
-                                    <stat.icon className="h-6 w-6 text-brand-blue" aria-hidden="true" />
-                                    {stat.name}
-                                </dt>
-                                <dd className="mt-1 text-3xl font-extrabold tracking-tight text-white">
-                                    {stat.stat}
-                                </dd>
-                            </div>
-                        ))}
-                    </dl>
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-                    className="mt-16"
+                    className="mt-16 text-center"
                 >
                     <Button
                         size="lg"

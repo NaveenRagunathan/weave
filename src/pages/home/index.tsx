@@ -6,20 +6,22 @@ import ParticleSystem from "@/components/ui/ParticleSystem";
 import SmoothSectionTransition from "@/components/transitions/SmoothSectionTransition";
 import HeroSection from "./HeroSection";
 
-import FeesComparisonSection from "./FeesComparisonSection";
+
 import PartnerEliteScroll from "./PartnerEliteScroll";
 
 import HowItWorksSection from "./HowItWorksSection";
+import SocialProofSection from './SocialProofSection';
 import WhoThisIsForSection from "./WhoThisIsForSection";
 import USDCSection from "./USDCSection";
 
 import FinalRallySection from "./FinalRallySection";
 import FooterSection from "./FooterSection";
+import SectionDivider from '@/components/SectionDivider';
 
 
 const HomePage = () => {
   return (
-    <main className="bg-off-white text-ink-black font-sans relative overflow-x-hidden">
+    <main className="text-ink-black font-sans relative overflow-x-hidden">
       {/* Premium Enhancement Components */}
       <CustomCursor />
       <ParticleSystem />
@@ -31,9 +33,10 @@ const HomePage = () => {
       <HeroSection />
       <WhoThisIsForSection />
       <USDCSection />
-      <FeesComparisonSection />
+
       <PartnerEliteScroll />
       <HowItWorksSection />
+      <SocialProofSection />
       <FinalRallySection />
       <FooterSection />
     </main>

@@ -10,15 +10,17 @@ const links = [
   { name: "Legal", href: "/legal" },
 ];
 
+import { Linkedin, Twitter, MessageCircle, Phone } from 'lucide-react';
+
 const socials = [
-  { name: "LinkedIn", url: "#", icon: "🔗" },
-  { name: "X", url: "#", icon: "🖤" },
-  { name: "WeChat", url: "#", icon: "💬" },
-  { name: "WhatsApp", url: "#", icon: "📞" },
+  { name: "LinkedIn", url: "#", icon: Linkedin },
+  { name: "X", url: "#", icon: Twitter },
+  { name: "WeChat", url: "#", icon: MessageCircle },
+  { name: "WhatsApp", url: "#", icon: Phone },
 ];
 
 const FooterSection = () => (
-  <footer className="bg-off-white border-t border-brand-blue/10 py-10 px-4">
+  <footer className="border-t border-brand-blue/10 py-10 px-4">
     <div className="max-w-5xl mx-auto flex flex-col items-center gap-6">
       <nav className="flex flex-wrap justify-center gap-4 mb-2">
         {links.map((l) => (
@@ -39,12 +41,12 @@ const FooterSection = () => (
             className="p-2 bg-gradient-to-br from-brand-blue-100 via-cool-gray-100 to-off-white rounded-full hover:bg-brand-blue-200 transition border border-brand-blue/10"
             aria-label={s.name}
           >
-            <span className="text-lg">{s.icon}</span>
+            <s.icon className="w-5 h-5 text-brand-blue-700" />
           </a>
         ))}
       </div>
       <div className="text-cool-gray-700 text-xs text-center mt-2">
-        © 2025 WEAVE Financial Systems<br />
+        &copy; 2025 WEAVE Financial Systems<br />
         <span className="italic">“Capital. Trust. Growth.”</span>
       </div>
     </div>

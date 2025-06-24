@@ -2,6 +2,8 @@ import CurrencyConverterWidget from "@/components/ui/CurrencyConverterWidget";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
+import FeeComparisonWidget from '@/components/ui/FeeComparisonWidget';
+import LiveCounter from '@/components/ui/LiveCounter';
 
 
 
@@ -196,85 +198,106 @@ const HeroSection = () => {
 
   return (
     <section className="relative w-full h-screen overflow-hidden">
-      {/* Live Counter */}
-      <motion.div 
-        className="absolute top-0 left-0 right-0 bg-black/50 text-white py-2 z-20 text-center text-sm font-medium"
-        style={{ y, opacity }}
-      >
-        <span className="text-amber-400">Live:</span> {formatCurrency(liveCounter)} sent and counting...
-      </motion.div>
+      <div className="absolute top-2.5 w-full z-50 flex justify-center">
+        <LiveCounter />
+      </div>
       {/* Video Background */}
       {isVisible && (
-        <div className="absolute inset-0 w-full h-full">
-          <video
-            ref={videoRef}
-            autoPlay 
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{
-              backgroundColor: 'black',
-              zIndex: 1,
-              opacity: 0.3
-            }}
-            onPlay={() => setIsPlaying(true)}
-          >
-            <source src="/Weave.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      )}
+  <div className="absolute inset-0 w-full h-full">
+    {/* Video temporarily paused/disabled */}
+    <video
+      ref={videoRef}
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="absolute inset-0 w-full h-full object-cover"
+      style={{
+        backgroundColor: 'black',
+        zIndex: 1,
+        opacity: 1
+      }}
+      onPlay={() => setIsPlaying(true)}
+    >
+      <source src="/Weave.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    {/* Keep the semi-transparent dark overlay with blur */}
+    <div className="absolute inset-0 w-full h-full bg-black/50 backdrop-blur-sm" style={{ zIndex: 2 }} />
+  </div>
+)}
 
       {/* Content Overlay */}
       <div className="relative z-10 w-full h-full flex items-center justify-center">
-      <div className="container mx-auto px-4 flex flex-col items-center justify-center text-center">
-        
+  <div className="container mx-auto px-4">
+    {/* Removed card container, content floats over video */}
+    <div className="flex flex-col lg:flex-row items-center justify-center gap-x-24 gap-y-12 w-full">
+        {/* Left Column: Text Content */}
         <motion.div
-          className="max-w-3xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          className="lg:w-1/2 text-center lg:text-left"
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="font-serif text-5xl md:text-7xl font-extrabold text-white tracking-tight">
-            Send Money To and From China — <br className="md:hidden"/>
-            <span className="bg-gradient-to-r from-amber-400 via-red-500 to-orange-500 bg-clip-text text-transparent">
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-extrabold text-white tracking-tighter drop-shadow-xl">
+            <motion.span
+              className="block"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+            >
+              Send Money To and From China
+            </motion.span>
+            <motion.span
+              className="block bg-gradient-to-b from-blue-300 via-cyan-200 to-white bg-clip-text text-transparent"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: 'easeOut', delay: 0.4 }}
+            >
               Without Delay
-            </span>
+            </motion.span>
           </h1>
-          <p className="mt-6 max-w-xl mx-auto text-lg text-white">
-            No banks. No brokers. No waiting. <br />  Just instant money movement with USDC.
-          </p>
+          <div>
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-8">
+              <span className="px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-white/30 rounded-full backdrop-blur-sm shadow-md">No banks</span>
+              <span className="px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-white/30 rounded-full backdrop-blur-sm shadow-md">No brokers</span>
+              <span className="px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-white/30 rounded-full backdrop-blur-sm shadow-md">No waiting</span>
+            </div>
+            <p className="mt-4 max-w-xl lg:mx-0 mx-auto text-lg text-white/90 drop-shadow-lg">
+              Just instant money movement with USDC.
+            </p>
+          </div>
         </motion.div>
 
+        {/* Right Column: Widgets */}
         <motion.div
-          className="mt-12 w-full max-w-md md:max-w-3xl"
+          className="lg:w-1/2 w-full"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
         >
           <CurrencyConverterWidget sendAmount={sendAmount} onSendAmountChange={setSendAmount} />
-          <p className="text-xs text-center text-white mt-4">
-            Guaranteed rate for 1 hour
-          </p>
+          <FeeComparisonWidget sendAmount={sendAmount} />
         </motion.div>
+      </div>
 
-        <motion.div
-          className="mt-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+      {/* CTA Button - Centered below */}
+      <motion.div
+        className="mt-16 flex justify-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+      >
+        <motion.button
+          className="bg-gradient-to-r from-brand-blue via-blue-500 to-indigo-600 text-white font-extrabold py-5 px-14 rounded-full text-xl shadow-2xl hover:shadow-blue-700 transform hover:scale-105 transition-all duration-300 tracking-wide"
+          whileHover={{ scale: 1.07, transition: { type: 'spring', stiffness: 300 } }}
         >
-          <motion.button
-            className="bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-500 text-white font-bold py-4 px-10 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-            whileHover={{ scale: 1.05, transition: { type: 'spring', stiffness: 300 } }}
-          >
-            Create Your Free Account <ArrowRight className="inline-block ml-2 w-5 h-5" />
-          </motion.button>
-        </motion.div>
-      </div>
-      </div>
-    </section>
+          Create Your Free Account <ArrowRight className="inline-block ml-2 w-6 h-6" />
+        </motion.button>
+      </motion.div>
+    </div>
+  </div>
+</section>
   );
 };
 
