@@ -13,15 +13,13 @@ import HowItWorksSection from "./HowItWorksSection";
 import WhoThisIsForSection from "./WhoThisIsForSection";
 import USDCSection from "./USDCSection";
 
-import SocialProofSection from "./SocialProofSection";
-
 import FinalRallySection from "./FinalRallySection";
-import FooterSection from "@/pages/product/FooterSection";
-import TradeVoicesMicroSection from "./TradeVoicesMicroSection";
+import FooterSection from "./FooterSection";
+
 
 const HomePage = () => {
   return (
-    <main className="bg-ink-black text-pearl-white font-sans relative overflow-x-hidden">
+    <main className="bg-off-white text-ink-black font-sans relative overflow-x-hidden">
       {/* Premium Enhancement Components */}
       <CustomCursor />
       <ParticleSystem />
@@ -31,27 +29,12 @@ const HomePage = () => {
       
       {/* Sections with smooth transitions */}
       <HeroSection />
-
-      
-      
-      <WhoThisIsForSection /> 
-        <USDCSection />
+      <WhoThisIsForSection />
+      <USDCSection />
       <FeesComparisonSection />
       <PartnerEliteScroll />
-
-        <HowItWorksSection />
-
-      
-        <TradeVoicesMicroSection />
-      
-
-     
-        
-
-        <SocialProofSection />
-
-        <FinalRallySection />
-      
+      <HowItWorksSection />
+      <FinalRallySection />
       <FooterSection />
     </main>
   );

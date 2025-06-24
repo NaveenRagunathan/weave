@@ -191,7 +191,7 @@ const CurrencySelector = ({ currency, onSelect, currencyList, isOpen, onToggle }
             <input
               type="text"
               placeholder="Search currency..."
-              className="w-full bg-gray-100 p-2 rounded-md text-gray-800 border border-gray-300 focus:ring-1 focus:ring-imperial-gold-500 outline-none"
+              className="w-full bg-gray-100 p-2 rounded-md text-gray-800 border border-gray-300 focus:ring-1 focus:ring-brand-blue outline-none"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               autoFocus

@@ -12,7 +12,7 @@ const ScrollProgress = () => {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-500 transform-gpu z-50"
+      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-blue-400 to-cool-gray-500 transform-gpu z-50"
       style={{
         scaleX,
         transformOrigin: "0%"

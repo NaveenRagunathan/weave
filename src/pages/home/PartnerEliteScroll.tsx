@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { gradients } from '@/lib/gradients';
 import { useAnimationFrame } from 'framer-motion';
@@ -20,6 +20,17 @@ const PartnerEliteScroll = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const speed = 1.4;
 
+  const animatedWords = ["fast", "easy", "safe"];
+  const [currentWord, setCurrentWord] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  useEffect(() => {
+    intervalRef.current = setInterval(() => {
+      setCurrentWord((prev) => (prev + 1) % animatedWords.length);
+    }, 1400);
+    return () => intervalRef.current && clearInterval(intervalRef.current);
+  }, []);
+
+
   useAnimationFrame((t, delta) => {
     if (!scrollRef.current) return;
 
@@ -34,13 +45,24 @@ const PartnerEliteScroll = () => {
   });
 
   return (
-    <section className={`w-full py-20 relative overflow-hidden ${gradients[4]}`}>
+    <section className="w-full py-20 relative overflow-hidden bg-gradient-to-b from-off-white via-brand-blue-50 to-brand-blue-100">
       <div className="max-w-5xl mx-auto px-4 text-center">
-        <h2 className="font-serif text-3xl md:text-4xl font-bold text-ink-black mb-4">
-          WHY BUSINESSES TRUST WEAVE
+        <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-center mb-2">
+          WHY BUSINESSES TRUST <span className="bg-gradient-to-r from-brand-blue via-brand-blue-400 to-brand-blue-700 bg-clip-text text-transparent drop-shadow-sm">WEAVE</span>
         </h2>
-        <p className="text-lg text-ink-black/70 max-w-3xl mx-auto">
-          We are used by powerhouses in the Global South because we make moving money fast, easy, and safe for them. This ensures they are growing steadily.
+        <div className="flex justify-center mb-2">
+          <span className="block w-16 h-1 rounded-full bg-gradient-to-r from-brand-blue via-brand-blue-400 to-brand-blue-700 opacity-60"></span>
+        </div>
+
+
+        <p className="text-sm md:text-base text-center text-ink-black/80 mb-8 max-w-2xl mx-auto">
+          We are used by powerhouses in the <span className="text-brand-blue font-semibold">Global South</span> because we make moving money
+          <span className="inline-block w-16 mx-1 align-middle">
+            <span className="text-brand-blue font-bold transition-all duration-500 animate-fade-in">
+              {animatedWords[currentWord]}
+            </span>
+          </span>
+          for them. This ensures they are growing steadily.
         </p>
       </div>
 
@@ -66,7 +88,7 @@ const PartnerEliteScroll = () => {
                     partner.name === "Dangote Group"
                       ? `https://logo.clearbit.com/${partner.domain}`
                       : partner.customLogo ||
-                        (partner.domain ? `https://www.google.com/s2/favicons?sz=128&domain=${partner.domain}` : '')
+                      (partner.domain ? `https://www.google.com/s2/favicons?sz=128&domain=${partner.domain}` : '')
                   }
                   alt={`${partner.name} Logo`}
                   className="max-h-10 w-auto object-contain opacity-90 transition-all duration-300"
@@ -102,14 +124,6 @@ const PartnerEliteScroll = () => {
               </div>
             </div>
           ))}
-        </div>
-      </div>
-
-      <div className="w-full flex justify-center mt-16">
-        <div className="max-w-2xl mx-auto text-center">
-          <span className="block text-lg sm:text-xl font-semibold text-silk-crimson-400">
-            From Government Institutions to infrastructure giants to high-volume traders — <span className="text-imperial-gold-500">WEAVE</span> is the Nitro Boost making their deals close faster.
-          </span>
         </div>
       </div>
     </section>

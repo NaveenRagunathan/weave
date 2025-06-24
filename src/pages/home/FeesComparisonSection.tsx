@@ -72,7 +72,7 @@ export default function FeesComparisonSection() {
                 step={1000}
                 value={numericAmount}
                 onChange={(e) => setAmount(e.target.value)}
-                className="w-full accent-imperial-gold-500 cursor-pointer h-3"
+                className="w-full accent-brand-blue cursor-pointer h-3"
               />
               <span className="text-sm font-bold text-ink-black/60">50k</span>
             </div>
@@ -82,19 +82,19 @@ export default function FeesComparisonSection() {
               step={500}
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="w-48 text-center text-lg font-bold px-4 py-2 border-2 border-stone-300 rounded-lg bg-black/60 backdrop-blur-sm focus:ring-2 focus:ring-imperial-gold-500 focus:border-imperial-gold-500 outline-none transition"
+              className="w-48 text-center text-lg font-bold px-4 py-2 border-2 border-stone-300 rounded-lg bg-black/60 backdrop-blur-sm focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition"
             />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-stone-200/80 rounded-2xl shadow-2xl shadow-stone-400/20 overflow-hidden border border-stone-200/80">
           {/* Weave Panel */}
-          <div className="bg-imperial-gold-500/10 p-8 text-center">
-            <h3 className="text-2xl font-bold text-imperial-gold-700 mb-4 font-serif">WEAVE</h3>
+          <div className="bg-brand-blue/10 p-8 text-center">
+            <h3 className="text-2xl font-bold text-brand-blue mb-4 font-serif">WEAVE</h3>
             <p className="text-ink-black/60 text-sm mb-2">Your Fee</p>
             <p className="text-5xl font-extrabold text-ink-black">{currencyFormatter.format(weaveFee)}</p>
-            <p className="text-lg font-semibold text-imperial-gold-600 mt-2">~{percents["WEAVE"]}%</p>
-            <span className="inline-block bg-imperial-gold-500 text-pearl-white text-xs font-bold px-3 py-1 rounded-full mt-6">
+            <p className="text-lg font-semibold text-brand-blue mt-2">~{percents["WEAVE"]}%</p>
+            <span className="inline-block bg-brand-blue text-off-white text-xs font-bold px-3 py-1 rounded-full mt-6">
               Best Value
             </span>
           </div>
@@ -108,7 +108,7 @@ export default function FeesComparisonSection() {
                   onClick={() => setSelectedCompetitor(c)}
                   className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors ${
                     selectedCompetitor === c 
-                      ? 'bg-silk-crimson-500 text-pearl-white shadow'
+                      ? 'bg-brand-blue text-off-white shadow'
                       : 'bg-stone-200/80 text-ink-black/70 hover:bg-stone-300/80'
                   }`}>
                   {c}
@@ -116,9 +116,9 @@ export default function FeesComparisonSection() {
               ))}
             </div>
             <p className="text-ink-black/60 text-sm mb-2">{selectedCompetitor}'s Fee</p>
-            <p className="text-5xl font-extrabold text-silk-crimson-600">{currencyFormatter.format(competitorFee)}</p>
-            <p className="text-lg font-semibold text-silk-crimson-500 mt-2">~{percents[selectedCompetitor]}%</p>
-            <p className="text-sm font-bold text-silk-crimson-700 mt-6 bg-silk-crimson-500/10 px-3 py-2 rounded-lg">
+            <p className="text-5xl font-extrabold text-brand-blue">{currencyFormatter.format(competitorFee)}</p>
+            <p className="text-lg font-semibold text-brand-blue/80 mt-2">~{percents[selectedCompetitor]}%</p>
+            <p className="text-sm font-bold text-brand-blue mt-6 bg-brand-blue/10 px-3 py-2 rounded-lg">
               You would save {currencyFormatter.format(savings)}!
             </p>
           </div>
@@ -126,7 +126,7 @@ export default function FeesComparisonSection() {
 
         {/* CTA Button */}
         <div className="mt-12 text-center">
-          <button className="inline-flex items-center justify-center gap-2 px-8 py-4 font-bold text-pearl-white bg-imperial-gold-600 rounded-full shadow-lg hover:bg-imperial-gold-700 transition-all transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-imperial-gold-500/50">
+          <button className="inline-flex items-center justify-center gap-2 px-8 py-4 font-bold text-off-white bg-brand-blue rounded-full shadow-lg hover:bg-brand-blue/90 transition-all transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-brand-blue/50">
             <span>Start Moving Smarter</span>
             <ArrowRight className="w-5 h-5" />
           </button>

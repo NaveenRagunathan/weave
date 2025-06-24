@@ -1,259 +1,255 @@
-import React, { useState, useEffect, useRef, useMemo, Suspense } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from "@/components/ui/button";
+import { Globe as GlobeIcon, Zap, Users, MessageSquare, ChevronLeft, ChevronRight } from 'lucide-react';
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
-// Dynamically import the Globe component to avoid server-side rendering issues
 const Globe = React.lazy(() => import('react-globe.gl'));
 const GlobeComponent = Globe as any;
 
-// Data for the globe points and stories
 const locations = [
-  {
-    lat: 35.8617,
-    lng: 104.1954,
-    name: 'China',
-    story: 'Mr. Chen, an electronics exporter in Shenzhen, uses Weave to get paid instantly from his clients in Nigeria, turning weeks of waiting into minutes of work.',
-    type: 'Exporter'
-  },
-  {
-    lat: 9.0820,
-    lng: 8.6753,
-    name: 'Nigeria',
-    story: 'Amina, a Lagos-based entrepreneur, sources goods from Asia and uses Weave to pay her suppliers in real-time, keeping her supply chain moving without a hitch.',
-    type: 'Importer'
-  },
-  {
-    lat: -14.2350,
-    lng: -51.9253,
-    name: 'Brazil',
-    story: 'For a major infrastructure project in Brazil, developers use Weave to move six-figure sums for equipment purchases, bypassing slow, traditional banking systems.',
-    type: 'Developer'
-  },
-  {
-    lat: 37.7749,
-    lng: -122.4194,
-    name: 'USA',
-    story: 'Raj, a tech entrepreneur in Silicon Valley, sends capital back home to fund a new family business in India, bridging continents with a single click.',
-    type: 'Diaspora'
-  }
+    { lat: 35.8617, lng: 104.1954, name: 'China', type: 'Exporter', stories: ['An electronics exporter in Shenzhen gets paid instantly from clients in Nigeria.'] },
+    { lat: 9.0820, lng: 8.6753, name: 'Nigeria', type: 'Importer', stories: ['A Lagos-based entrepreneur pays Asian suppliers in real-time, keeping her supply chain moving.'] },
+    { lat: -14.2350, lng: -51.9253, name: 'Brazil', type: 'Developer', stories: ['Developers move six-figure sums for infrastructure projects, bypassing slow banks.'] },
+    { lat: 37.7749, lng: -122.4194, name: 'USA', type: 'Diaspora', stories: ['A tech entrepreneur in Silicon Valley funds a new family business in India with a click.', '"Weave helps our US-based charity send funds to our partners in Africa seamlessly." - NGO Founder'] },
+    { lat: 51.5074, lng: -0.1278, name: 'UK', type: 'Fintech', stories: ['A London-based fintech uses Weave APIs to offer cross-border payments to their customers.'] },
+    { lat: 20.5937, lng: 78.9629, name: 'India', type: 'Freelancer', stories: ['A freelance designer receives payments from US clients without high transaction fees.', '"Our startup in Bangalore now pays its remote team globally without any friction." - Tech CEO'] },
+    { lat: -33.8688, lng: 151.2093, name: 'Australia', type: 'Exporter', stories: ['An agricultural exporter in Sydney settles payments for shipments to Southeast Asia.'] },
+    { lat: 34.0522, lng: -118.2437, name: 'Los Angeles', type: 'Media', stories: ['A film production company pays its international crew instantly using Weave.'] },
+    { lat: 25.276987, lng: 55.296249, name: 'Dubai', type: 'Trader', stories: ['"It used to take 3 days and a broker. Now it takes 10 minutes and no phone calls." - Sarah'] },
+    { lat: 5.6037, lng: -0.1870, name: 'Ghana', type: 'Business Owner', stories: ['"We saved $23,000 in FX fees in Q1 alone." - Nana'] },
+    { lat: 22.5431, lng: 114.0579, name: 'Shenzhen', type: 'Exporter', stories: ['"USDC helps us close African deals without bank lag." - Li Ming'] }
 ];
 
-// Data for the arcs connecting the points
 const arcsData = [
-  { startLat: 35.8617, startLng: 104.1954, endLat: 9.0820, endLng: 8.6753, color: '#ffc107' }, // China -> Nigeria
-  { startLat: 9.0820, startLng: 8.6753, endLat: 35.8617, endLng: 104.1954, color: '#4caf50' }, // Nigeria -> China
-  { startLat: 35.8617, startLng: 104.1954, endLat: -14.2350, endLng: -51.9253, color: '#ff5722' }, // China -> Brazil
-  { startLat: 37.7749, startLng: -122.4194, endLat: 20.5937, endLng: 78.9629, color: '#2196f3' } // USA -> India
+    { startLat: 35.8617, startLng: 104.1954, endLat: 9.0820, endLng: 8.6753, color: '#ffc107' },
+    { startLat: 9.0820, startLng: 8.6753, endLat: 35.8617, endLng: 104.1954, color: '#4caf50' },
+    { startLat: 37.7749, startLng: -122.4194, endLat: 20.5937, endLng: 78.9629, color: '#2196f3' },
+    { startLat: 51.5074, startLng: -0.1278, endLat: 34.0522, endLng: -118.2437, color: '#f44336' },
+    { startLat: -33.8688, startLng: 151.2093, endLat: 35.8617, endLng: 104.1954, color: '#9c27b0' }
+];
+
+const stats = [
+    { name: 'Verified Businesses', stat: '24,000+', icon: Users },
+    { name: 'Corridors Live', stat: '12', icon: GlobeIcon },
+    { name: 'Uptime', stat: '99.9%', icon: Zap },
+    { name: 'Human Support', stat: 'Always On', icon: MessageSquare },
 ];
 
 const WhoThisIsForSection = () => {
-  const globeEl = useRef<any>();
-  const [hoveredPoint, setHoveredPoint] = useState<typeof locations[0] | null>(null);
-  const [clickedPoint, setClickedPoint] = useState<typeof locations[0] | null>(null);
-  const [isClient, setIsClient] = useState(false);
-  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const [avatarModel, setAvatarModel] = useState<THREE.Group | null>(null);
+    const globeEl = useRef<any>();
+    const [selectedLocation, setSelectedLocation] = useState<any | null>(null);
+    const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
+    const [isClient, setIsClient] = useState(false);
+    const [isInitialAnimationDone, setIsInitialAnimationDone] = useState(false);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
-  // Load the 3D avatar model
-  useEffect(() => {
-    if (!isClient) return;
-    const loader = new GLTFLoader();
-    loader.load(
-      'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/low-poly-character/model.gltf',
-      (gltf) => {
-        const model = gltf.scene;
-        setAvatarModel(model);
-      },
-      undefined,
-      (error) => {
-        console.error('An error happened while loading the avatar model:', error);
-      }
-    );
-  }, [isClient]);
+            useEffect(() => {
+        const globe = globeEl.current;
+        if (!isClient || !globe) return;
 
-  const activeLocation = useMemo(() => clickedPoint || hoveredPoint, [clickedPoint, hoveredPoint]);
+        const controls = globe.controls();
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.8;
+        controls.enableZoom = false;
+        controls.enableRotate = true;
+        
+        globe.pointOfView({ lat: 20, lng: 0, altitude: 2.5 }, 1000);
+        setTimeout(() => {
+            setIsInitialAnimationDone(true);
+        }, 1000); // Match animation duration
 
-  const pointThreeObject = useMemo(() => {
-    return (point: any) => {
-      const isHovered = activeLocation && activeLocation.name === point.name;
-      let object: THREE.Object3D;
+    }, [isClient]);
 
-      if (avatarModel) {
-        object = avatarModel.clone();
-        object.traverse((child) => {
-          if ((child as THREE.Mesh).isMesh) {
-            (child as THREE.Mesh).material = new THREE.MeshStandardMaterial({ 
-              color: isHovered ? '#ff5722' : '#d4af37',
-              roughness: 0.8,
-              metalness: 0.2,
-              emissive: isHovered ? '#ff5722' : '#000000',
-              emissiveIntensity: isHovered ? 0.5 : 0
-            });
-          }
-        });
-      } else {
-        // Fallback to a sphere if model is not loaded yet
-        const geometry = new THREE.SphereGeometry(0.5, 16, 16);
-        const material = new THREE.MeshBasicMaterial({ 
-          color: isHovered ? '#ff5722' : '#d4af37',
-          transparent: true,
-          opacity: isHovered ? 1 : 0.8
-        });
-        object = new THREE.Mesh(geometry, material);
-      }
-      
-      // Keep a consistent scale for all points
-      const scale = 0.02;
-      object.scale.setScalar(scale);
-      object.rotation.y = Math.random() * 2 * Math.PI; // Randomize rotation
+    useEffect(() => {
+        if (!isInitialAnimationDone) return;
 
-      return object;
+        const globe = globeEl.current;
+        if (globe && globe.controls) {
+            globe.controls().autoRotate = !selectedLocation;
+        }
+    }, [selectedLocation, isInitialAnimationDone]);
+
+        const handlePointClick = (point: any) => {
+        const globe = globeEl.current;
+        if (!globe) return;
+
+        setSelectedLocation(point);
+        setCurrentStoryIndex(0);
+        globe.pointOfView({ lat: point.lat, lng: point.lng, altitude: 1.2 }, 500);
     };
-  }, [activeLocation, avatarModel]);
 
-  useEffect(() => {
-    const globe = globeEl.current;
-    if (!isClient || !globe) return;
+    const handleGlobeClick = () => {
+        const globe = globeEl.current;
+        if (!globe) return;
 
-    if (!globe.isSetup) {
-      const controls = globe.controls();
-      controls.autoRotateSpeed = 0.3;
-      controls.enableZoom = false;
-      controls.enableRotate = false; // Disable rotation
-      controls.enablePan = false; // Disable panning
-      
-      // Set initial view
-      globe.pointOfView({ lat: 20, lng: 0, altitude: 2.5 }, 1000);
-      
-      // Disable hover effects
-      globe.enablePointerInteraction(false);
-      
-      globe.isSetup = true;
-    }
-  }, [isClient]);
+        setSelectedLocation(null);
+        globe.pointOfView({ lat: 20, lng: 0, altitude: 2.5 }, 500);
+    };
 
-  const handlePointClick = (point: typeof locations[0]) => {
-    if (clickedPoint && clickedPoint.name === point.name) {
-      setClickedPoint(null);
-    } else {
-      setClickedPoint(point);
-      setHoveredPoint(null);
-    }
-  };
+    const handlePointHover = (point: any) => {
+        const globe = globeEl.current;
+        if (globe && globe.controls()) {
+            globe.controls().domElement.style.cursor = point ? 'pointer' : 'grab';
+        }
+    };
 
-  const handlePointHover = (point: typeof locations[0] | null) => {
-    if (hoverTimeoutRef.current) {
-      clearTimeout(hoverTimeoutRef.current);
-      hoverTimeoutRef.current = null;
-    }
-    if (!clickedPoint) {
-      if (point) {
-        setHoveredPoint(point);
-      } else {
-        hoverTimeoutRef.current = setTimeout(() => {
-          setHoveredPoint(null);
-        }, 300);
-      }
-    }
-  };
+    const pointThreeObject = () => {
+        const group = new THREE.Group();
 
-  const handleGlobeClick = () => {
-    setClickedPoint(null);
-    setHoveredPoint(null);
-  };
+        // Simple avatar head
+        const headMaterial = new THREE.MeshBasicMaterial({ color: '#93c5fd' }); // Light blue for contrast
+        const headGeometry = new THREE.SphereGeometry(0.35, 16, 16);
+        const head = new THREE.Mesh(headGeometry, headMaterial);
+        head.position.y = 0.5;
 
-  return (
-    <section className="relative w-full bg-black text-white py-20 md:py-32 overflow-hidden">
-      <div className="container mx-auto px-4 flex flex-col items-center text-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight font-serif mb-4">
-            WEAVE IS FOR DOERS WHO TRADE GLOBALLY
-          </h2>
-          <p className="max-w-3xl mx-auto text-lg text-gray-300 mb-12">
-            We built Weave for the pioneers of international trade. We built WEAVE for the
-            ones who move capital and make the world go round.{' '}
-            <span className="text-imperial-gold-400 font-semibold animate-pulse">
-              Hover or click the globe to see their stories.
-            </span>
-          </p>
-        </motion.div>
+        // Simple avatar body
+        const bodyMaterial = new THREE.MeshBasicMaterial({ color: '#2563eb' }); // A nice blue
+        const bodyGeometry = new THREE.CylinderGeometry(0.3, 0.2, 0.8, 16); // Tapered body
+        const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+        body.position.y = -0.2;
 
-        <div className="relative w-full h-[500px] md:h-[600px] flex items-center justify-center cursor-move">
-          {isClient && (
-            <Suspense fallback={<div className="text-white text-lg">Loading Globe...</div>}>
-                                          <GlobeComponent
-                ref={globeEl}
-                backgroundColor="rgba(0,0,0,0)"
-                globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
-                bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
-                pointsData={locations}
-                pointLat="lat"
-                pointLng="lng"
-                pointLabel="name"
-                pointThreeObject={pointThreeObject}
-                onPointHover={handlePointHover}
-                onPointClick={handlePointClick}
-                onGlobeClick={handleGlobeClick}
-                arcsData={arcsData}
-                arcColor="color"
-                arcDashLength={0.4}
-                arcDashGap={0.6}
-                arcDashAnimateTime={2000}
-                arcStroke={0.3}
-                width={800}
-                height={600}
-                waitForGlobeReady={true}
-                animateIn={false}
-                enablePointerInteraction={true}
-                showAtmosphere={false}
-                showGlobe={true}
-                showGraticules={false}
-              />
-            </Suspense>
-          )}
-          <AnimatePresence>
-            {activeLocation && (
-              <motion.div
-                key={activeLocation.name}
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
-                className="absolute bottom-0 mb-8 md:mb-16 p-6 max-w-sm w-full bg-gray-900/80 backdrop-blur-md border border-imperial-gold-500/30 rounded-2xl shadow-2xl text-left pointer-events-none"
-              >
-                <h3 className="text-xl font-bold font-serif text-imperial-gold-400">{activeLocation.type}</h3>
-                <p className="mt-2 text-gray-200">{activeLocation.story}</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        group.add(head);
+        group.add(body);
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-          className="mt-12"
-        >
-          <Button
-            size="lg"
-            className="border-2 border-silk-crimson-400 text-silk-crimson-400 bg-transparent hover:bg-silk-crimson-400 hover:text-white font-bold px-10 py-5 rounded-full shadow-md transition-all"
-          >
-            Join the new world of finance
-          </Button>
-        </motion.div>
-      </div>
-    </section>
-  );
+        // Increased scale for better visibility
+        group.scale.set(4, 4, 4);
+
+        return group;
+    };
+
+    return (
+        <section className="relative w-full bg-black text-white py-20 md:py-32 overflow-hidden">
+            <div className="container mx-auto px-4 flex flex-col items-center text-center relative z-10">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                >
+                    <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight font-serif mb-4">
+                        The Network Gets Smarter With You
+                    </h2>
+                    <p className="max-w-3xl mx-auto text-lg text-gray-300 mb-12">
+                        We built Weave for the pioneers of international trade. Every user strengthens the grid.
+                        <span className="text-brand-blue font-semibold block mt-2 animate-pulse">
+                            Hover the globe to see their stories.
+                        </span>
+                    </p>
+                </motion.div>
+
+                <div className="relative w-full h-[500px] md:h-[600px] flex items-center justify-center cursor-grab">
+                    {isClient && (
+                        <Suspense fallback={<div className="text-white text-lg">Loading Globe...</div>}> 
+                            <GlobeComponent
+                                ref={globeEl}
+                                backgroundColor="rgba(0,0,0,0)"
+                                globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
+                                bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
+                                pointsData={locations}
+                                pointLat="lat"
+                                pointLng="lng"
+                                pointLabel="name"
+                                pointThreeObject={pointThreeObject}
+                                onPointHover={handlePointHover}
+                                onPointClick={handlePointClick}
+                                onGlobeClick={handleGlobeClick}
+                                arcsData={arcsData}
+                                arcColor={'color'}
+                                arcDashLength={0.6}
+                                arcDashGap={0.4}
+                                arcDashAnimateTime={2000}
+                                arcStroke={0.3}
+                                width={800}
+                                height={600}
+                            />
+                        </Suspense>
+                    )}
+                    <AnimatePresence>
+                        {selectedLocation && (
+                            <motion.div
+                                key={selectedLocation.name}
+                                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                                transition={{ duration: 0.2, ease: 'easeOut' }}
+                                className="absolute bottom-0 mb-8 md:mb-16 p-6 max-w-sm w-full bg-gray-900/80 backdrop-blur-md border border-brand-blue/30 rounded-2xl shadow-2xl text-left"
+                            >
+                                <h3 className="text-xl font-bold font-serif text-brand-blue">{selectedLocation.type} in {selectedLocation.name}</h3>
+                                <p className="mt-2 text-gray-200 min-h-[60px]">{selectedLocation.stories[currentStoryIndex]}</p>
+                                {selectedLocation.stories.length > 1 && (
+                                    <div className="mt-4 flex justify-between items-center">
+                                        <Button
+                                            variant="ghost" size="icon"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setCurrentStoryIndex(prev => (prev - 1 + selectedLocation.stories.length) % selectedLocation.stories.length);
+                                            }}
+                                        >
+                                            <ChevronLeft className="h-4 w-4" />
+                                        </Button>
+                                        <span className="text-sm text-gray-400">
+                                            {currentStoryIndex + 1} / {selectedLocation.stories.length}
+                                        </span>
+                                        <Button
+                                            variant="ghost" size="icon"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setCurrentStoryIndex(prev => (prev + 1) % selectedLocation.stories.length);
+                                            }}
+                                        >
+                                            <ChevronRight className="h-4 w-4" />
+                                        </Button>
+                                    </div>
+                                )}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                    className="w-full max-w-5xl mx-auto mt-16"
+                >
+                    <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {stats.map((stat) => (
+                            <div
+                                key={stat.name}
+                                className="flex flex-col items-center justify-center p-6 bg-gray-900/50 border border-brand-blue/20 rounded-2xl"
+                            >
+                                <dt className="text-base font-semibold leading-6 text-gray-300 flex items-center gap-2 mb-2">
+                                    <stat.icon className="h-6 w-6 text-brand-blue" aria-hidden="true" />
+                                    {stat.name}
+                                </dt>
+                                <dd className="mt-1 text-3xl font-extrabold tracking-tight text-white">
+                                    {stat.stat}
+                                </dd>
+                            </div>
+                        ))}
+                    </dl>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+                    className="mt-16"
+                >
+                    <Button
+                        size="lg"
+                        className="border-2 border-brand-blue text-brand-blue bg-transparent hover:bg-brand-blue hover:text-white font-bold px-10 py-5 rounded-full shadow-md transition-all"
+                    >
+                        Join the Network
+                    </Button>
+                </motion.div>
+            </div>
+        </section>
+    );
 };
 
 export default WhoThisIsForSection;

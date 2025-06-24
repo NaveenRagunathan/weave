@@ -41,11 +41,11 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
       case 'bridge':
         return 'bg-gradient-to-b from-transparent via-jade-flow-500/5 to-transparent';
       case 'portal':
-        return 'bg-gradient-to-b from-transparent via-imperial-gold-500/5 to-transparent';
+        return 'bg-gradient-to-b from-transparent via-brand-blue/5 to-transparent';
       case 'reveal':
-        return 'bg-gradient-to-b from-transparent via-silk-crimson-500/5 to-transparent';
+        return 'bg-gradient-to-b from-transparent via-brand-blue-500/5 to-transparent';
       case 'transform':
-        return 'bg-gradient-to-b from-silk-crimson-500/5 via-jade-flow-500/5 to-transparent';
+        return 'bg-gradient-to-b from-brand-blue-500/5 via-cool-gray-500/5 to-transparent';
       default:
         return 'bg-transparent';
     }

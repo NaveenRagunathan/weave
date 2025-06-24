@@ -4,13 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply font-sans bg-ink-black text-pearl-white;
-  }
-}
-@tailwind components;
-@tailwind utilities;
+
 
 /* WEAVE Brand Design System */
 
@@ -101,7 +95,7 @@
 @layer components {
   /* WEAVE Brand Components */
   .weave-gradient-text {
-    @apply bg-gradient-to-r from-silk-crimson-500 via-imperial-gold-500 to-silk-crimson-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-brand-blue-500 via-brand-blue-300 to-brand-blue-400 bg-clip-text text-transparent;
   }
   
   .weave-shimmer-button {
@@ -139,15 +133,15 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-ink-black/5;
+  @apply bg-cool-gray-100;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gradient-to-b from-silk-crimson-500/40 to-imperial-gold-500/40 rounded-full;
+  @apply bg-gradient-to-b from-brand-blue-500/40 to-cool-gray-400/40 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-gradient-to-b from-silk-crimson-500/60 to-imperial-gold-500/60;
+  @apply bg-gradient-to-b from-brand-blue-500/60 to-cool-gray-400/60;
 }
 
 /* Custom Animations */

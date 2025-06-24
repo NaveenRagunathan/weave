@@ -121,7 +121,7 @@ const GlobalBusinessMap: React.FC = () => {
   return (
     <div 
       ref={containerRef}
-      className="relative w-full h-[600px] bg-gradient-to-br from-ink-black via-imperial-gold-500/5 to-silk-crimson-400/5 rounded-2xl overflow-hidden"
+      className="relative w-full h-[600px] bg-gradient-to-br from-ink-black via-brand-blue-500/5 to-brand-blue-400/5 rounded-2xl overflow-hidden"
     >
       {/* World Map Background */}
       <div className="absolute inset-0 opacity-10 pointer-events-none select-none">
@@ -137,7 +137,7 @@ const GlobalBusinessMap: React.FC = () => {
 
       {/* Ticker */}
       <div className="absolute top-0 left-0 w-full overflow-hidden h-10 z-20 pointer-events-none">
-        <div className="whitespace-nowrap animate-premium-scroll text-lg font-semibold text-imperial-gold-400/90 tracking-wide" style={{animationDuration: '28s'}}>
+        <div className="whitespace-nowrap animate-premium-scroll text-lg font-semibold text-brand-blue/90 tracking-wide" style={{animationDuration: '28s'}}>
           {tickerText.repeat(8)}
         </div>
       </div>
@@ -201,7 +201,7 @@ const GlobalBusinessMap: React.FC = () => {
                   onClick={() => setOpenDistrict(district)}
                 >
                   <motion.div
-                    className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-xl border-2 border-imperial-gold-400/40 backdrop-blur-md"
+                    className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-xl border-2 border-brand-blue/40 backdrop-blur-md"
                     style={{
                       background: `linear-gradient(135deg, ${district.color} 0%, #18181c 100%)`,
                       boxShadow: hoveredDistrict === district.id ? `0 0 32px 8px ${district.color}55` : `0 0 16px 2px ${district.color}33`,
@@ -221,23 +221,23 @@ const GlobalBusinessMap: React.FC = () => {
                       y: hoveredDistrict === district.id ? 0 : 10
                     }}
                     transition={{ duration: 0.25 }}
-                    className="absolute left-1/2 -translate-x-1/2 mt-6 w-72 p-5 rounded-2xl bg-ink-black/70 border border-imperial-gold-400/30 shadow-2xl backdrop-blur-lg pointer-events-none z-30"
+                    className="absolute left-1/2 -translate-x-1/2 mt-6 w-72 p-5 rounded-2xl bg-ink-black/70 border border-brand-blue/30 shadow-2xl backdrop-blur-lg pointer-events-none z-30"
                     style={{
                       boxShadow: `0 8px 32px 0 ${district.color}33`,
                       borderColor: district.color
                     }}
                   >
-                    <h3 className="text-lg font-bold text-imperial-gold-400 mb-1">{district.title}</h3>
-                    <p className="text-pearl-white/90 text-sm">{district.description}</p>
+                    <h3 className="text-lg font-bold text-brand-blue mb-1">{district.title}</h3>
+                    <p className="text-off-white/90 text-sm">{district.description}</p>
                   </motion.div>
                 </div>
               </DialogTrigger>
               {/* Modal for District Details */}
-              <DialogContent className="backdrop-blur-lg bg-ink-black/80 border border-imperial-gold-400/30 rounded-2xl shadow-2xl p-8 flex flex-col items-center animate-fade-in max-w-md">
+              <DialogContent className="backdrop-blur-lg bg-ink-black/80 border border-brand-blue/30 rounded-2xl shadow-2xl p-8 flex flex-col items-center animate-fade-in max-w-md">
                 <div className="mb-4">{district.svg}</div>
-                <h3 className="text-2xl font-bold text-imperial-gold-400 mb-2">{district.title}</h3>
-                <p className="text-pearl-white/90 text-center mb-4">{district.description}</p>
-                <div className="mt-2 text-imperial-gold-400 font-mono text-lg">[Premium vignette, stat, or animation here]</div>
+                <h3 className="text-2xl font-bold text-brand-blue mb-2">{district.title}</h3>
+                <p className="text-off-white/90 text-center mb-4">{district.description}</p>
+                <div className="mt-2 text-brand-blue font-mono text-lg">[Premium vignette, stat, or animation here]</div>
               </DialogContent>
             </Dialog>
           </motion.div>
@@ -249,7 +249,7 @@ const GlobalBusinessMap: React.FC = () => {
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl font-black bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-500 bg-clip-text text-transparent drop-shadow-[0_2px_14px_rgba(220,20,60,0.09)]"
+          className="text-4xl font-black bg-gradient-to-r from-brand-blue-400 to-brand-blue-300 bg-clip-text text-transparent drop-shadow-[0_2px_14px_rgba(59,130,246,0.09)]"
         >
           Who This Is For
         </motion.h2>

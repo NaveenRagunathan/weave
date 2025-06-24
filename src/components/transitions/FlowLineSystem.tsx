@@ -41,8 +41,8 @@ const FlowLineSystem: React.FC<FlowLineSystemProps> = ({
   const getColorVariant = () => {
     switch (color) {
       case 'jade': return 'bg-jade-flow-400/20';
-      case 'gold': return 'bg-imperial-gold-500/20';
-      case 'crimson': return 'bg-silk-crimson-400/20';
+      case 'gold': return 'bg-brand-blue/20';
+      case 'crimson': return 'bg-brand-blue-400/20';
       default: return 'bg-jade-flow-400/20';
     }
   };

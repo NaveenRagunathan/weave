@@ -45,7 +45,7 @@ const PremiumButton: React.FC<PremiumButtonProps> = ({
     "relative overflow-hidden font-semibold tracking-wider transition-all duration-300 rounded-full border-2 flex items-center justify-center gap-3",
     size === 'lg' ? 'px-8 py-4 text-lg' : 'px-6 py-3 text-base',
     variant === 'primary' 
-      ? 'bg-gradient-to-r from-silk-crimson-400 to-imperial-gold-600 hover:from-silk-crimson-500 hover:to-imperial-gold-400 text-pearl-white border-imperial-gold-400/15' 
+      ? 'bg-gradient-to-r from-brand-blue-400 to-cool-gray-600 hover:from-brand-blue-500 hover:to-cool-gray-400 text-off-white border-cool-gray-400/15' 
       : 'bg-white/10 hover:bg-white/20 text-white border-white/20 backdrop-blur-md',
     className
   );

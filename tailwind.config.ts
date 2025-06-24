@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -23,47 +24,35 @@ export default {
         sans: ['Inter', 'sans-serif'],
       },
       colors: {
-        // --- Updated Five Elements Brand Colors ---
-        'ink-black': '#1C1C1C', // Modern deep neutral for panels
-        'silk-crimson': {
-          50: '#fef2f4',
-          100: '#fddee2',
-          200: '#fbbbc7',
-          300: '#f48798',
-          400: '#dc143c',        // Brand Deep Red (primary)
-          500: '#c0112e',
-          600: '#900a22',
-          700: '#750717',
-          800: '#47040d',
-          900: '#220103',
-          DEFAULT: '#dc143c',    // fallback to primary brand red
+        // --- New Blue/White Brand Colors ---
+        'ink-black': '#1C1C1C',
+        'off-white': '#f7faff',
+        'brand-blue': {
+          DEFAULT: "#002DFF",
+          "50": "#e5e9ff",
+          "100": "#b8c3ff",
+          "200": "#8a9eff",
+          "300": "#5c78ff",
+          "400": "#2e52ff",
+          "500": "#002dff",
+          "600": "#0027d6",
+          "700": "#0021ad",
+          "800": "#001b85",
+          "900": "#00155c",
+          "950": "#000e33"
         },
-        'pearl-white': '#F8F8FF',   // Near-white/cream for contrast headline text
-        'imperial-gold': {
-          50: '#faf6e6',
-          100: '#f3e8c2',
-          200: '#f5df9f',
-          300: '#f5d973',
-          400: '#f7d54f',
-          500: '#d4af37',        // Brand Gold
-          600: '#b4952b',
-          700: '#86691f',
-          800: '#504218',
-          900: '#1f1608',
-          DEFAULT: '#d4af37'
-        },
-        'jade-flow': {
-          50: '#e6fcf2',
-          100: '#b5f4db',
-          200: '#7ce8c0',
-          300: '#4adea1',
-          400: '#1ccd7d',
-          500: '#00a86b',       // Jade for subtle success/CTA
-          600: '#008352',
-          700: '#00663f',
-          800: '#003b22',
-          900: '#002416',
-          DEFAULT: '#00a86b'
+        'cool-gray': {
+          50: '#f9fafb',
+          100: '#f3f4f6',
+          200: '#e5e7eb',
+          300: '#d1d5db',
+          400: '#9ca3af',
+          500: '#6b7280',
+          600: '#4b5563',
+          700: '#374151',
+          800: '#1f2937',
+          900: '#111827',
+          DEFAULT: '#6b7280'
         },
         // --- Rest of palette (keep the same) ---
         border: 'hsl(var(--border))',
@@ -115,25 +104,20 @@ export default {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-flow': 'linear-gradient(135deg, var(--tw-gradient-stops))',
         'shimmer-gradient': 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)',
-        // Deep red background with subtle gold shimmer for panels
-        'red-glow-panel': 'linear-gradient(120deg, #1C1C1C 0%, #dc143c 80%, #d4af37 100%)',
-        'deep-crimson-brown': 'linear-gradient(135deg, #1C1C1C 70%, #dc143c 100%)'
+        // New blue gradients
+        'blue-glow-panel': 'linear-gradient(120deg, #111827 0%, #0021ad 80%, #5c78ff 100%)',
+        'deep-blue-panel': 'linear-gradient(135deg, #1f2937 70%, #001b85 100%)'
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
       },
-      fontFamily: {
-        serif: ['Harnet Serif', 'serif'],
-        sans: ['Inter', 'sans-serif'],
-      },
       boxShadow: {
         // Premium shadow definitions
         'premium-lg': '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)',
         'premium-xl': '0 35px 60px -12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1)',
-        'glow-crimson': '0 0 20px rgba(220, 20, 60, 0.3), 0 8px 32px rgba(220, 20, 60, 0.15)',
-        'glow-gold': '0 0 20px rgba(212, 175, 55, 0.4), 0 8px 32px rgba(212, 175, 55, 0.2)',
+        'glow-blue': '0 0 20px rgba(59, 130, 246, 0.4), 0 8px 32px rgba(59, 130, 246, 0.2)',
         'glass': 'inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 4px 32px rgba(0, 0, 0, 0.1)',
         'depth-3d': '0 4px 8px rgba(0, 0, 0, 0.12), 0 8px 20px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
       },
@@ -320,11 +304,11 @@ export default {
         'cta-glow': {
           '0%, 100%': {
             transform: 'scale(1)',
-            boxShadow: '0 8px 15px rgba(220, 20, 60, 0.2), 0 0 5px rgba(212, 175, 55, 0.3)',
+            boxShadow: '0 8px 15px rgba(59, 130, 246, 0.2), 0 0 5px rgba(147, 197, 253, 0.3)',
           },
           '50%': {
             transform: 'scale(1.02)',
-            boxShadow: '0 12px 25px rgba(220, 20, 60, 0.3), 0 0 15px rgba(212, 175, 55, 0.5)',
+            boxShadow: '0 12px 25px rgba(59, 130, 246, 0.3), 0 0 15px rgba(147, 197, 253, 0.5)',
           },
         },
         'premium-scroll': {
@@ -397,5 +381,5 @@ export default {
       }
     }
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;
