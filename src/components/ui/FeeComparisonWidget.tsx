@@ -12,11 +12,11 @@ const allProviders = ["WEAVE", "Stripe", "Wise", "Yeepay", "XTransfer"] as const
 type Provider = typeof allProviders[number];
 
 const tiers: Record<Provider, { high: number; low: number }> = {
-    WEAVE: { high: 0.5, low: 0.3 },
-    Stripe: { high: 2.0, low: 1.5 },
-    Wise: { high: 1.5, low: 1.2 },
-    Yeepay: { high: 1.8, low: 1.5 },
-    XTransfer: { high: 1.2, low: 1.0 },
+  WEAVE: { high: 0.5, low: 0.3 },
+  Stripe: { high: 2.0, low: 1.5 },
+  Wise: { high: 1.5, low: 1.2 },
+  Yeepay: { high: 1.8, low: 1.5 },
+  XTransfer: { high: 1.2, low: 1.0 },
 };
 
 interface FeeComparisonWidgetProps {
@@ -29,7 +29,7 @@ const domains: Record<Provider, string> = {
   WEAVE: 'weavetransfer.com', // Placeholder domain for Weave
   Stripe: 'stripe.com',
   Wise: 'wise.com',
-  Yeepay: 'yeepay.com',
+  Yeepay: 'global.yeepay.com',
   XTransfer: 'xtransfer.com',
 };
 
@@ -86,7 +86,29 @@ export default function FeeComparisonWidget({ sendAmount }: FeeComparisonWidgetP
             onClick={() => setSelectedCompetitor(c)}
             className={`p-2 rounded-lg border-2 transition-all duration-200 ${selectedCompetitor === c ? 'border-blue-500 shadow-lg' : 'border-transparent hover:border-gray-300'}`}
           >
-            <img src={`https://www.google.com/s2/favicons?sz=128&domain=${domains[c]}`} alt={`${c} logo`} className="h-6 w-auto" />
+            {c === 'Wise' ? (
+              <img
+                src={`https://www.google.com/s2/favicons?sz=128&domain=${domains[c]}`}
+                alt={`${c} logo`}
+                className="h-6 w-auto bg-white rounded shadow"
+                onError={e => {
+                  const target = e.currentTarget as HTMLImageElement;
+                  target.onerror = null;
+                  target.src = `https://logo.clearbit.com/${domains[c]}`;
+                }}
+              />
+            ) : (
+              <img
+                src={`https://logo.clearbit.com/${domains[c]}`}
+                alt={`${c} logo`}
+                className="h-6 w-auto bg-white rounded shadow"
+                onError={e => {
+                  const target = e.currentTarget as HTMLImageElement;
+                  target.onerror = null;
+                  target.src = `https://www.google.com/s2/favicons?sz=128&domain=${domains[c]}`;
+                }}
+              />
+            )}
           </button>
         ))}
       </div>
