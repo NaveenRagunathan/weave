@@ -72,8 +72,8 @@ export default function FeeComparisonWidget({ sendAmount }: FeeComparisonWidgetP
         <h4 className="text-xl font-serif font-bold text-gray-900 tracking-tight">Fee Comparison</h4>
         <div className="relative group">
           <Info className="w-4 h-4 text-gray-400 cursor-pointer" />
-          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            Data updated June 2025
+          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 min-w-[120px] max-w-xs px-2 py-1 bg-gray-800 text-white text-[10px] sm:text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 break-words text-center whitespace-pre-line">
+            {`Data updated ${new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' })}`}
           </div>
         </div>
       </div>
