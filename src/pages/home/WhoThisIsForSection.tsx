@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Suspense } from 'react';
+import React, { useState, useEffect, useRef, Suspense, useCallback } from 'react';
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from "@/components/ui/button";
@@ -9,17 +9,17 @@ const Globe = React.lazy(() => import('react-globe.gl'));
 const GlobeComponent = Globe as any;
 
 const locations = [
-    { lat: 35.8617, lng: 104.1954, name: 'China', type: 'Exporter', stories: ['An electronics exporter in Shenzhen gets paid instantly from clients in Nigeria.'] },
-    { lat: 9.0820, lng: 8.6753, name: 'Nigeria', type: 'Importer', stories: ['A Lagos-based entrepreneur pays Asian suppliers in real-time, keeping her supply chain moving.'] },
-    { lat: -14.2350, lng: -51.9253, name: 'Brazil', type: 'Developer', stories: ['Developers move six-figure sums for infrastructure projects, bypassing slow banks.'] },
-    { lat: 37.7749, lng: -122.4194, name: 'USA', type: 'Diaspora', stories: ['A tech entrepreneur in Silicon Valley funds a new family business in India with a click.', '"Weave helps our US-based charity send funds to our partners in Africa seamlessly." - NGO Founder'] },
-    { lat: 51.5074, lng: -0.1278, name: 'UK', type: 'Fintech', stories: ['A London-based fintech uses Weave APIs to offer cross-border payments to their customers.'] },
-    { lat: 20.5937, lng: 78.9629, name: 'India', type: 'Freelancer', stories: ['A freelance designer receives payments from US clients without high transaction fees.', '"Our startup in Bangalore now pays its remote team globally without any friction." - Tech CEO'] },
-    { lat: -33.8688, lng: 151.2093, name: 'Australia', type: 'Exporter', stories: ['An agricultural exporter in Sydney settles payments for shipments to Southeast Asia.'] },
-    { lat: 34.0522, lng: -118.2437, name: 'Los Angeles', type: 'Media', stories: ['A film production company pays its international crew instantly using Weave.'] },
-    { lat: 25.276987, lng: 55.296249, name: 'Dubai', type: 'Trader', stories: ['"It used to take 3 days and a broker. Now it takes 10 minutes and no phone calls." - Sarah'] },
-    { lat: 5.6037, lng: -0.1870, name: 'Ghana', type: 'Business Owner', stories: ['"We saved $23,000 in FX fees in Q1 alone." - Nana'] },
-    { lat: 22.5431, lng: 114.0579, name: 'Shenzhen', type: 'Exporter', stories: ['"USDC helps us close African deals without bank lag." - Li Ming'] }
+    { lat: 35.8617, lng: 104.1954, name: 'China', type: 'Exporter', stories: ['An electronics exporter in Shenzhen gets paid instantly from clients in Nigeria.'], avatar: 'https://api.dicebear.com/9.x/lorelei/svg?seed=China' },
+    { lat: 9.0820, lng: 8.6753, name: 'Nigeria', type: 'Importer', stories: ['A Lagos-based entrepreneur pays Asian suppliers in real-time.'], avatar: 'https://api.dicebear.com/9.x/adventurer/svg?seed=Nigeria' },
+    { lat: -14.2350, lng: -51.9253, name: 'Brazil', type: 'Developer', stories: ['Developers move six-figure sums for infrastructure projects, bypassing slow banks.'], avatar: 'https://api.dicebear.com/9.x/fun-emoji/svg?seed=Brazil' },
+    { lat: 37.7749, lng: -122.4194, name: 'USA', type: 'Diaspora', stories: ['A tech entrepreneur in Silicon Valley funds a new family business in India with a click.'], avatar: 'https://api.dicebear.com/9.x/big-ears/svg?seed=USA' },
+    { lat: 51.5074, lng: -0.1278, name: 'UK', type: 'Fintech', stories: ['A London-based fintech uses Weave APIs to offer cross-border payments.'], avatar: 'https://api.dicebear.com/9.x/miniavs/svg?seed=UK' },
+    { lat: 20.5937, lng: 78.9629, name: 'India', type: 'Freelancer', stories: ['A freelance designer receives payments from US clients without high transaction fees.'], avatar: 'https://api.dicebear.com/9.x/bottts/svg?seed=India' },
+    { lat: -33.8688, lng: 151.2093, name: 'Australia', type: 'Exporter', stories: ['An agricultural exporter in Sydney settles payments for shipments to Southeast Asia.'], avatar: 'https://api.dicebear.com/9.x/croodles/svg?seed=Australia' },
+    { lat: 34.0522, lng: -118.2437, name: 'Los Angeles', type: 'Media', stories: ['A film production company pays its international crew instantly using Weave.'], avatar: 'https://api.dicebear.com/9.x/pixel-art/svg?seed=LosAngeles' },
+    { lat: 25.276987, lng: 55.296249, name: 'Dubai', type: 'Trader', stories: ['"It used to take 3 days and a broker. Now it takes 10 minutes." - Sarah'], avatar: 'https://api.dicebear.com/9.x/micah/svg?seed=Dubai' },
+    { lat: 5.6037, lng: -0.1870, name: 'Ghana', type: 'Business Owner', stories: ['"We saved $23,000 in FX fees in Q1 alone." - Nana'], avatar: 'https://api.dicebear.com/9.x/notionists/svg?seed=Ghana' },
+    { lat: 22.5431, lng: 114.0579, name: 'Shenzhen', type: 'Exporter', stories: ['"USDC helps us close African deals without bank lag." - Li Ming'], avatar: 'https://api.dicebear.com/9.x/open-peeps/svg?seed=Shenzhen' }
 ];
 
 const arcsData = [
@@ -38,7 +38,7 @@ const WhoThisIsForSection = () => {
     const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
     const [isClient, setIsClient] = useState(false);
     const [isInitialAnimationDone, setIsInitialAnimationDone] = useState(false);
-
+    // No need for avatarTextures or manual loading
     useEffect(() => {
         setIsClient(true);
     }, []);
@@ -93,29 +93,7 @@ const WhoThisIsForSection = () => {
         }
     };
 
-    const pointThreeObject = () => {
-        const group = new THREE.Group();
-
-        // Simple avatar head
-        const headMaterial = new THREE.MeshBasicMaterial({ color: '#93c5fd' }); // Light blue for contrast
-        const headGeometry = new THREE.SphereGeometry(0.35, 16, 16);
-        const head = new THREE.Mesh(headGeometry, headMaterial);
-        head.position.y = 0.5;
-
-        // Simple avatar body
-        const bodyMaterial = new THREE.MeshBasicMaterial({ color: '#2563eb' }); // A nice blue
-        const bodyGeometry = new THREE.CylinderGeometry(0.3, 0.2, 0.8, 16); // Tapered body
-        const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
-        body.position.y = -0.2;
-
-        group.add(head);
-        group.add(body);
-
-        // Increased scale for better visibility
-        group.scale.set(4, 4, 4);
-
-        return group;
-    };
+    
 
     return (
         <section className="relative w-full bg-black text-white py-20 md:py-32 overflow-hidden">
@@ -148,7 +126,10 @@ const WhoThisIsForSection = () => {
                                 pointLat="lat"
                                 pointLng="lng"
                                 pointLabel="name"
-                                pointThreeObject={pointThreeObject}
+                                pointImageUrl={point => point.avatar}
+                                pointRadius={1.5} // Adjust avatar size
+                                pointAltitude={0.03} // Slightly above the globe
+                                // Remove pointThreeObject
                                 onPointHover={handlePointHover}
                                 onPointClick={handlePointClick}
                                 onGlobeClick={handleGlobeClick}
