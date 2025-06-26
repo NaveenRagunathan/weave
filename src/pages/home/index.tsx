@@ -9,8 +9,6 @@ import HeroSection from "./HeroSection";
 
 import PartnerEliteScroll from "./PartnerEliteScroll";
 
-import HowItWorksSection from "./HowItWorksSection";
-import SocialProofSection from './SocialProofSection';
 import WhoThisIsForSection from "./WhoThisIsForSection";
 import USDCSection from "./USDCSection";
 

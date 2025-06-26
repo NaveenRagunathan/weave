@@ -199,7 +199,7 @@ const HeroSection = () => {
   return (
     <section className="relative w-full h-screen overflow-hidden">
       <div className="absolute top-2.5 w-full z-50 flex justify-center">
-        <LiveCounter />
+        <LiveCounter value={liveCounter} currency={currency} userLocale={userLocale} />
       </div>
       {/* Video Background */}
       {isVisible && (
