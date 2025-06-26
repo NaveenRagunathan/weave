@@ -20,7 +20,7 @@ const LiveCounter: React.FC<LiveCounterProps> = ({ value, currency, userLocale }
 
   return (
     <motion.div
-      className="top-20 mt-[45px]"
+      className="top-20 mt-4 sm:mt-[45px]"
       initial={{ opacity: 0, y: -30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
@@ -30,9 +30,9 @@ const LiveCounter: React.FC<LiveCounterProps> = ({ value, currency, userLocale }
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
         </span>
-        <div className="text-white font-medium text-lg tracking-wide flex items-baseline gap-2">
+        <div className="text-white font-medium text-base sm:text-lg tracking-wide flex items-baseline gap-1 sm:gap-2">
           <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-cyan-300">Live:</span>
-          <motion.span className="font-mono text-xl font-bold">{formatted}</motion.span>
+          <motion.span className="font-mono text-lg sm:text-xl font-bold">{formatted}</motion.span>
           <span className="text-white/70 text-base">sent and counting...</span>
         </div>
       </div>

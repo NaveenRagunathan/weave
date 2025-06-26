@@ -197,7 +197,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-full min-h-screen pt-28 pb-10 overflow-hidden">
       <div className="absolute top-2.5 w-full z-50 flex justify-center">
         <LiveCounter value={liveCounter} currency={currency} userLocale={userLocale} />
       </div>
@@ -231,15 +231,15 @@ const HeroSection = () => {
       <div className="relative z-10 w-full h-full flex items-center justify-center">
         <div className="container mx-auto px-4">
           {/* Removed card container, content floats over video */}
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-x-24 gap-y-12 w-full">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-y-8 lg:gap-y-0 lg:gap-x-16 w-full">
             {/* Left Column: Text Content */}
             <motion.div
-              className="lg:w-1/2 text-center lg:text-left"
+              className="w-full lg:w-1/2 text-center lg:text-left"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
             >
-              <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-extrabold text-white tracking-tighter drop-shadow-xl">
+              <h1 className="font-serif text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold text-white tracking-tighter drop-shadow-xl">
                 <motion.span
                   className="block"
                   initial={{ opacity: 0, y: 20 }}
@@ -258,7 +258,7 @@ const HeroSection = () => {
                 </motion.span>
               </h1>
               <div>
-                <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-8">
+                <div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3 mt-6 sm:mt-8">
                   <span className="px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-white/30 rounded-full backdrop-blur-sm shadow-md">No banks</span>
                   <span className="px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-white/30 rounded-full backdrop-blur-sm shadow-md">No brokers</span>
                   <span className="px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-white/30 rounded-full backdrop-blur-sm shadow-md">No waiting</span>
@@ -271,10 +271,10 @@ const HeroSection = () => {
 
             {/* Right Column: Widgets */}
             <motion.div
-              className="lg:w-1/2 w-full"
+              className="w-full max-w-md mx-auto lg:w-1/2"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+              transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
             >
               <CurrencyConverterWidget sendAmount={sendAmount} onSendAmountChange={setSendAmount} />
               <FeeComparisonWidget sendAmount={sendAmount} />
@@ -283,10 +283,10 @@ const HeroSection = () => {
 
           {/* CTA Button - Centered below */}
           <motion.div
-            className="mt-[100px] flex justify-center"
+            className="mt-10 lg:mt-[100px] flex justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.6 }}
           >
             <motion.button
               className="bg-gradient-to-r from-brand-blue via-blue-500 to-indigo-600 text-white font-extrabold py-5 px-14 rounded-full text-xl shadow-2xl hover:shadow-blue-700 transform hover:scale-105 transition-all duration-300 tracking-wide"

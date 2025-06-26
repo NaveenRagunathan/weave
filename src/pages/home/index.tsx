@@ -29,10 +29,11 @@ const HomePage = () => {
       
       {/* Sections with smooth transitions */}
       <HeroSection />
+      <PartnerEliteScroll />
       <WhoThisIsForSection />
       <USDCSection />
 
-      <PartnerEliteScroll />
+
       <FinalRallySection />
       <FooterSection />
     </main>
