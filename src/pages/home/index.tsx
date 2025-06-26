@@ -35,8 +35,6 @@ const HomePage = () => {
       <USDCSection />
 
       <PartnerEliteScroll />
-      <HowItWorksSection />
-      <SocialProofSection />
       <FinalRallySection />
       <FooterSection />
     </main>
