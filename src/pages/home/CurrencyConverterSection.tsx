@@ -18,13 +18,11 @@ const CurrencyConverterSection = () => {
         <h2 className="font-serif text-4xl md:text-5xl font-bold mb-12 bg-gradient-to-r from-brand-blue to-cool-gray bg-clip-text text-transparent">
           Instantly convert & move money globally
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-          {/* Left: Currency Converter */}
-          <div className="w-full">
+        <div className="flex flex-col items-center w-full">
+          <div className="w-full max-w-4xl mb-12 px-4 sm:px-8">
             <CurrencyConverterWidget sendAmount={sendAmount} onSendAmountChange={setSendAmount} />
           </div>
-          {/* Right: Savings Calculator */}
-          <div className="w-full">
+          <div className="w-full max-w-3xl">
             <SavingsCalculator amount={sendAmount} />
           </div>
         </div>

@@ -112,47 +112,59 @@ const CurrencyConverterWidget: React.FC<CurrencyConverterWidgetProps> = ({ sendA
   };
 
   return (
-        <div className="flex flex-col sm:flex-row items-stretch justify-center gap-2 w-full">
-      {/* You Send Input */}
-      <div className="relative z-20 w-full sm:flex-1">
-                <label className="text-white text-xs font-medium mb-1 block text-left">You send</label>
-        <div className="flex items-center bg-gray-100 rounded-lg border border-gray-300">
-          <input
-            type="number"
-                      className="w-full bg-transparent p-3 text-2xl font-bold text-gray-800 focus:outline-none"
-            value={sendAmount}
-            onChange={(e) => onSendAmountChange(Number(e.target.value))}
-            placeholder="100,000"
-          />
-          <CurrencySelector
-            currency={sendCurrency}
-            onSelect={handleSelectCurrency}
-            currencyList={currencyList}
-            isOpen={openSelector}
-            onToggle={() => setOpenSelector(!openSelector)}
-          />
-        </div>
-      </div>
-
-      {/* Recipient Gets Output */}
-
-      <div className="hidden sm:flex items-center justify-center p-2">
-        <ArrowRight className="w-6 h-6 text-gray-500" />
-      </div>
-
-      <div className="relative z-10 w-full sm:flex-1">
-                <label className="text-white text-xs font-medium mb-1 block text-left">Recipient gets (USDC)</label>
-        <div className="flex items-center bg-gray-100 rounded-lg border border-gray-300">
-          <input
-            type="text"
-            readOnly
-                        className={`w-full bg-transparent p-3 text-2xl font-bold text-gray-800 outline-none transition-opacity duration-300 ${isCalculating ? 'opacity-50' : 'opacity-100'}`}
-            value={isCalculating ? '...' : receiveAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-          />
-                                            <div className="flex items-center gap-2 p-4 bg-gray-200 rounded-r-lg h-full">
-                <img src={`https://flagcdn.com/16x12/us.png`} alt={`USDC flag`} className="w-4 h-3" />
-                <span className="font-bold text-gray-800 text-lg">USDC</span>
+        <div className="w-full max-w-4xl mx-auto px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-[1.5fr_auto_1.5fr] items-stretch gap-3 sm:gap-4 w-full">
+        {/* You Send Input */}
+        <div className="relative z-20 w-full -translate-x-[135px]">
+          <label className="text-white text-xs font-medium mb-1 block text-left">You send</label>
+          <div className="flex items-stretch bg-gray-100 rounded-lg border border-gray-300 overflow-hidden">
+            <input
+              type="number"
+              className="w-0 flex-1 min-w-[200px] bg-transparent p-4 text-2xl sm:text-3xl font-bold text-gray-800 focus:outline-none"
+              value={sendAmount}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (value === '' || (value.length <= 8 && /^\d*$/.test(value))) {
+                  onSendAmountChange(Number(value) || 0);
+                }
+              }}
+              placeholder="100,000"
+              maxLength={8}
+              inputMode="numeric"
+              style={{ letterSpacing: '0.03em' }}
+            />
+            <div className="flex-shrink-0">
+              <CurrencySelector
+                currency={sendCurrency}
+                onSelect={handleSelectCurrency}
+                currencyList={currencyList}
+                isOpen={openSelector}
+                onToggle={() => setOpenSelector(!openSelector)}
+              />
             </div>
+          </div>
+        </div>
+
+        <div className="hidden sm:flex items-center justify-center px-2">
+          <ArrowRight className="w-6 h-6 text-gray-500" />
+        </div>
+
+        <div className="relative z-10 w-full -translate-x-[145px]">
+          <label className="text-white text-xs font-medium mb-1 block text-left">Recipient gets (USDC)</label>
+          <div className="flex items-stretch bg-gray-100 rounded-lg border border-gray-300 overflow-hidden">
+            <div className={`w-0 flex-1 min-w-[200px] p-4 text-2xl sm:text-3xl font-bold text-gray-800 ${
+              isCalculating ? 'opacity-50' : 'opacity-100'
+            }`}>
+              {isCalculating ? '...' : receiveAmount.toLocaleString('en-US', { 
+                minimumFractionDigits: 2, 
+                maximumFractionDigits: 2
+              })}
+            </div>
+            <div className="flex items-center gap-2 px-3 sm:px-4 bg-gray-200">
+              <img src="https://flagcdn.com/16x12/us.png" alt="USDC flag" className="w-4 h-3" />
+              <span className="font-bold text-gray-800 text-base sm:text-lg whitespace-nowrap">USDC</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

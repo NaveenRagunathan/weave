@@ -223,15 +223,14 @@ const HeroSection = () => {
             Your browser does not support the video tag.
           </video>
           {/* Keep the semi-transparent dark overlay with blur */}
-          <div className="absolute inset-0 w-full h-full bg-black/50 backdrop-blur-sm" style={{ zIndex: 2 }} />
+          <div className="absolute inset-0 w-full h-full bg-black/50 backdrop-blur-m" style={{ zIndex: 2 }} />
         </div>
       )}
 
       {/* Content Overlay */}
-      <div className="relative z-10 w-full h-full flex items-center justify-center">
-        <div className="container mx-auto px-4">
-          {/* Removed card container, content floats over video */}
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-y-8 lg:gap-y-0 lg:gap-x-16 w-full">
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center min-h-[70vh] mt-16 md:mt-24">
+        <div className="flex-1 flex flex-col items-center justify-center w-full">
+          <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-center gap-y-8 lg:gap-y-0 lg:gap-x-16 w-full">
             {/* Left Column: Text Content */}
             <motion.div
               className="w-full lg:w-1/2 text-center lg:text-left"
@@ -280,22 +279,51 @@ const HeroSection = () => {
               <FeeComparisonWidget sendAmount={sendAmount} />
             </motion.div>
           </div>
-
-          {/* CTA Button - Centered below */}
-          <motion.div
-            className="mt-10 lg:mt-[100px] flex justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.6 }}
-          >
-            <motion.button
-              className="bg-gradient-to-r from-brand-blue via-blue-500 to-indigo-600 text-white font-extrabold py-5 px-14 rounded-full text-xl shadow-2xl hover:shadow-blue-700 transform hover:scale-105 transition-all duration-300 tracking-wide"
-              whileHover={{ scale: 1.07, transition: { type: 'spring', stiffness: 300 } }}
-            >
-              Create Your Free Account <ArrowRight className="inline-block ml-2 w-6 h-6" />
-            </motion.button>
-          </motion.div>
         </div>
+
+        {/* CTA Button - Desktop */}
+        <motion.div
+          className="hidden md:block mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.6 }}
+        >
+          <motion.button
+            className="bg-gradient-to-r from-brand-blue via-blue-500 to-indigo-600 text-white font-extrabold py-5 px-14 rounded-full text-xl shadow-2xl hover:shadow-blue-700 transform hover:scale-105 transition-all duration-300 tracking-wide"
+            whileHover={{ scale: 1.07, transition: { type: 'spring', stiffness: 300 } }}
+          >
+            Create Your Free Account <ArrowRight className="inline-block ml-2 w-6 h-6" />
+          </motion.button>
+        </motion.div>
+        
+        {/* Mobile CTA - Sticky at bottom */}
+        <motion.div
+          className="fixed bottom-0 left-0 w-full z-50 p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent md:hidden"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.6 }}
+          style={{
+            position: 'fixed',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            zIndex: 50,
+            padding: '1rem',
+            background: 'linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%)',
+            backdropFilter: 'blur(4px)'
+          }}
+        >
+          <motion.button
+            className="w-full bg-gradient-to-r from-brand-blue via-blue-500 to-indigo-600 text-white font-extrabold py-4 rounded-full text-lg shadow-2xl hover:shadow-blue-700 transform hover:scale-105 transition-all duration-300 tracking-wide"
+            whileHover={{ scale: 1.02, transition: { type: 'spring', stiffness: 300 } }}
+            whileTap={{ scale: 0.98 }}
+            style={{
+              boxShadow: '0 4px 20px rgba(59, 130, 246, 0.5)'
+            }}
+          >
+            Create Your Free Account <ArrowRight className="inline-block ml-2 w-5 h-5" />
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   );
