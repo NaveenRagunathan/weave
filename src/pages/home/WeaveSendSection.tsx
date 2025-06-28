@@ -78,21 +78,23 @@ export default function WeaveSendSection() {
           setSelectedRegion(newRegion);
           setSearchTerm("");
         }}
-        className="w-full"
+        className="w-full px-2 sm:px-4"
       >
-        <TabsList className="flex justify-center mb-6 flex-wrap gap-2 sm:gap-4">
-          {Object.keys(regionIcons).map((region) => (
-            <TabsTrigger
-              key={region}
-              value={region}
-              className="data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-blue-600 hover:bg-blue-100 hover:text-blue-700 flex items-center px-4 py-2 rounded-full transition-colors duration-200 text-sm sm:text-base"
-            >
-              {regionIcons[region]} {region}
-            </TabsTrigger>
-          ))}
-        </TabsList>
+        <div className="w-full overflow-x-auto pb-2 -mx-2 px-2">
+          <TabsList className="flex justify-start sm:justify-center mb-6 w-auto min-w-full sm:w-full flex-nowrap sm:flex-wrap gap-1 sm:gap-2 px-1">
+            {Object.keys(regionIcons).map((region) => (
+              <TabsTrigger
+                key={region}
+                value={region}
+                className="whitespace-nowrap data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=inactive]:bg-gray-100 data-[state=inactive]:text-blue-600 hover:bg-blue-100 hover:text-blue-700 flex items-center px-3 py-1.5 sm:px-4 sm:py-2 rounded-full transition-colors duration-200 text-xs sm:text-sm md:text-base"
+              >
+                {regionIcons[region]} <span className="truncate">{region}</span>
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </div>
 
-        <div className="max-w-sm mx-auto mb-8">
+        <div className="max-w-sm w-full mx-auto mb-8 px-2">
           <Input
             type="text"
             placeholder={`Search in ${selectedRegion}...`}
