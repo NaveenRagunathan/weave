@@ -196,8 +196,8 @@ const HeroSection = () => {
 
   return (
     <>
-    <section ref={sectionRef} className="relative w-full min-h-screen pt-28 pb-24 md:pb-10">
-      <div className="absolute top-2.5 w-full z-50 flex justify-center">
+    <section ref={sectionRef} className="relative w-full min-h-screen pt-20 pb-16 md:pt-28 md:pb-10">
+      <div className="absolute top-1 w-full z-50 flex justify-center">
         <LiveCounter value={liveCounter} currency={currency} userLocale={userLocale} />
       </div>
       {/* Video Background */}
@@ -225,9 +225,9 @@ const HeroSection = () => {
       </div>
 
       {/* Content Overlay */}
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-between min-h-[calc(100vh-7rem)] pt-16 md:pt-24">
-        <div className="flex-1 flex flex-col items-center justify-center w-full">
-          <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-center gap-y-8 lg:gap-y-0 lg:gap-x-16 w-full">
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-between min-h-[calc(100vh-5rem)] pt-8 md:pt-16 lg:pt-24">
+        <div className="flex-1 flex flex-col items-center justify-start w-full mt-4 md:mt-0">
+          <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-center gap-y-4 lg:gap-y-0 lg:gap-x-16 w-full">
             {/* Left Column: Text Content */}
             <motion.div
               className="w-full lg:w-5/12 text-center lg:text-left"
@@ -235,7 +235,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
             >
-              <h1 className="font-serif text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold text-white tracking-tighter drop-shadow-xl">
+              <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold text-white tracking-tighter drop-shadow-xl">
                 <motion.span
                   className="block"
                   initial={{ opacity: 0, y: 20 }}
@@ -253,8 +253,8 @@ const HeroSection = () => {
                   Without Delay
                 </motion.span>
               </h1>
-              <div>
-                <div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3 mt-6 sm:mt-8">
+              <div className="mt-4 sm:mt-6">
+                <div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3">
                   <span className="px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-white/30 rounded-full backdrop-blur-sm shadow-md">No banks</span>
                   <span className="px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-white/30 rounded-full backdrop-blur-sm shadow-md">No brokers</span>
                   <span className="px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-white/30 rounded-full backdrop-blur-sm shadow-md">No waiting</span>
@@ -267,7 +267,7 @@ const HeroSection = () => {
 
             {/* Right Column: Widgets */}
             <motion.div
-              className="w-full lg:w-7/12 flex justify-center lg:justify-start"
+              className="w-full lg:w-7/12 flex justify-center lg:justify-start mt-6 lg:mt-0"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
@@ -279,7 +279,7 @@ const HeroSection = () => {
             </motion.div>
           </div>
         </div>
-        <div className="w-full px-4 pb-8 text-center">
+        <div className="w-full px-4 pt-4 pb-8 text-center">
           <motion.button
             className="w-full bg-gradient-to-r from-brand-blue via-blue-500 to-indigo-600 text-white font-extrabold rounded-full shadow-2xl transform transition-all duration-300 tracking-wide py-4 text-lg md:w-auto md:py-5 md:px-14 md:text-xl hover:shadow-blue-700 hover:scale-105"
             initial={{ opacity: 0, y: 20 }}

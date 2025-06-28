@@ -68,15 +68,9 @@ export default function FeeComparisonWidget({ sendAmount }: FeeComparisonWidgetP
   }
 
   return (
-    <div className="p-3 sm:p-6 rounded-b-2xl bg-gray-900/50 backdrop-blur-lg shadow-2xl flex flex-col items-center animate-fade-in w-full">
-      <div className="w-full flex justify-between items-center mb-3 sm:mb-4">
+    <div className="p-3 sm:p-6 rounded-b-2xl bg-gray-900/50 backdrop-blur-lg shadow-2xl flex flex-col items-center animate-fade-in w-full relative" style={{ zIndex: 1 }}>
+      <div className="w-full flex justify-between items-center mb-3 sm:mb-4 relative">
         <h4 className="text-base sm:text-xl font-serif font-bold text-white tracking-tight">Fee Comparison</h4>
-        <div className="relative group">
-          <Info className="w-3 h-3 sm:w-4 sm:h-4 text-gray-300 cursor-pointer" />
-          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 min-w-[120px] max-w-xs px-2 py-1 bg-gray-800 text-white text-[10px] sm:text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 break-words text-center whitespace-pre-line">
-            {`Data updated ${new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' })}`}
-          </div>
-        </div>
       </div>
 
       {/* Competitor Logos */}
@@ -110,18 +104,18 @@ export default function FeeComparisonWidget({ sendAmount }: FeeComparisonWidgetP
       </div>
 
       {/* Fee Bars */}
-      <div className="w-full space-y-2 sm:space-y-3 text-xs sm:text-base">
+      <div className="w-full space-y-3 sm:space-y-4">
         <div className="flex justify-between items-center">
-          <span className="font-medium text-gray-200">{selectedCompetitor} Fee</span>
-          <span className="font-semibold text-gray-200">{currencyFormatter.format(competitorFee)}</span>
+          <span className="font-semibold text-gray-200 text-sm sm:text-lg">{selectedCompetitor} Fee</span>
+          <span className="font-bold text-gray-200 text-sm sm:text-xl">{currencyFormatter.format(competitorFee)}</span>
         </div>
         <div className="w-full bg-gray-300 rounded-full h-2 sm:h-2.5">
           <div className="bg-gray-400 h-2 sm:h-2.5 rounded-full" style={{ width: '100%' }}></div>
         </div>
 
         <div className="flex justify-between items-center">
-          <span className="font-bold text-blue-400"><WeaveLogo /> Fee</span>
-          <span className="font-extrabold text-blue-400">{currencyFormatter.format(weaveFee)}</span>
+          <span className="font-bold text-blue-400 text-sm sm:text-lg"><WeaveLogo /> Fee</span>
+          <span className="font-extrabold text-blue-400 text-sm sm:text-xl">{currencyFormatter.format(weaveFee)}</span>
         </div>
         <div className="w-full bg-blue-200 rounded-full h-2 sm:h-2.5">
           <div className="bg-blue-500 h-2 sm:h-2.5 rounded-full" style={{ width: `${weaveBarWidth}%` }}></div>
@@ -131,7 +125,7 @@ export default function FeeComparisonWidget({ sendAmount }: FeeComparisonWidgetP
       {/* Savings */}
       {savings > 0 && (
         <div className="mt-4 sm:mt-6 p-2 sm:p-3 bg-green-500/20 border-green-500/30 rounded-lg w-full">
-          <p className="text-center text-green-300 font-bold text-sm sm:text-lg">
+          <p className="text-center text-green-500 font-bold text-sm sm:text-lg">
             You save {currencyFormatter.format(savings)}!
           </p>
         </div>
