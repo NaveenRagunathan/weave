@@ -225,7 +225,7 @@ const HeroSection = () => {
       </div>
 
       {/* Content Overlay */}
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-between min-h-[calc(100vh-5rem)] pt-8 md:pt-16 lg:pt-24">
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-between min-h-[calc(100vh-5rem)] pt-8 md:pt-10 lg:pt-16 pb-0">
         <div className="flex-1 flex flex-col items-center justify-start w-full mt-4 md:mt-0">
           <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-center gap-y-4 lg:gap-y-0 lg:gap-x-16 w-full">
             {/* Left Column: Text Content */}
@@ -279,7 +279,8 @@ const HeroSection = () => {
             </motion.div>
           </div>
         </div>
-        <div className="w-full px-4 pt-4 pb-8 text-center">
+        <div className="w-full px-4 pt-0 pb-16 text-center md:pb-24 lg:pb-32 flex justify-center">
+
           <motion.button
             className="w-full bg-gradient-to-r from-brand-blue via-blue-500 to-indigo-600 text-white font-extrabold rounded-full shadow-2xl transform transition-all duration-300 tracking-wide py-4 text-lg md:w-auto md:py-5 md:px-14 md:text-xl hover:shadow-blue-700 hover:scale-105"
             initial={{ opacity: 0, y: 20 }}

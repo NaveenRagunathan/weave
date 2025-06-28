@@ -80,7 +80,17 @@ const businessDistricts: BusinessDistrict[] = [
   }
 ];
 
-const GlobalBusinessMap: React.FC = () => {
+interface GlobalBusinessMapProps {
+  animateRoutes?: boolean;
+  animatePulses?: boolean;
+  focus?: string;
+}
+
+const GlobalBusinessMap: React.FC<GlobalBusinessMapProps> = ({
+  animateRoutes = false,
+  animatePulses = false,
+  focus = "",
+}) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.3 });
   const controls = useAnimation();
