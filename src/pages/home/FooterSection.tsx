@@ -1,5 +1,6 @@
 
 import React from "react";
+import WeaveLogo from '@/components/ui/WeaveLogo';
 
 const links = [
   { name: "Corridors", href: "/corridors" },
@@ -46,7 +47,7 @@ const FooterSection = () => (
         ))}
       </div>
       <div className="text-cool-gray-700 text-xs text-center mt-2">
-        &copy; 2025 WEAVE Financial Systems<br />
+        &copy; 2025 <WeaveLogo /> Financial Systems<br />
         <span className="italic">“Capital. Trust. Growth.”</span>
       </div>
     </div>

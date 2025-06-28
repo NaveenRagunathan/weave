@@ -1,4 +1,6 @@
 import React from "react";
+import { Button } from "./button";
+import WeaveLogo from "@/components/ui/WeaveLogo";
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
 import FastSecureUnstoppable from "./FastSecureUnstoppable";
 
@@ -29,7 +31,7 @@ export function Logos3() {
         <p className="text-base md:text-lg text-[#A67C36] mt-2 max-w-2xl mx-auto font-semibold leading-snug drop-shadow-gold">
           From <span className="text-brand-blue-400 font-semibold">Guangzhou</span> to <span className="text-cool-gray-500 font-semibold">Bogotá</span>.{" "}
           <span className="text-brand-blue-400 font-semibold">Lagos</span> to <span className="text-cool-gray-500 font-semibold">Dubai</span>. The architects of the Global South rely on{" "}
-          <span className="bg-gradient-to-r from-brand-blue-400 via-cool-gray-500 to-brand-blue-600 bg-clip-text text-transparent font-bold">WEAVE</span> to move capital where it matters — <span className="text-cool-gray-500">fast</span>, <span className="text-brand-blue-400">secure</span>, <span className="text-cool-gray-500">unstoppable</span>.
+          <WeaveLogo className="bg-gradient-to-r from-brand-blue-400 via-cool-gray-500 to-brand-blue-600 bg-clip-text text-transparent text-4xl" /> to move capital where it matters — <span className="text-cool-gray-500">fast</span>, <span className="text-brand-blue-400">secure</span>, <span className="text-cool-gray-500">unstoppable</span>.
         </p>
       </div>
       <div className="relative w-full">
@@ -75,14 +77,14 @@ export function Logos3() {
         `}</style>
       </div>
       <p className="text-center text-sm md:text-base text-brand-blue/70 mt-8 md:mt-7 max-w-2xl mx-auto font-semibold">
-        WEAVE is the invisible engine behind thousands of cross-border transactions every day — trusted by 
+        <WeaveLogo /> is the invisible engine behind thousands of cross-border transactions every day — trusted by 
         <span className="text-brand-blue font-bold">multinationals</span>, 
         <span className="text-brand-blue font-bold">megaproject leaders</span>, and 
         <span className="text-jade-flow-500 font-bold">digital exporters</span> across the Global South.
       </p>
       <div className="flex justify-center mt-4">
         <button className="px-7 py-3 rounded-full font-bold text-base bg-gradient-to-r from-brand-blue via-cool-gray to-brand-blue/80 text-off-white shadow-xl hover:from-cool-gray hover:to-brand-blue transition-all duration-300 outline-none focus:ring-2 focus:ring-brand-blue/40 border-2 border-brand-blue">
-          See How These Leaders Use WEAVE &rarr;
+          See How These Leaders Use <WeaveLogo /> &rarr;
         </button>
       </div>
     </section>

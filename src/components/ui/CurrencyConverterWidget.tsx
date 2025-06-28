@@ -7,7 +7,7 @@ import { currencies } from "../../lib/currency-data";
 let exchangeRatesCache: Record<string, number> = {};
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes cache duration
 let lastFetchTime = 0;
-const API_KEY = '621b1fc9287a4763968a031ababd8c85'; // Note: In production, move this to environment variables
+// Using a free public API, no key needed.
 
 interface CurrencyConverterWidgetProps {
   sendAmount: number;
@@ -39,8 +39,9 @@ const CurrencyConverterWidget: React.FC<CurrencyConverterWidgetProps> = ({ sendA
     }
 
     try {
+      // Using Frankfurter API, which is free and doesn't require an API key
       const response = await fetch(
-        `https://api.currencyfreaks.com/v2.0/rates/latest?apikey=${API_KEY}`
+        `https://api.frankfurter.app/latest?from=USD`
       );
       
       if (!response.ok) {
@@ -49,10 +50,11 @@ const CurrencyConverterWidget: React.FC<CurrencyConverterWidgetProps> = ({ sendA
       
       const data = await response.json();
       if (data.rates) {
-        // Cache the rates and update the timestamp
-        exchangeRatesCache = data.rates;
+        // Add USD to the rates for completeness, as the API base is USD
+        const ratesWithUSD = { ...data.rates, USD: 1 };
+        exchangeRatesCache = ratesWithUSD;
         lastFetchTime = now;
-        return data.rates;
+        return ratesWithUSD;
       }
       throw new Error('Invalid response format');
     } catch (err) {
@@ -112,15 +114,15 @@ const CurrencyConverterWidget: React.FC<CurrencyConverterWidgetProps> = ({ sendA
   };
 
   return (
-        <div className="w-full max-w-4xl mx-auto px-4">
-      <div className="grid grid-cols-1 sm:grid-cols-[1.5fr_auto_1.5fr] items-stretch gap-3 sm:gap-4 w-full">
+        <div className="relative z-10 w-full p-3 sm:p-6 pb-4 bg-gray-900/50 backdrop-blur-lg rounded-t-2xl">
+      <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-stretch gap-3 sm:gap-4 w-full">
         {/* You Send Input */}
-        <div className="relative z-20 w-full -translate-x-[135px]">
+        <div className="relative z-20 w-full min-w-0">
           <label className="text-white text-xs font-medium mb-1 block text-left">You send</label>
-          <div className="flex items-stretch bg-gray-100 rounded-lg border border-gray-300 overflow-hidden">
+          <div className="flex items-stretch bg-black/20 rounded-lg border border-gray-400/30 ">
             <input
               type="number"
-              className="w-0 flex-1 min-w-[200px] bg-transparent p-4 text-2xl sm:text-3xl font-bold text-gray-800 focus:outline-none"
+              className="w-0 flex-1 bg-transparent p-4 text-2xl md:text-3xl font-bold text-white focus:outline-none rounded-l-lg"
               value={sendAmount}
               onChange={(e) => {
                 const value = e.target.value;
@@ -149,10 +151,10 @@ const CurrencyConverterWidget: React.FC<CurrencyConverterWidgetProps> = ({ sendA
           <ArrowRight className="w-6 h-6 text-gray-500" />
         </div>
 
-        <div className="relative z-10 w-full -translate-x-[145px]">
+        <div className="relative z-10 w-full min-w-0">
           <label className="text-white text-xs font-medium mb-1 block text-left">Recipient gets (USDC)</label>
-          <div className="flex items-stretch bg-gray-100 rounded-lg border border-gray-300 overflow-hidden">
-            <div className={`w-0 flex-1 min-w-[200px] p-4 text-2xl sm:text-3xl font-bold text-gray-800 ${
+          <div className="flex items-stretch bg-black/20 rounded-lg border border-gray-400/30 ">
+            <div className={`w-0 flex-1 p-4 text-2xl md:text-3xl font-bold text-white ${
               isCalculating ? 'opacity-50' : 'opacity-100'
             }`}>
               {isCalculating ? '...' : receiveAmount.toLocaleString('en-US', { 
@@ -160,9 +162,9 @@ const CurrencyConverterWidget: React.FC<CurrencyConverterWidgetProps> = ({ sendA
                 maximumFractionDigits: 2
               })}
             </div>
-            <div className="flex items-center gap-2 px-3 sm:px-4 bg-gray-200">
+            <div className="flex items-center gap-2 px-3 sm:px-4 bg-gray-700">
               <img src="https://flagcdn.com/16x12/us.png" alt="USDC flag" className="w-4 h-3" />
-              <span className="font-bold text-gray-800 text-base sm:text-lg whitespace-nowrap">USDC</span>
+              <span className="font-bold text-white text-base sm:text-lg whitespace-nowrap">USDC</span>
             </div>
           </div>
         </div>
@@ -187,23 +189,23 @@ const CurrencySelector = ({ currency, onSelect, currencyList, isOpen, onToggle }
 
   return (
     <div className="relative">
-            <button onClick={onToggle} className="flex items-center gap-2 p-4 bg-gray-200 hover:bg-gray-300 transition-colors duration-200 h-full rounded-r-lg">
+            <button onClick={onToggle} className="flex items-center gap-2 p-4 bg-gray-700 hover:bg-gray-600 transition-colors duration-200 h-full rounded-r-lg">
         <img src={`https://flagcdn.com/16x12/${currencies[currency]?.flag.toLowerCase()}.png`} alt={`${currency} flag`} className="w-4 h-3" />
-        <span className="font-bold text-gray-800 text-lg">{currency}</span>
-        <ChevronsUpDown className="h-4 w-4 text-gray-500" />
+        <span className="font-bold text-white text-lg">{currency}</span>
+        <ChevronsUpDown className="h-4 w-4 text-gray-400" />
       </button>
 
       {isOpen && (
         <motion.div 
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="absolute right-0 top-full mt-2 w-72 bg-white border border-gray-300 rounded-lg shadow-2xl z-50 overflow-hidden"
+          className="absolute right-0 top-full mt-2 w-72 bg-white border border-gray-300 rounded-lg shadow-2xl z-50 "
         >
           <div className="p-2">
             <input
               type="text"
               placeholder="Search currency..."
-              className="w-full bg-gray-100 p-2 rounded-md text-gray-800 border border-gray-300 focus:ring-1 focus:ring-brand-blue outline-none"
+              className="w-full bg-gray-800 p-2 rounded-md text-white border border-gray-600 focus:ring-1 focus:ring-brand-blue outline-none"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               autoFocus
@@ -211,11 +213,11 @@ const CurrencySelector = ({ currency, onSelect, currencyList, isOpen, onToggle }
           </div>
           <ul className="max-h-60 overflow-y-auto">
             {filteredCurrencies.map(c => (
-              <li key={c} onClick={() => { onSelect(c); setSearchTerm(''); }} className="flex items-center gap-3 p-3 hover:bg-gray-100 cursor-pointer transition-colors duration-150">
+              <li key={c} onClick={() => { onSelect(c); setSearchTerm(''); }} className="flex items-center gap-3 p-3 hover:bg-gray-700 cursor-pointer transition-colors duration-150">
                 <img src={`https://flagcdn.com/16x12/${currencies[c]?.flag.toLowerCase()}.png`} alt={`${c} flag`} className="w-4 h-3" />
                 <div>
-                  <span className="font-bold text-gray-800">{c}</span>
-                  <span className="text-sm text-gray-500 ml-2">{currencies[c].name}</span>
+                  <span className="font-bold text-white">{c}</span>
+                  <span className="text-sm text-gray-400 ml-2">{currencies[c].name}</span>
                 </div>
               </li>
             ))}

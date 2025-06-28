@@ -12,6 +12,7 @@ import PartnerEliteScroll from "./PartnerEliteScroll";
 import WhoThisIsForSection from "./WhoThisIsForSection";
 import USDCSection from "./USDCSection";
 
+import WeaveSendSection from "./WeaveSendSection";
 import FinalRallySection from "./FinalRallySection";
 import FooterSection from "./FooterSection";
 import SectionDivider from '@/components/SectionDivider';
@@ -32,8 +33,7 @@ const HomePage = () => {
       <PartnerEliteScroll />
       <WhoThisIsForSection />
       <USDCSection />
-
-
+      <WeaveSendSection />
       <FinalRallySection />
       <FooterSection />
     </main>

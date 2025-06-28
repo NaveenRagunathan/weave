@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { gradients } from '@/lib/gradients';
 import { Button } from "@/components/ui/button";
 import { DollarSign, FileText, Globe, Zap, ArrowRight } from 'lucide-react';
+import WeaveLogo from '@/components/ui/WeaveLogo';
 
 const features = [
   { icon: DollarSign, text: "1:1 backed with U.S. dollars" },
@@ -26,7 +27,7 @@ export default function WeaveUSDCSection() {
              Built for <span className="text-brand-blue font-extrabold underline decoration-brand-blue/30 underline-offset-4">Global Trade</span>.
            </h2>
           <p className="mt-6 max-w-3xl mx-auto text-xl text-ink-black/80">
-            WEAVE runs on USDC — a regulated, audit-backed stablecoin that clears fast, settles instantly, and protects your value.
+            <WeaveLogo /> runs on USDC — a regulated, audit-backed stablecoin that clears fast, settles instantly, and protects your value.
           </p>
         </div>
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, Globe, BadgePercent } from "lucide-react";
+import WeaveLogo from "@/components/ui/WeaveLogo";
 import { gradients } from '@/lib/gradients';
 
 const FinalRallySection = () => (
@@ -46,7 +47,7 @@ const FinalRallySection = () => (
           No borders. No delays. No FX leakage.
         </p>
         <p className="mt-3 text-5xl sm:text-6xl font-extrabold tracking-tighter">
-          <span className="font-serif italic text-brand-blue-400">Just WEAVE.</span>
+          <span className="font-serif italic text-brand-blue-400">Just <WeaveLogo className="text-brand-blue-400 text-5xl sm:text-6xl" />.</span>
         </p>
       </div>
 
@@ -58,7 +59,7 @@ const FinalRallySection = () => (
           className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-brand-blue hover:bg-brand-blue-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
         >
           <span className="relative z-10 flex items-center gap-3">
-            Open Your Free WEAVE Account
+            Open Your Free <WeaveLogo /> Account
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
           </span>
         </Button>

@@ -8,6 +8,10 @@
 
 /* WEAVE Brand Design System */
 
+.font-logo {
+  font-family: 'Dancing Script', cursive;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { gradients } from '@/lib/gradients';
 import { useAnimationFrame } from 'framer-motion';
+import WeaveLogo from "@/components/ui/WeaveLogo";
 
 const partners = [
   { name: "Alibaba", domain: "alibaba.com", desc: "Facilitating infrastructure payments across 4 continents." },
@@ -45,24 +46,20 @@ const PartnerEliteScroll = () => {
   });
 
   return (
-    <section className="w-full py-20 relative overflow-hidden bg-gradient-to-b from-off-white via-brand-blue-50 to-brand-blue-100">
-      <div className="max-w-5xl mx-auto px-4 text-center">
-        <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-center mb-2">
-          WHY BUSINESSES TRUST <span className="bg-gradient-to-r from-brand-blue via-brand-blue-400 to-brand-blue-700 bg-clip-text text-transparent drop-shadow-sm">WEAVE</span>
+    <section className="w-full py-24 sm:py-32 relative overflow-hidden bg-gradient-to-b from-off-white via-brand-blue-50 to-brand-blue-100">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+        <p className="font-semibold text-lg text-brand-blue tracking-wider uppercase">
+          Trusted by Industry Leaders
+        </p>
+        <h2 className="mt-4 text-4xl md:text-5xl font-extrabold tracking-tight text-ink-black">
+          Why Businesses Choose <WeaveLogo className="bg-clip-text text-transparent bg-gradient-to-r from-brand-blue-500 via-brand-blue-400 to-brand-blue-700 animate-gradient-x text-4xl md:text-5xl" />
         </h2>
-        <div className="flex justify-center mb-2">
-          <span className="block w-16 h-1 rounded-full bg-gradient-to-r from-brand-blue via-brand-blue-400 to-brand-blue-700 opacity-60"></span>
-        </div>
-
-
-        <p className="text-sm md:text-base text-center text-ink-black/80 mb-8 max-w-2xl mx-auto">
-          We are used by powerhouses in the <span className="text-brand-blue font-semibold">Global South</span> because we make moving money
-          <span className="inline-block w-16 mx-1 align-middle">
-            <span className="text-brand-blue font-bold transition-all duration-500 animate-fade-in">
-              {animatedWords[currentWord]}
-            </span>
+        <p className="mt-6 max-w-3xl mx-auto text-xl text-ink-black/80">
+          We're trusted by powerhouses in the Global South because we make moving money
+          <span className="inline-block w-16 mx-1 text-brand-blue font-bold transition-all duration-500 animate-fade-in">
+            {animatedWords[currentWord]}
           </span>
-          for them. This ensures they are growing steadily.
+          for them.
         </p>
       </div>
 

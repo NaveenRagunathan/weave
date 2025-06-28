@@ -1,22 +1,21 @@
 import CurrencyConverterWidget from "@/components/ui/CurrencyConverterWidget";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import { ArrowRight } from 'lucide-react';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import FeeComparisonWidget from '@/components/ui/FeeComparisonWidget';
 import LiveCounter from '@/components/ui/LiveCounter';
 
 
 
 const HeroSection = () => {
-  console.log('Component rendering');
   const [sendAmount, setSendAmount] = useState(100000);
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = React.useRef<HTMLVideoElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
   const [liveCounter, setLiveCounter] = useState(1200000000);
   const [currency, setCurrency] = useState("USD");
   const [userLocale, setUserLocale] = useState("en-US");
 
+  const sectionRef = useRef(null);
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, -150]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
@@ -40,7 +39,6 @@ const HeroSection = () => {
   // Set video source after component mounts
   React.useEffect(() => {
     console.log('useEffect - Component mounted');
-    setIsVisible(true);
 
     // Try to play video on initial load
     const attemptPlay = () => {
@@ -197,43 +195,42 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative w-full min-h-screen pt-28 pb-10 overflow-hidden">
+    <>
+    <section ref={sectionRef} className="relative w-full min-h-screen pt-28 pb-24 md:pb-10">
       <div className="absolute top-2.5 w-full z-50 flex justify-center">
         <LiveCounter value={liveCounter} currency={currency} userLocale={userLocale} />
       </div>
       {/* Video Background */}
-      {isVisible && (
-        <div className="absolute inset-0 w-full h-full">
-          {/* Video temporarily paused/disabled */}
-          <video
-            ref={videoRef}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{
-              backgroundColor: 'black',
-              zIndex: 1,
-              opacity: 1
-            }}
-            onPlay={() => setIsPlaying(true)}
-          >
-            <source src="/Weave.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          {/* Keep the semi-transparent dark overlay with blur */}
-          <div className="absolute inset-0 w-full h-full bg-black/50 backdrop-blur-m" style={{ zIndex: 2 }} />
-        </div>
-      )}
+      <div className="absolute inset-0 w-full h-full">
+        {/* Video temporarily paused/disabled */}
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{
+            backgroundColor: 'black',
+            zIndex: 1,
+            opacity: 1
+          }}
+          onPlay={() => setIsPlaying(true)}
+        >
+          <source src="/Weave.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        {/* Keep the semi-transparent dark overlay with blur */}
+        <div className="absolute inset-0 w-full h-full bg-black/50 backdrop-blur-m" style={{ zIndex: 2 }} />
+      </div>
 
       {/* Content Overlay */}
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center min-h-[70vh] mt-16 md:mt-24">
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-between min-h-[calc(100vh-7rem)] pt-16 md:pt-24">
         <div className="flex-1 flex flex-col items-center justify-center w-full">
           <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-center gap-y-8 lg:gap-y-0 lg:gap-x-16 w-full">
             {/* Left Column: Text Content */}
             <motion.div
-              className="w-full lg:w-1/2 text-center lg:text-left"
+              className="w-full lg:w-5/12 text-center lg:text-left"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -270,62 +267,33 @@ const HeroSection = () => {
 
             {/* Right Column: Widgets */}
             <motion.div
-              className="w-full max-w-md mx-auto lg:w-1/2"
+              className="w-full lg:w-7/12 flex justify-center lg:justify-start"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
             >
-              <CurrencyConverterWidget sendAmount={sendAmount} onSendAmountChange={setSendAmount} />
-              <FeeComparisonWidget sendAmount={sendAmount} />
+              <div className="w-full">
+                <CurrencyConverterWidget sendAmount={sendAmount} onSendAmountChange={setSendAmount} />
+                <FeeComparisonWidget sendAmount={sendAmount} />
+              </div>
             </motion.div>
           </div>
         </div>
-
-        {/* CTA Button - Desktop */}
-        <motion.div
-          className="hidden md:block mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.6 }}
-        >
+        <div className="w-full px-4 pb-8 text-center">
           <motion.button
-            className="bg-gradient-to-r from-brand-blue via-blue-500 to-indigo-600 text-white font-extrabold py-5 px-14 rounded-full text-xl shadow-2xl hover:shadow-blue-700 transform hover:scale-105 transition-all duration-300 tracking-wide"
-            whileHover={{ scale: 1.07, transition: { type: 'spring', stiffness: 300 } }}
-          >
-            Create Your Free Account <ArrowRight className="inline-block ml-2 w-6 h-6" />
-          </motion.button>
-        </motion.div>
-        
-        {/* Mobile CTA - Sticky at bottom */}
-        <motion.div
-          className="fixed bottom-0 left-0 w-full z-50 p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent md:hidden"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.6 }}
-          style={{
-            position: 'fixed',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            zIndex: 50,
-            padding: '1rem',
-            background: 'linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%)',
-            backdropFilter: 'blur(4px)'
-          }}
-        >
-          <motion.button
-            className="w-full bg-gradient-to-r from-brand-blue via-blue-500 to-indigo-600 text-white font-extrabold py-4 rounded-full text-lg shadow-2xl hover:shadow-blue-700 transform hover:scale-105 transition-all duration-300 tracking-wide"
-            whileHover={{ scale: 1.02, transition: { type: 'spring', stiffness: 300 } }}
+            className="w-full bg-gradient-to-r from-brand-blue via-blue-500 to-indigo-600 text-white font-extrabold rounded-full shadow-2xl transform transition-all duration-300 tracking-wide py-4 text-lg md:w-auto md:py-5 md:px-14 md:text-xl hover:shadow-blue-700 hover:scale-105"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.6 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
-            style={{
-              boxShadow: '0 4px 20px rgba(59, 130, 246, 0.5)'
-            }}
           >
-            Create Your Free Account <ArrowRight className="inline-block ml-2 w-5 h-5" />
+            Create Your Free Account <ArrowRight className="inline-block ml-2 w-5 h-5 md:w-6 md:h-6" />
           </motion.button>
-        </motion.div>
+        </div>
       </div>
     </section>
+    </>
   );
 };
 
