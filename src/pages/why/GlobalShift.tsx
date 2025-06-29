@@ -3,6 +3,9 @@ import { motion } from 'framer-motion';
 import Globe, { GlobeMethods } from 'react-globe.gl';
 
 const Section1_GlobalShift = () => {
+    // ...rest of the code remains unchanged
+    // We'll wrap the section in a new gradient background
+
     const globeEl = useRef<GlobeMethods>();
 
     useEffect(() => {
@@ -51,7 +54,6 @@ const Section1_GlobalShift = () => {
         }))
     );
 
-
     const textContainerVariants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.3, delayChildren: 0.5 } },
@@ -63,6 +65,7 @@ const Section1_GlobalShift = () => {
     };
 
     return (
+
         <section className="relative w-full h-screen bg-white overflow-hidden">
             {/* Bluish-white radial gradient behind the globe */}
             <div className="absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 pointer-events-none" style={{ width: '600px', height: '600px' }}>
@@ -111,7 +114,7 @@ const Section1_GlobalShift = () => {
                 </motion.div>
             </div>
         </section>
-    );
+);
 };
 
 export default Section1_GlobalShift;

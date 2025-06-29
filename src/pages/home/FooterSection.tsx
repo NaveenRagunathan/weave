@@ -21,14 +21,14 @@ const socials = [
 ];
 
 const FooterSection = () => (
-  <footer className="border-t border-brand-blue/10 py-10 px-4">
+  <footer className="bg-white border-t border-brand-blue-100 py-10 px-4">
     <div className="max-w-5xl mx-auto flex flex-col items-center gap-6">
       <nav className="flex flex-wrap justify-center gap-4 mb-2">
         {links.map((l) => (
           <a
             key={l.name}
             href={l.href}
-            className="text-brand-blue hover:text-brand-blue-700 transition text-sm font-semibold"
+            className="text-brand-blue-800 hover:text-brand-blue-600 transition text-sm font-medium"
           >
             {l.name}
           </a>
@@ -39,14 +39,14 @@ const FooterSection = () => (
           <a
             key={s.name}
             href={s.url}
-            className="p-2 bg-gradient-to-br from-brand-blue-100 via-cool-gray-100 to-off-white rounded-full hover:bg-brand-blue-200 transition border border-brand-blue/10"
+            className="p-2 bg-white rounded-full hover:bg-brand-blue-50 transition border border-brand-blue-200 shadow-sm hover:shadow-md"
             aria-label={s.name}
           >
-            <s.icon className="w-5 h-5 text-brand-blue-700" />
+            <s.icon className="w-5 h-5 text-brand-blue-600" />
           </a>
         ))}
       </div>
-      <div className="text-cool-gray-700 text-xs text-center mt-2">
+      <div className="text-brand-blue-900/80 text-sm text-center mt-4">
         &copy; 2025 <WeaveLogo /> Financial Systems<br />
         <span className="italic">“Capital. Trust. Growth.”</span>
       </div>

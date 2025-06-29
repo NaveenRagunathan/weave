@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 const Section3_Bottleneck = () => {
-    const animation = useScrollAnimation();
+    const { ref, controls, animation } = useScrollAnimation();
 
     const containerVariants = {
         hidden: {},
@@ -29,26 +29,26 @@ const Section3_Bottleneck = () => {
     const words = ["Money.", "Can't.", "Move", "Fast", "and", "Easily."];
 
     return (
-        <div className="bg-[#F4C542] py-28 px-4 text-center overflow-hidden">
+        <div className="bg-brand-blue-600 py-28 px-4 text-center overflow-hidden text-white">
             <motion.div
-                ref={animation.ref}
+                ref={ref}
                 variants={containerVariants}
                 initial="hidden"
-                animate={animation.animate}
+                animate={controls}
             >
-                <h2 className="text-5xl md:text-7xl font-extrabold tracking-tighter">
+                <h2 className="text-5xl md:text-7xl font-extrabold tracking-tighter text-white">
                     {words.map((word, index) => (
-                        <motion.span key={index} variants={wordVariants} className="inline-block mr-3">
+                        <motion.span key={index} variants={wordVariants} className="inline-black mr-3">
                             {word}
                         </motion.span>
                     ))}
                 </h2>
                 <motion.div 
-                    className="h-1 w-32 bg-black mx-auto my-8"
+                    className="h-1 w-32 bg-white/80 mx-auto my-8"
                     variants={lineVariants}
                 />
                 <motion.p 
-                    className="text-2xl md:text-3xl font-medium"
+                    className="text-2xl md:text-3xl font-medium text-white/90"
                     variants={sentenceVariants}
                 >
                     And when money can't move, trade stalls.

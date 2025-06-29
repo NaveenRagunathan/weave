@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 const Section6_CTA = () => {
-    const animation = useScrollAnimation();
+    const { ref, controls, animation } = useScrollAnimation();
 
     const itemVariants = {
         hidden: { opacity: 0, y: 20 },
@@ -17,13 +17,13 @@ const Section6_CTA = () => {
     return (
         <div className="bg-[#0a09f1] text-white text-center py-28 px-4 overflow-hidden">
             <motion.div
-                ref={animation.ref}
+                ref={ref}
                 variants={{ 
                     hidden: {}, 
                     visible: { transition: { staggerChildren: 0.2 } } 
                 }}
                 initial="hidden"
-                animate={animation.animate}
+                animate={controls}
                 className="max-w-4xl mx-auto"
             >
                 <motion.h2 
